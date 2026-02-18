@@ -1,0 +1,1332 @@
+%%%%%%%%%%%%%%%%%% Environment
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+%\documentclass{article}
+%\usepackage{beamerarticle}
+
+%%%%%%%%%%%%%%%%%% Basic Packages
+\usepackage{amsbsy}
+\usepackage{amstext}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{bbm}
+\usepackage{color}
+\usepackage{arydshln}
+\usepackage{multirow}
+\usepackage{changepage}
+\usepackage{threeparttable,booktabs}
+\usepackage{enumitem}
+%\usepackage{natbib}
+%\bibliographystyle{abbrvnat}
+%\setcitestyle{authoryear,open={((},close={))}}
+
+%%%%%%%%%%%%%%%%%% Style
+\usepackage[margin=1in]{geometry}%
+\usepackage[doublespacing]{setspace}
+
+%%%%%%%%%%%%%%%%%% Fonts and Graphics
+\usepackage[cjk]{kotex} %Korean TeX
+\usepackage[pdftex]{graphicx}
+\usepackage{subfigure}
+
+
+
+%%% ----------------------------------------------------------------------
+%\clubpenalty=10000 \widowpenalty=10000
+%\renewcommand{\baselinestretch}{1.5}
+% \renewcommand{\theequation}{{\rm \thesection.\arabic{equation}}}
+\renewcommand{\theequation}{{\rm \arabic{equation}}}
+\oddsidemargin 0in  %.10in
+\evensidemargin 0in
+\hyphenpenalty 2000
+
+\textwidth 6.5in    %6.5
+\textheight 8.75in     %8.5
+\topmargin 0.0in      %0in
+\headsep 0in \makeatletter
+\newcommand{\singlespacing}{\let\CS=\@currsize\renewcommand{\baselinestretch}{1.1}\tiny\CS}
+\newcommand{\doublespacing}{\let\CS=\@currsize\renewcommand{\baselinestretch}{1.5}\tiny\CS}
+\newcommand{\realdoublespacing}{\let\CS=\@currsize\renewcommand{\baselinestretch}{2.0}\tiny\CS}
+\newcommand{\mydoublespacing}{\let\CS=\@currsize\renewcommand{\baselinestretch}{1.499}\tiny\CS}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\def\N{\mathbb{N}}
+\def\1{\mathbf{1}}
+\def\P{\mathbf{P}}
+\def\E{\mathbf{E}}
+\newcommand{\maximize}{\mathop{\mbox{{\rm maximize}}}\limits}
+\newcommand{\minimize}{\mathop{\mbox{{\rm minimize}}}\limits}
+\newcommand{\argmax}{\mathop{\mbox{{\rm arg\,max}}}\limits}
+
+
+%\newcommand\ks[1]{{\textbf{#1}}}
+\newcommand{\ks}[1]{{\color{blue} #1}}
+\newcommand{\ju}[1]{{\color{magenta} #1}}
+\newcommand{\yj}[1]{{\color{red} #1}}
+
+
+\setlength\parindent{0cm}
+\setlength{\parskip}{12pt}%
+
+\renewcommand\ttdefault{cmvtt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{center}
+{{\Large \bf Response to Review Reports on POM-Jul-20-SI-0934.R1}\\[6mm]
+{\LARGE ``Sharing Economy in the Cloud:\\ Pricing Schemes for Peer-to-Peer Storage Platforms''}\\[15mm]}
+\end{center}
+
+\baselineskip 18pt
+
+\noindent \underline{\large \bf Authors' Response to SENIOR EDITOR}\\[-11mm]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Senior Editor: } I sent the revised paper to the same review team. While they acknowledge and appreciate the effort exerted by the authors, both reviewers continue to have major concerns with the paper. As a result, both reviewers suggest another round of “major revision.” I went over the revised paper and the reviewers’ comments, and I concur with the reviewers’ comments. I would like to recommend another “major revision” and give the authors the opportunity to address the concerns. 
+ 
+Given the reviewers’ expertise and the thorough reports they provide, I have little to add. Rather, I would refer the authors to the detailed comments in the reviewers’ reports. Next, I would like to highlight three major concerns. 
+}
+\end{quotation} \vspace{-4mm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent\textbf{Main Concern: Uniqueness of Storage Sharing}\\[-11mm]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{quotation}
+{\em
+\noindent \textbf{Senior Editor: }  
+As R2 correctly notes, it remains unclear in this revised version what are the unique features of storage sharing (compared with other peer-to-peer platforms) and whether these unique features are captured by the main model. If this study is positioned to focus on storage sharing, the authors may want to elaborate on its distinct features, ensure the model captures some (if not all) of these features, and explain how these distinct features connect with the main results. Of course, the alternative is to position the paper to study peer-to-peer platforms in general. In that case, it will be fine to assume away some specifics of a particular type of platforms. In either way, the authors should be upfront and present clearly about that to readers, and articulate the contribution beyond the existing literature. 
+}
+\end{quotation} \vspace{-4mm}
+\begin{itemize}
+    \item redundancy chapter를 앞으로 빼는 것 +  reviewer 2에게 답하는 내용으로 충분히 답변 가능 
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent\textbf{Main Concern: Model}\\[-11mm]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{quotation}
+{\em
+\noindent \textbf{Senior Editor: } Both reviewers continue to have concerns with the model setup. 
+(a) Heterogeneity of users: As R2 points out, users (both renters and providers) can be heterogeneous in other dimensions as well, which is a good observation. The authors are encouraged to explore possible models which consider heterogeneity in multiple dimensions. However, I would think that the review team will also be fine if the authors can only incorporate some heterogeneity into the model (e.g., the heterogeneity the current model considers). If they take this approach, the authors should elaborate on at least the following two aspects---why the authors consider this specific heterogeneity against other possible heterogeneity, and how the chosen model setup (i.e., ignoring the other possible heterogeneity) affects the main insights.  }
+\end{quotation} \vspace{-4mm}
+\begin{itemize}
+    \item heterogeneity에 대한 측면에서는 storage volume에 대한 numerical study 추가한 것 언급
+    \item 이 답변에 맞추어 R2 답변을 쓰는 식으로 하면 될듯
+\end{itemize}
+
+% \ju{R2가 제시한 storage volume의 heterogeneity는 매우 좋은 포인트임. 우선 기존 모델에서 해당 heterogeneity를 고려하여 다시 분석해보았음. 이때 two-part tariff와 subscription-based pricing에는 아무런 변화가 없고, hybrid pricing의 경우 계약 형태에 따라 제공되는 무료 용량이 달라질 수 있어 다음의 두 시나리오를 고려하였다: 1) 많은 저장 용량을 계약하면 많은 무료 전송 용량을 제공하는 경우, 2) 저장 용량과 무관하게 무료 전송 용량을 고정하는 경우. 첫 번째 시나리오의 경우 기존 모형과 아예 달라지는 바가 없었으며, 두 번째 시나리오의 경우 closed-form 형태를 얻을 수 없었으나, numerical analysis 결과를 살펴보아 pricing 간 상대적 우열의 차이는 없는 것으로 파악되었다. 따라서 우리는 main model에서는 기존의 heterogeneity를 중심으로 가져가되, 저장 용량의 heterogeneity가 결과에 미칠 수 있는 부분을 discussion 및 appendix에서 다루었다.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Senior Editor: } (b) Information: R2 raises a question about how an individual provider could learn the information about the expected demand, which requires some clarification. If there is no specific mechanism or channel for providers to learn this information, I wonder if their “rational expectation” works. At any rate, the authors should carefully think about this and clearly explain how providers know the expected demand. 
+}
+\end{quotation}\vspace{-4mm}
+
+\begin{itemize}
+    \item Reviewer 2와 같은 결로 답변
+\end{itemize}
+% (재웅) 여러 포인트로 대답하면 좋을 것 같음.
+%  1. 완전 zero information은 아님(저장된 용량, 전체 capacity 등의 정보 공시 하는 플랫폼 많음, 본인의 operation 역량에 대해서는 확실히 알고있음) 
+%  2. Equilibrium의 원론적인 이야기 -> 결국은 수렴할 것
+
+\begin{quotation}
+{\em
+\noindent \textbf{Senior Editor: }
+(c) Probability of Service Failure: R1 correctly notes that is it is not rigorous to claim that “by setting a proper m and k, the chance of service failure is very small,” because price is endogenous and it affects the number of active providers. The authors should at least examine whether the desirable m and k will occur in equilibrium (under the equilibrium price). 
+}
+\end{quotation}\vspace{-4mm}
+
+\begin{itemize}
+    \item R1과 같이 답변
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent\textbf{Main Concern: Writing}\\[-11mm]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{quotation}
+{\em
+\noindent \textbf{Senior Editor: } I agree with R2 that the writing could be further improved. The reviewer generously provides detailed suggestions. I would encourage the authors to follow the suggestions and go even beyond to further polish the paper. }
+\end{quotation} \vspace{-4mm}
+
+\ju{R2 response 내용 정리}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{quotation}
+{\em
+\noindent \textbf{Senior Editor: } I am very thankful to the two experienced reviewers for providing their valuable comments. I hope the authors can take advantage of their comments and further improve the paper. The authors did a good job clarifying many issues in the first round. I would encourage the authors to address the reviewers’ comments with the same standard. Good luck with the revision. }
+\end{quotation}\vspace{-4mm}
+
+
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\large \bf Authors' Response to Reviewer 1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 1 (Point 1): }
+The revised manuscript addressed part of my concerns, while the following two major concerns are still not addressed: 
+
+1. About the probability of service failure. The revised paper argues that by setting a proper $m$ and $k$, the chance of service failure is very small. Essentially, this is based on that the required $m$ and $k$ can always be achievable, regardless of price. However, it is not the case since price will certainly affect the number of active providers, which will affect the achievable $m$.  
+ 
+The fact that the platform penalizes the providers who do not maintain certain uptime does NOT mean that the redundancy level can be achieved since it also largely depends on price, which is the decision to be made. 
+ 
+All in all, this is still a big missing point and incorrect assumption. 
+}
+\end{quotation}\vspace{-4mm}
+
+\ju{■■■ Beginning of Response Draft ■■■}
+
+We sincerely thank you for this constructive comment. Following your comment, we have reexamined whether and when the algorithm parameters $m$ and $k$ are achievable. We found that the feasibility of these parameters depends on pricing decisions and the number of participating providers, as you suggested.
+
+In this revision, we have revealed that some of our previous solutions cannot achieve the required redundancy level because the number of potential viewers (i.e., $n_p$) works as the upper limit of the number of participating ones. Specifically, lower $\xi$ (i.e., operating cost) is more advantageous for providers, but this cannot affect the total capacity when $n_p$ providers have already joined the platform. We have taken account of this constraint in our revised analysis and identified the conditions where our previous solutions do not yield optimal outcomes. 
+
+Let us note in advance that these conditions are very unlikely to occur in practice. To be specific, the upper limit $n_p$ matters when operating costs are so small (i.e., small $\xi$) that all potential providers would join the platform under either the current or larger $\xi$. Contrary to such conditions, we have observed that the profitability and operating costs are major concerns in online forums for P2P storage platforms. As a result, many potential providers hesitate to offer their storage and bandwidth services. For this reason, we do not consider such cases in our main analysis and separately provide their results as below.
+
+% $\alpha = 0.95$\\
+% 1) $\xi = 0.1, \theta = 100$\\
+% 2) $\xi = 0.9, \theta = 10$\\
+% 3) $\xi = 1.5, \theta = 3$\\
+% 4) $\xi = 2, \theta = 2$\\
+
+% 우리가 고려하려고 하는 범위: $\xi \ge \alpha$.\\
+% 위의 1), 2)는 우리가 고려하려고 하는 범위에 안들어감.\\
+% 3), 4)는 들어감\\
+% 3)이 optimal이니까, 1), 2)에서 $\xi < \alpha$가 되는 경우가 나오더라도 상관x\\
+
+% 자칫 잘못 쓰면, 우리가 고려하는 case가 \\
+% for all $\theta$에 대하여 $\xi \ge \alpha$가 성립하는 경우만 고려한다.\\
+
+% 1) redundancy level\\
+% 2) price\\
+% 3).....\\
+
+% 1)에서 optimal $\xi, \theta$를 정하는데($\xi \theta$를 minimize하는 $\xi^*, \theta^*$), 이 때에도 $\xi^* < \alpha$가 성립한다면, 이 경우는 너무 trivial함.\\
+
+% 어차피 다 들어오므로 pricing과 provider 간에 interaction이 없다...우리는 이런 상황에 관심이 없다(관심있는 mechanism은 아님)
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{When are previous solutions not optimal?}
+(Two-part tariff인 경우, at least 하나라도 optimal solution이 되지 않는 경우를 기준으로 잡았을 때)\\
+i) When $\frac{3}{4}\alpha \le \xi$, our all previous solutions are feasible,\\
+ii) When $\frac{1}{2}\alpha \le \xi < \frac{3}{4}\alpha$, our solutions are infeasible when $0 \le n_p < \frac{1}{2}(1 - \frac{\xi}{\alpha}) + \frac{1}{12\alpha}\sqrt{48 \xi^2 - 96 \alpha \xi + 45 \alpha^2},$\\
+iii) When $0 \le \xi \le \frac{1}{2}\alpha$, all our solutions are infeasible.\\
+
+즉, $\frac{3}{4}\alpha \le \xi$가 성립하는 경우에는 우리가 제공하는 solution이 모두 feasible하다.\\
+(Note that, if we consider the general $b$, when $\frac{2b-1}{2b}\alpha \le \xi$, our all previous solutions are feasible.)
+
+
+\begin{proof}
+The providers' incentive becomes maximized when the platform adopts a two-part tariff pricing scheme. Therefore, it is sufficient to consider the two-part tariff to derive an upper bound of $\xi$, which makes the previous solution not optimal. Our previous solutions are divided into the first-best price and market-clearing price regardless of the pricing schemes. According to our solutions in the main analysis, the platform sets the first-best price when $\frac{\xi \theta}{\alpha} n_r \le n_p$, and the platform sets the market-clearing price when $0 \le n_p \le \frac{\xi \theta}{\alpha} n_r$. Now, let us divide the following two cases to derive the condition when our previous solutions cannot be optimal.\\
+i) $\frac{\xi \theta }{\alpha} n_r \le n_p$\\
+In this case, the platform sets the first-best price and the optimal prices become
+\begin{equation*}
+    \left(p_s^T, p_b^T\right) = \left(0, \frac{1}{2}\right)
+\end{equation*}
+Then, by putting $\left(p_s^T, p_b^T\right)$ into the $\rho_m$, we get $\rho_m|_{p_s = p_s^T, p_b = p_b^T} = \frac{\alpha}{2\xi}$. Which implies that, when $\frac{1}{2}\alpha \le \xi$ holds, the first-best price becomes feasible solution.\\
+
+ii) $0 \le n_p \le \frac{\xi \theta}{\alpha}n_r$\\
+In this case, the platform sets the market-clearing price, but the optimal prices distinguish in two cases according to the number of providers as follows.\\
+ii-i) $\frac{1}{6}\frac{\xi \theta}{\alpha}n_r \le n_p \le \frac{\xi \theta}{\alpha}n_r$\\
+We obtain the following optimal prices for this case.
+\begin{equation*}\small
+\begin{aligned}
+    &\left(p_s^T, p_b^T\right) = \left(\frac{3(12\eta^2 + 28 \kappa \xi - \kappa^2) - 3(2\eta + \kappa)\sqrt{180\eta^2 - 12 \kappa \eta + \kappa^2}}{8 (12\eta^2 + 12 \kappa \eta - \kappa^2)} \frac{\lambda_0}{\theta}, \frac{12\eta^2 + 24 \kappa \eta - 3\kappa^2 + \sqrt{180\eta^2 - 12 \kappa \eta + \kappa^2}}{4(12\eta^2 + 12\kappa \eta - \kappa^2)}\right)\\
+    &\text{where } \kappa = \frac{\xi}{\alpha} \text{ and } \eta = \frac{n_p}{\theta n_r}
+\end{aligned}
+\end{equation*}
+By putting above optimal prices into the threshold $\rho_m$, we get the following equations.
+\begin{equation*}
+    \rho_m^T \equiv \rho_m|_{p_s= p_s^T, p_b = p_b^T} = \frac{3(24 \eta - 4 \kappa) +6\sqrt{180 \eta^2 - 12 \kappa \eta + \kappa^2}}{12(12\eta^2 + 12 \kappa \eta - \kappa^2)}
+\end{equation*}
+Above $\rho_m^T$ has following characteristics:\\
+i) $\rho_m^T$ is maximized at $\eta = \frac{\kappa}{6}$,\\
+ii) $\rho_m^T$ decreases in $\eta$ (i.e., decreases in $n_p$) for $\frac{\kappa}{6} \le \eta \le \kappa$,\\
+iii) $\rho_m^T|_{\eta = \kappa} = \frac{1}{2 \kappa}$.\\
+
+ii-ii) $0 \le n_p \le \frac{1}{6}\frac{\xi \theta}{\alpha} n_r$\\
+We obtain the following optimal prices for this case.
+\begin{equation*}
+    \left(p_s^T, p_b^T\right) = \left(\frac{\sqrt{6 \kappa }}{16\sqrt{\eta}}\frac{\lambda_0}{\theta }, \frac{5}{8} \right)
+\end{equation*}
+By putting above optimal prices into the threshold $\rho_m$, we get the following equations.
+\begin{equation*}
+\rho_m^T \equiv \rho_m|_{p_s= p_s^T, p_b =p_b^T} = \frac{3\alpha}{4 \xi}
+\end{equation*}
+Thus, when $\xi < \frac{3}{4}\alpha$, $\rho_m^T >1$ holds.
+
+Combining above results, we get the following results.
+\\i) When $\frac{3}{4}\alpha \le \xi$, our all previous solutions are feasible,\\
+ii) When $\frac{1}{2}\alpha \le \xi < \frac{3}{4}\alpha$, our solutions are infeasible when $0 \le n_p < \frac{1}{2}(1 - \frac{\xi}{\alpha}) + \frac{1}{12\alpha}\sqrt{48 \xi^2 - 96 \alpha \xi + 45 \alpha^2},$\\
+iii) When $0 \le \xi \le \frac{1}{2}\alpha$, all our solutions are infeasible.\\
+\end{proof}
+
+
+
+
+\textbf{What are the outcomes where the previous solutions are not optimal?}
+%현재 상황: two-part tariff v.s. subscription은 제대로 증명이 가능하나 hybrid에 대해서는 중간에 막히는 부분이 있음 -- 기존에 hybrid에서 optimal solution을 제시할 수 없었던 것과 같은 이유. 따라서 two-part tariff v.s. subscription에서 two-part tariff가 social surplus가 넘어서는 부분이 없음 + numerical study를 해야 정확하게 얘기가 가능\\
+%general하게 two-part tariff + hybrid v.s. subscription해서 넘어서는게 없다는 것을 증명할 수 있는 방법을 찾고 있음
+
+만약 previous solution이 optimal하지 않는 경우, 즉, $\xi$가 매우 낮은 경우는 provider들의 cost가 매우 낮아져 모든 provider가 platform에 자신의 용량을 share하고자 한다. 이와 같은 경우에는 platform은 수익을 최대화 하기 위하여 in을 하고자 하는 전체 renter의 용량과(redundancy포함) 전체 potential provider의 용량이 같아d지도록 하는 pricing을 하는 것이 optimal pricing이 된다. 기존에 first-best price에서는 profit이 $T = Hl > Hh > S$, surplus가 $S > Hh > Hl = T$이지만, market-clearing price에서는 profit의 order는 유지되나 surplus의 order가 역전되는 경우가 나오는 케이스가 있었던 이유는, provider가 적은 경우에는 provider에게 충분한 incentive를 제공하면서 이들의 profit을 확보하여 in을 시키도록 하는 것이 오히려 전체 surplus 차원에서 좋아질 수 있다는 측면이었다.(이 상황에서 subscription 등의 pricing scheme를 택하게 되면, provider에게 충분한 incentive를 제공하기 위하여 너무 높은 price를 해야 하고, 이는 provider의 surplus를 제대로 확보해주지도 못하면서 renter의 surplus만 지나치게 깎음) 하지만, 이와 같이 $\xi$가 매우 작은 경우에는 market clearing과 비슷한 경우처럼 보이지만, 어차피 모든 provider가 다 들어오는 경우이므로 이들의 profit을 확보하는 것이 전체 surplus 차원에서 큰 혜택이 없어지게 되고 결과적으로 first-best price와 같은 형태의 결과가 나타나게 된다.
+
+
+\begin{proof}
+To show how the order of profit and total surplus changes when our previous solutions are not optimal, we focus on $\xi$ which makes all previous solutions infeasible. \yj{이 $\xi$ 범위를 제공 할 필요는 있을까요?}\\
+When $\xi$ is sufficiently small, the entire providers enter the platform to share their idle spaces. Let us assume that our previous optimal pricing cannot be optimal for given $(\xi, t)$. Then, the reason why they cannot be optimal is from $\rho_m > 1$. Thus, in this case, the platform increases the prices to maximize its profit until $n_p = \theta \upsilon_s$. Now, let us derive the modified optimal prices for each pricing scheme.\\
+i) Two-part tariff\\
+i-i) $0 \le p_s \le \frac{\lambda_0(1-p_b)}{\theta}$\\
+\begin{equation*}
+    \theta \upsilon_s = n_p \Leftrightarrow p_s = \frac{3 \lambda_0 (\theta n_r(1-p_b) - n_p)}{2\theta^2 n_r}
+\end{equation*}
+Then, optimal prices can be derived as follows:
+\begin{equation*}
+    \left( p_s, p_b \right) = \left(\frac{3 \lambda_0}{4\theta^2 n_r} (\theta n_r - 2n_p), \frac{1}{2}\right)
+\end{equation*}
+When $\frac{1}{6} \theta n_r \le n_p \le \frac{1}{2}\theta n_r$, above prices are feasible. Otherwise, optimal prices becomes $(p_s, p_b) = (0, \frac{1}{2})$.
+
+i-ii) $\frac{\lambda_0(1-p_b)}{\theta} \le p_s$\\
+\begin{equation*}
+    \theta \upsilon_s = n_p \Leftrightarrow p_s = \frac{\sqrt{n_r}\lambda_0(1-p_b)^{3/2}}{\sqrt{3\theta n_p}}
+\end{equation*}
+\begin{equation*}
+    \left(p_s, p_b \right) = \left(\frac{n_r}{\sqrt{24\theta n_p}}\lambda_0, \frac{1}{2} \right)
+\end{equation*}
+When $0 \le n_p \le \frac{1}{6} \theta n_r$, above prices are feasible.
+
+With the modified optimal prices, we obtain the following optimal profit and total surplus for this case.
+\begin{equation*}
+\begin{aligned}
+    &\Pi^T = \begin{cases}
+    (1-\alpha) \lambda_0\frac{\sqrt{2 n_r n_p}}{\sqrt{3\theta}} &\text{ when } 0 \le n_p \le \frac{1}{6}\theta n_r\\
+    (1-\alpha) \lambda_0\frac{\theta^2 n_r^2 + 12 \theta n_r n_p - 12 n_p^2}{8\theta^2 n_r} &\text{ when } \frac{1}{6} \theta n_r \le n_p \le \frac{1}{2} \theta n_r \\
+    \frac{1}{2}(1-\alpha)\lambda_0 n_r &\text{ when } \frac{1}{2} \theta n_r \le n_p
+    \end{cases}\\
+    &TS^T = \begin{cases}
+    (5-3\xi)\lambda_0 \frac{\sqrt{n_r n_p}}{2\sqrt{6\theta}} &\text{ when } 0 \le n_p \le \frac{1}{6}\theta n_r\\
+    \frac{\lambda_0(3-2\xi)\theta^2 n_r^2 + 12(2-\xi)\theta n_r n_p - 12 n_p^2}{16 \theta^2 n_r} &\text{ when } \frac{1}{6}\theta n_r \le n_p \le \frac{1}{2}\theta n_r\\
+    \frac{1}{4}(3-2 \xi) n_r \lambda_0 &\text{ when } \frac{1}{2}\theta n_r \le n_p
+    \end{cases}
+\end{aligned}
+\end{equation*}
+
+
+ii) Hybrid with low $q$\\
+ii-i) $0 \le p_s \le \frac{\lambda_0 - (1-q) \lambda_0 p_b}{\theta}$\\
+\begin{equation*}
+    \theta \upsilon_s = n_p \Leftrightarrow p_s = \frac{\lambda_0 \left(\theta n_r (3 - 3p_b + 2q ) - 3n_p \right)}{2 \theta^2 n_r}
+\end{equation*}
+Then, optimal prices can be derived as follows:
+\begin{equation*}
+    (p_s, p_b) = \left(\frac{\lambda_0}{4\theta^2 n_r}[(3+2q)\theta n_r - 6n_p], \frac{1}{2} \right)
+\end{equation*}
+When $\frac{1}{6}\theta n_r \le n_p \le \frac{1}{2}\theta n_r$, above prices are feasible. Otherwise, optimal prices becomes $(p_s, p_b) = (\frac{q \lambda_0}{2\theta}, \frac{1}{2})$.\\
+
+ii-ii) $\frac{\lambda_0 - (1-q) \lambda_0 p_b}{\theta} \le p_s$\\
+\begin{equation*}
+    \theta \upsilon_s = n_p \Leftrightarrow p_s = \frac{q \lambda_0}{\theta}p_b + \frac{\sqrt{n_r}\lambda_0(1-p_b)^{3/2}}{\sqrt{3\theta n_p}}
+\end{equation*}
+\begin{equation*}
+    (p_s, p_b) = \left(\frac{q\lambda_0}{2 \theta} + \frac{n_r}{\sqrt{24 \theta n_p}} \lambda_0, \frac{1}{2} \right)
+\end{equation*}
+When $0 \le n_p \le \frac{1}{6}\theta n_r$, above prices are feasible.\\
+With the modified optimal prices, we obtain the following optimal profit and total surplus for this case.
+\begin{equation*}
+\begin{aligned}
+    &\Pi^{Hl} = \begin{cases}
+    (1-\alpha) \lambda_0\frac{\sqrt{2 n_r n_p}}{\sqrt{3\theta}} &\text{ when } 0 \le n_p \le \frac{1}{6}\theta n_r\\
+    (1-\alpha) \lambda_0\frac{\theta^2 n_r^2 + 12 \theta n_r n_p - 12 n_p^2}{8\theta^2 n_r} &\text{ when } \frac{1}{6} \theta n_r \le n_p \le \frac{1}{2} \theta n_r \\
+    \frac{1}{2}n_r(1-\alpha)\lambda_0 &\text{ when } \frac{1}{2} \theta n_r \le n_p
+    \end{cases}\\
+    &TS^{Hl} = \begin{cases}
+    (5-3\xi)\lambda_0 \frac{\sqrt{n_r n_p}}{2\sqrt{6\theta}} &\text{ when } 0 \le n_p \le \frac{1}{6}\theta n_r\\
+    \frac{\lambda_0(3-2\xi)\theta^2 n_r^2 + 12(2-\xi)\theta n_r n_p - 12 n_p^2}{16 \theta^2 n_r} &\text{ when } \frac{1}{6}\theta n_r \le n_p \le \frac{1}{2}\theta n_r\\
+    \frac{1}{4}(3-2 \xi) n_r \lambda_0 &\text{ when } \frac{1}{2}\theta n_r \le n_p
+    \end{cases}
+\end{aligned}
+\end{equation*}
+
+
+iii) Hybrid with high $q$\\
+iii-i) $0 \le p_s \le \frac{\lambda_0}{\theta}$\\
+\begin{equation*}
+    \theta \upsilon_s = n_p \Leftrightarrow p_s = \frac{\lambda_0\left(\theta n_r(3q^2 - p_b) - 3q^2 n_p \right)}{2q^2 \theta^2 n_r}
+\end{equation*}
+\begin{equation*}
+    (p_s, p_b) = \left(\frac{3\lambda_0\left((8q^3 - 2q - 1) \theta n_r - (8q^3-2)n_p\right) }{4\theta^2  n_r (4q^3 -1)}, \frac{3q^2(2q-1)}{8q^3-2} \right)
+\end{equation*}
+When $\frac{8q^3 - 6q +1}{24q^3-6}\theta n_r \le n_p \le \frac{1}{2}\theta n_r$, above prices are feasible. Otherwise, optimal prices become $(p_s, p_b) = \left(\frac{3q(2q^2-1)}{2(4q^3-1)}\frac{\lambda_0}{\theta}, \frac{3q^2(2q-1)}{2(4q^3-1)} \right)$.
+
+iii-ii) In this case, the profit function is decreasing in $p_s$ for all $p_b \in [0, 1]$. Thus, the optimal storage price becomes $p_s = \frac{\lambda_0}{\theta}$.
+
+
+iv) Subscription\\
+iv-i) $0 \le p_s \le \frac{\lambda_0}{\theta}$\\
+\begin{equation*}
+    \theta \upsilon_s = n_p \Leftrightarrow p_s^S = \frac{3\lambda_0(\theta n_r - n_p)}{2 \theta^2 n_r}
+\end{equation*}
+Then, above price becomes optimal price when $\frac{1}{3} \theta n_r \le n_p \le \frac{1}{2} \theta n_r$. Otherwise, optimal $p_s^S = \frac{3\lambda_0}{4\theta}$ when $\frac{1}{2}\theta n_r \le n_p$.\\
+
+iv-ii) $\frac{\lambda_0}{\theta} \le p_s $\\
+\begin{equation*}
+    \theta \upsilon_s = n_p \Leftrightarrow p_s = \frac{\sqrt{n_r} \lambda_0}{\sqrt{3\theta n_p}}
+\end{equation*}
+When $0 \le n_p \le \frac{1}{3}\theta n_r$, above price becomes optimal storage price.
+
+With the modified optimal storage price, we obtain the following optimal profit and total surplus for this case.
+\begin{equation*}
+\begin{aligned}
+    &\Pi^S = \begin{cases}
+    (1-\alpha) \lambda_0\frac{\sqrt{ n_r n_p}}{\sqrt{3\theta}} &\text{ when } 0 \le n_p \le \frac{1}{3}\theta n_r\\
+    (1-\alpha) \lambda_0\frac{3n_p (\theta n_r - n_p)}{2\theta^2 n_r} &\text{ when } \frac{1}{3} \theta n_r \le n_p \le \frac{1}{2} \theta n_r \\
+    \frac{3}{8}n_r(1-\alpha)\lambda_0 &\text{ when } \frac{1}{2} \theta n_r \le n_p
+    \end{cases}\\
+    &TS^S = \begin{cases}
+    (4-3\xi)\lambda_0 \frac{\sqrt{n_r n_p}}{2\sqrt{3\theta}} &\text{ when } 0 \le n_p \le \frac{1}{3}\theta n_r\\
+    \frac{\lambda_0(1-\xi)\theta^2 n_r^2 + 3(2-\xi)\theta n_r n_p - 3 n_p^2}{4 \theta^2 n_r} &\text{ when } \frac{1}{3}\theta n_r \le n_p \le \frac{1}{2}\theta n_r\\
+    \frac{1}{16}(13-10 \xi) n_r \lambda_0 &\text{ when } \frac{1}{2}\theta n_r \le n_p
+    \end{cases}
+\end{aligned}
+\end{equation*}
+
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+% \textbf{When are the previous solutions not optimal?} (...)\\
+% Subscription:\\
+% i) $\frac{1}{3} \alpha \le \xi$: 모두 feasible\\
+% ii) $\frac{3}{10} \alpha \le \xi < \frac{1}{3}\alpha$: $0 \le n_p \le \frac{3n_r \theta (\alpha - \xi) + \sqrt{9\xi^2 - 30 \alpha \xi + 9\alpha^2}}{6\alpha}$인 경우 solution이 feasible하지 않음.\\
+% iii) $\xi \le \frac{3}{10}\alpha$\\
+% 모든 경우에 대해서 현재의 solution이 feasible하지 않음.\\
+
+% Hybrid with high $q$:\\
+
+% Hybrid with low $q$:\\
+% i) $\frac{3}{4}\alpha \le \xi$: 모두 feasible\\
+% ii) $\frac{1}{2}\alpha \le \xi \le \frac{3}{4}\alpha$\\
+% $0 \le n_p \le \frac{6 \theta n_r ( \alpha - \xi) + \sqrt{48\xi^2 - 96 \alpha \xi + 45 \alpha^2}}{12\alpha}$ 인 경우 현재 solution이 feasible하지 않음\\
+% iii) $\xi \le \frac{1}{2}\alpha$\\
+% 모든 경우에 대해서 현재의 solution이 feasible하지 않음.\\
+
+% Two-part tariff:\\
+% i) $\frac{3}{4}\alpha \le \xi$: 모두 feasible\\
+% ii) $\frac{1}{2}\alpha \le \xi \le \frac{3}{4}\alpha$\\
+% $0 \le n_p \le \frac{6 \theta n_r ( \alpha - \xi) + \sqrt{48\xi^2 - 96 \alpha \xi + 45 \alpha^2}}{12\alpha}$ 인 경우 현재 solution이 feasible하지 않음\\
+% iii) $\xi \le \frac{1}{2}\alpha$\\
+% 모든 경우에 대해서 현재의 solution이 feasible하지 않음.\\
+
+
+% \textbf{When are the previous solutions not optimal?} (...)\\
+% \begin{proof}
+
+
+% In this proof, we investigate the feasibility of our reported solutions for each case, first-best price and market-clearing price. Note that, to check the feasibility, we are enough to verify whether $\rho_m$ is larger than `1' or not when firm decides its optimal prices.\\
+% i) Subscription:\\
+% i-i) First-best price ($\frac{5}{3}\frac{\xi \theta}{\alpha}n_r \le n_p$):\\
+% In this case, optimal prices become $p_s^* = \frac{3 \lambda_0}{4 \theta}$. Then, by putting $p_s^*$ into the equation $\rho_m$, we get $\rho_m|_{p_s = p_s^*} = \frac{3\alpha}{10\xi}$. Which implies that when $\frac{3\alpha}{10} \le \xi$ holds, the first-best price becomes feasible solution.\\
+
+% $\frac{5}{3}\frac{\xi \theta}{\alpha}n_r \le n_p$\\
+% $\Leftrightarrow \frac{5}{3}c \le \eta $\\
+% $c := \frac{\xi}{\alpha}, \eta := \frac{n_p}{\theta n_r}$\\
+
+
+
+% i-ii) Market-clearing price \\
+% a) $\frac{\xi \theta}{\alpha} n_r \le n_p \le \frac{5}{3}\frac{\xi \theta}{\alpha }n_r$:\\
+% In this case, optimal prices become $p_s^* = \frac{2 \xi \lambda_0 n_r}{\alpha n_p + \xi \theta n_r}$ for all $n_p \in [\frac{\xi \theta}{\alpha}n_r, \frac{5}{3}\frac{\xi \theta}{\alpha}n_r]$. By putting $p_s^*$ in to the $\rho_m$, we get $\rho_m|_{p_s = p_s^*}= \frac{\theta n_r ( 3\alpha n_p - \xi \theta n_r)}{3 n_p (\alpha n_p + \xi \theta n_r)}$. Then, $\rho_m >1$ holds for $n_p \in [\frac{\xi \theta}{\alpha}n_r, \frac{3\theta n_r(\alpha - \xi) + \sqrt{9\xi^2 - 30 \alpha \xi + 9\alpha^2}}{6\alpha}]$ when $\xi \le \frac{\alpha}{3}$.\\
+% b) $0 \le n_p \le \frac{\xi \theta}{\alpha} n_r $:\\
+% In this case, optimal prices become $p_s^* = \frac{\sqrt{\xi n_r}\lambda_0}{\sqrt{\alpha \theta n_p}}$ for all $n_p \in [0, \frac{\xi \theta}{\alpha}n_r]$. By putting $p_s^*$ into the $\rho_m$, we get $\rho_m|_{p_s = p_s^*} = \frac{\alpha }{3 \xi}$. Thus, when $\xi > \frac{\alpha}{3}$, $\rho_m > 1$ holds.\\
+
+
+% % ii) Hybrid with high $q$\\
+% % iii) Hybrid with low $q$\\
+
+% ii) Two-part tariff\\
+% ii-i) First-best price ($\frac{\xi \theta}{\alpha} n_r \le n_p$)\\
+% In this case, the optimal prices become $(p_s^*, p_b^*) = (0, \frac{1}{2})$. Then, by putting $p_s^*$ and $p_b^*$ into the equation $\rho_m$, we get $\rho_m|_{p_s = p_s^*, p_b= p_b^*} = \frac{\alpha}{2\xi}$. Which implies that when $\frac{1}{2}\alpha \le \xi$ holds, the first-best price becomes feasible solution.\\
+% ii-ii) Market-clearing price\\
+% a) $\frac{1}{6}\frac{\xi \theta}{\alpha}n_r \le n_p \le \frac{\xi \theta}{\alpha} n_r$\\
+% In this case, optimal prices are calculated as follows:
+% \begin{equation*}
+%     (p_s^*, p_b^*) = (\frac{3(12 \alpha^2 n_p^2 + 28 \alpha n_p \xi \theta n_r - \xi^2 \theta^2 n_r^2 - (2\alpha n_p + \xi \theta n_r) \sqrt{180 \alpha^2 n_p^2 + 12 \alpha n_p \xi \theta n_r - \xi^2 \theta^2 n_r^2}}{8\theta(12 \alpha^2 n_p^2 + 12 \alpha n_p \xi \theta n_r + \xi^2 \theta^2 n_r^2)}, \frac{12 \alpha^2 n_p^2 + 24 \alpha n_p f \theta n_r - 3 f^2 \theta^2 n_r^2 + f \theta n_r \sqrt{180\alpha^2 n_p^2 + 12 \alpha n_p f \theta n_r + f^2 \theta^2 n_r^2}}{4(12 \alpha^2 n_p^2 + 12 \alpha n_p f \theta n_r + f^2 \theta^2 n_r^2 })
+% \end{equation*}
+
+
+% $\rho_m = \frac{3\alpha \theta n_r}{2(-12 \alpha n_p + 2 \xi \theta n_r + \sqrt{180\alpha^2 n_p^2 - 12 \xi \alpha n_p \theta n_r + \xi^2 \theta^2 n_r^2}} \le 1$ for all $n_p \Leftrightarrow \frac{3\alpha}{4} \le \xi$\\
+
+% b) $0 \le n_p \le \frac{1}{6}\frac{\xi \theta }{\alpha}n_r$\\
+% $\rho_m = \frac{3\alpha}{4\xi} \le 1 \Leftrightarrow \frac{3\alpha}{4}\le \xi$\\
+% 즉, $\frac{3\alpha}{4}\le \xi$를 만족하는 경우에는 모든 provider가 in하는 경우는 발생하지 않음. 만약, 이 경우가 아니라면 다음과 같은 상황에서 모든 provider가 in 하는 경우가 발생\\
+% A) $\frac{1}{2}\alpha \le \xi \le \frac{3}{4}\alpha$\\
+% $0 \le n_p \le \frac{6 \theta n_r ( \alpha - \xi) + \sqrt{48\xi^2 - 96 \alpha \xi + 45 \alpha^2}}{12\alpha}$ 인 경우 현재 solution이 feasible하지 않음\\
+% B) $\xi \le \frac{1}{2}\alpha$\\
+% 모든 경우에 대해서 현재의 solution이 feasible하지 않음.\\
+% (Note that, general $b$에 대해서는 $\frac{2b-1}{2b} \alpha \le \xi$ 일때 우리가 원하는 조건이 성립함. 즉, for all $b \in (1, \inf)$에 대해서 우리의 결과를 이어나가기 위해서는 $\alpha \le \xi$라는 가정이 있는 것이 가장 좋음)\\
+% $\alpha \le \xi$라는 가정은 다음과 같은 식으로부터 만들어 낼 수는 있음.\\
+% $\pi_j = \alpha(\hat{\omega}_s p_s + \hat{\omega_{bp}}p_b) - \rho_j \hat{\omega}_b \xi$에서부터 다음과 같은 조건이 성립.\\
+% i) free로 제공하는 경우가 하나도 없고(two-part tariff)\\
+% ii) 사실상 feasible한 최대의 bandwidth price를 설정한 경우($p_b = 1$)에도\\
+% iii) 가장 cost가 높은 provider의 경우에는($\rho_j = 1$)\\
+% iv) bandwidth로부터 수익을 창출할 수 없다 ($\alpha \hat{\omega}_{b} - \hat{\omega}_b \xi \le 0 \Leftrightarrow \alpha \le \xi$)\\
+% v) 즉, cost가 충분히 큰 provider들을 trivial 하게 들어올 수 있도록 하는 bandwidth price는 feasible하지 않다.\\
+
+% \end{proof}
+
+% 우리 solution이 feasible 한 region:\\
+% i-ii) Market clearing:\\
+% a) $\frac{\xi\theta }{\alpha} n_r \le n_p \le \frac{5}{3}\frac{\xi \theta}{\alpha}n_r$\\
+% \\
+
+% b) $n_p \le \frac{\xi\theta }{\alpha} n_r$\\
+
+
+
+% iii) Hybrid:\\
+% i) 과 ii) 사이의 범위에서 나옴 (추후 필요시 구체적 유도)\\
+
+
+
+
+% \textbf{What are the outcomes where the previous solutions are not optimal?} (...)
+% We only focus on the $\xi \le \frac{3}{10}\alpha$. ($\xi$가 충분히 작은 경우를 고려하여, cost가 정말 낮은 경우에 어떠한 변화를 만들어내는지 설명)\\
+
+
+% When $\xi$ is sufficiently small, the entire providers enter this platform in these cases across all pricing schemes. Therefore, we obtain qualitatively similar results to those of the first-best prices; that is:
+% \begin{table}[h] \centering
+%     \begin{tabular}{l  l}
+%         Platform's profit & $\Pi^S  \le \Pi^{Hh} \le \Pi^{Hl} = \Pi^T $\\
+%         %Providers' surplus & $PS^S  \le PS^{Hh} \le PS^{Hl} = PS^T $\\
+%         %Renters' surplus & $RS^T = RS^{Hl} \le RS^{Hh} \le RS^S$\\
+%         Total surplus & $TS^T = TS^{Hl} \le TS^{Hh} \le TS^S$,
+%     \end{tabular}
+% \end{table}\\
+% where the superscripts $T$, $Hl$, $Hh$, and $S$ indicate the two-part tariff, the hybrid pricing with low $q(\le 1)$, the hybrid pricing with high $q(\ge 1)$, and the subscription-based pricing, respectively.
+
+% \begin{proof}
+% In this proof, we consider the case with $\xi^o \le \frac{3}{10}\alpha$ and provide how our results change when all potential providers join the platform. Note that, for given $(\xi, \theta)$ if optimal prices without considering the upper limit of the number of participating providers becomes infeasible solution, the optimal prices with considering the upper limit satisfies  
+% \end{proof}
+
+
+%*우리가 푸는 sequence 자체는 for given $\xi-\theta$ 내에서 optimal pricing을 구하는 것(기존에도 그렇고, revision version에서도 마찬가지)
+
+%(재웅) low $\xi$에 대해서는 기존의 optimal solution에서 들어올 것으로 기대하는 number of participating provider가 upper limit인 $n_p$를 넘어가기 때문에 feasible하지 않다. (...) 고로 다른 것이 optimal solution이었다.\\
+%(영재) for given $\xi$에 대해서 optimal pricing을 구할 때 $n_p$라는 constraint를 missing한 후 optimal을 구함. 여기서 for given $\xi$가 작은 경우에는 optimal solution에서 들어오는 provider가 upper limit을 넘어가는(constratint를 만족시키지 않는) 경우가 발생함
+
+%$\xi$가 작은 경우의 optimal pricing도 필요하면 추가
+
+%$n_p = \frac{\xi \theta }{\alpha} n_r$\\
+%$\Leftrightarrow \frac{\alpha}{2\xi} n_p= {\frac{\theta }{2}} n_r$\\
+%좌측의 upper bound: $n_p$, 우측의 upper bound: $\theta n_r$\\
+%if $\frac{\alpha}{2\xi} > 1 \rightarrow $ in하는 provider가 전체 provider보다 많아진다 \\
+
+(...)
+
+\ju{■■■ End of Response Draft ■■■}
+
+\yj{2022.01.07 }
+\yj{첫번째 코멘트와 두번째 코멘트 내용이 이어지므로 일단 통합해서 1차 내용 서술}
+
+\begin{itemize}
+    \item 코멘트 내용과 같이 $m$ and $k$ 가 achievable하지 않을 수 있다. 이와 같은 이유는 reviewer1이 comment를 준 것과 같이 provider의 수와 depend 하게 되고, 모델 내에서 실제로 발생하는 경우가 모든 potential provider이 다 들어오는 경우이다. 
+    \item 이러한 경우가 나타나는 case는 $\theta$가 매우 커지고, $\xi$가 작아지면서 나타나게 되는데, $\theta$ 자체가 커지는 경우는 provider와 renter의 크기를 비교하는 차원에서 모두 반영이 되므로 문제가 전혀 되지 않는다. 반면, $\xi$가 작아지는 경우는 모든 provider들이 in을 하게 만드는 경우가 나타날 수 있다.(기존에는 실제 들어오는 provider의 수에 upper bound가 있다는 condition을 missing했음)
+    \item 하지만 이 경우를 제외하면 우리의 본문 내의 결과는 여전히 유지가 되고, 모든 potential provider이 다 들어오는 경우 자체는 unrealistic하다고 할 수 있으므로, 본문 내에서는 이와 같은 경우를 제외하였다. 
+    \item 이와 같은 요소가 realistic하지 않다고 판단한 이유는, forum 등 다양한 곳에서 보게 되면 이 service에서 용량을 제공하는 것이 실제로 profitable한지에 대한 argue가 엄청나게 많고, 블록체인 기반의 기술인만큼 computing power등이 많이 들어가기 때문에 전체적으로 보았을 때 자신의 용량을 제공하는 것이 profitable한지에 대한 concern이 되게 많음을 통하여 설명할 수 있다.
+    \item 먼저, 모든 provider가 들어오게 되는 condition은 다음과 같은 경우에 나타나게 된다.
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{itemize}
+    \item $\xi$가 작은 경우에는 우리의 결과가 consistent하지 않다.
+    \item 이와 같은 결과가 나오는 이유는, 우리가 제시하는 주된 insight는 provider와 renter들이 sharing platform에 들어오는 관계 내에서 서로 간의 trade-off에 집중하여, provider에게 incentive를 더 주는 것이 좋을 수 있다! 라는 것인데
+    \item 만약 $\xi$가 너무 작아서 모든 provider가 들어오게 되는 경우라면 이는 renter들에게 집중하는 것이 optimal로 나오게 된다(first-best와 같은 case)
+    \item 따라서 이와 같은 경우에는 provider가 아니라 다시 renter에게 집중이 되며 무료로 많이 용량을 주는 경우가 더욱 높은 surplus를 만들게 된다.
+\end{itemize}
+
+
+\begin{itemize}
+    \item 즉, 전체적으로 보았을 때 $\frac{3\alpha}{4}\le \xi$를 만족하는 경우에는 모든 provider가 들어오는 경우는 발생하지 않음 (이 범위에 대한 당위성을 부여할 것인가, 혹은 모든 provider가 in하는 경우를 제거할 것인가에 대해서는 논의 필요)
+    % \item 이에 대한 연장선 상으로, 우리가 optimal로 제시한 $\xi \theta$를 최소화시키는 $(t, \theta)$쌍이 적절한 $\theta$에서 나온다는 것을 numerical로 보이는 것이 필요
+    % \item 이를 위해서 $\xi(t)$에 따른 optimal $\xi \theta$에 대한 numerical study 진행
+\end{itemize}
+
+% \begin{figure}[ht!]
+%     \centering
+%     \subfigure[$t-\xi$ graph (threshold = 0.7)]{\includegraphics[width=6cm]{figure_3rd/cost_graph_4_1.png}}
+%     \subfigure[$\theta-\xi\theta$ graph (threshold = 0.7)]{\includegraphics[width=6cm]{figure_3rd/cost_graph_4.png}}
+%     \subfigure[$t-\xi$ graph (threshold = 0.8)]{\includegraphics[width=6cm]{figure_3rd/cost_graph_4_2.png}}
+%     \subfigure[$\theta-\xi\theta$ graph (threshold = 0.8)]{\includegraphics[width=6cm]{figure_3rd/cost_graph_3.png}}
+% \end{figure}
+% \begin{figure}[ht!]
+%     \centering
+%     \subfigure[$t-\xi$ graph (threshold = 0.9)]{\includegraphics[width=6cm]{figure_3rd/cost_graph_1_1.png}}
+%     \subfigure[$\theta-\xi\theta$ graph (threshold = 0.9)]{\includegraphics[width=6cm]{figure_3rd/cost_graph_1.png}}
+%     \subfigure[$t-\xi$ graph (threshold = 0.95)]{\includegraphics[width=6cm]{figure_3rd/cost_graph_2_1.png}}
+%     \subfigure[$\theta-\xi\theta$ graph (threshold = 0.95)]{\includegraphics[width=6cm]{figure_3rd/cost_graph_2.png}}
+% \end{figure}
+
+
+% \begin{itemize}
+%     \item 코멘트와 같이 $m$ and $k$가 실제로 achievable 하지 않을 수 있고 이 컨디션을 찾았음을 보임. 이 컨디션이 발생하는 경우는 항상 모든 potential provider이 들어오는 경우
+%     \item 우리는 본 논문에서는 potential provider이 모두 들어오는 경우는 unrealistic하다고 판단하고, 이 경우는 제외
+%     \item 그 대신, extension or appendix(--미정)에서 이 case가 언제 나오는지에 대한 구체적인 threshold 제공 (혹은 그 이상의 solution을 제공 -- 미정--단순히 threshold 만 보여줄 지, 혹은 그 경우들에 대해서 optimal pricing 및 profit / surplus 를 다 비교할지는 아직 결정X -- numerical로는 충분히 보일 수 있음)
+%     \item forum같은 곳에 보면 실제로 profitable한지에 대한 엄청난 argue가 있음. 블록체인 기반의 기술인만큼 computing이 많이 들어가고, 이로 인하여 provider들이 실제로 profiable한지에 대한 concern이 있음(cost에 concern--computing 관련--이 있음)
+%     \item $\theta - \xi$ 그래프를 넣어두고 아래의 좌측 그래프와 같이 $\theta$가 뻗어져 나가는 형태가 아니라, 우측과 같이 적절한 $\theta$에서 optimal이 나오는 경우들에 대해 설명? 혹은 listing
+% \end{itemize}
+
+
+% \begin{figure}[ht!]
+% \centering
+% \includegraphics[width=5cm]{figure_3rd/figure_c_28_case_2.png} 
+% \includegraphics[width=5cm]{figure_3rd/figure_c_28_case_4.png} 
+% \end{figure}
+
+
+% i) reviewer 1이 말한 case가 나오는 경우 $\rightarrow$ $\xi$가 얼마 이하로 떨어질때\\
+% ii) i)이 나오는 경우는 우리의 optimal $\xi \theta$가 최소화 될 때 였으니까 $\theta$가 커지고 $\xi$가 작은 경우가 optimal이 되는 경우\\
+% iii) 엄밀히보면 이 경우에도 사실 $\xi$가 특정 threshold 밑으로만 안떨어지면 상관은 없음 -- 이러한 관점으로 보자면, 저희가 cost를 얼마로 잡는지에 너무 depend하다. 하루에 1분 켜지면 cost가 엄청 크다고도 가정은 가능 -- 이 관점으로 접근하는 것은 조금 설득력이 떨어짐\\
+% iv) 설명의 방향을 $\xi^o \theta^o$이라는 optimal이 있을 때, 이 optimal 값이 적절한 범위에서 나오는 cost structure들이 reasonable함을 보이는 것을 목적으로 함\\
+
+
+
+
+% \yj{우리가 푼 모델에서 실제로 missing 된 내용이 있음. 극단적인 경우를 봤을 때, $\theta$가 매우 크고 $t$가 매우 작은 경우, 결과에서 틀린 부분이 발생함. 이 부분이 나오는 원인은 높은 $\theta$라기 보다는 낮은 $t$로부터 나오는 낮은 entry barrier가 더 중요한 역할을 함. 단순히 provider - renter 사이의 수를 비교하는 $\theta$와 관련된 term만 보면 우리는 first-best price(provider > $\theta    $renter), market clearing price (provider = $\theta$ renter)를 모두 반영하였음. 하지만, $\xi$가 낮아지게 되면 모든 provider가 다 들어오는 경우가 발생할 수 있고, 이 이후에는 $\theta$의 증가는 순수히 renter의 이탈을 만들어냄으로써만 발생하게 됨. 따라서 현실적으로 $\xi$의 lower bound가 존재하게 되고, 이는 $\theta$의 upper bound로 이어지게 됌. 이와 같이 기존 모델에서 고려하지 못했던 내용이 있음에도 불구하고 우리의 결과는 consistent함. 하지만 라이팅 관점에서 고민을 해야할 요소는 있음. 1. $\xi$의 lower bound를 본문에서는 임의로 주고(합당한 설명과 함께) 우리의 현재 결과를 그대로 쓴 후에 extension 느낌으로 $\xi$가 더 작아지고 $\theta$가 더 커지면 어떻게 되는 것인가?에 대해서 discussion하는 방법. 2. $\xi$의 lower bound를 개념적으로 주지 않는 상황에서 아예 식으로 모든 case를 풀어버리는 방법. 본문의 서술을 깔끔하게 하는 관점에서는 1.이 더 좋다고 판단은 되나, '합당한 설명'이라는 부분을 제대로 할 수 있는지 여부가 중요함}
+
+% \ju{1을 뒷받침하는 적절한 설명? Operating cost가 너무 낮아서 모든 provider가 들어올 수 있는 상황은 현실에 맞지 않는다. 이는 P2P network가 상당한 network 사용량 및 computational burden을 동반하기 때문임. 이는 실제 플랫폼 운영 상에서 provider가 들어올 때, uptime을 제공할 때 여러 제약조건 및 penalty scheme을 이용하는 근거가 됨. 따라서 우리는 P2P network에 머무르는 데에 유의미한 비용이 발생하고 있고, 이를 감당할 수 없는 provider가 존재할 것이라는 가정이 매우 현실적임을 알 수 있다.}
+
+% $\theta \xi$에 따라 cost structure가 달라질 수 있다.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 1 (Point 2): } 2.    Same for assumption on k. Similar as the comments above, the combo of m and k are not exogenous. The actual REALISED redundancy level will depend on the price schemes and decisions. 
+}
+\end{quotation}\vspace{-4mm}
+
+\ju{■■■ Beginning of Response Draft ■■■}
+
+As you noted, the actual redundancy level in practice is likely to be endogenous. Below, we describe why this happens and suggest the corresponding remedies we have performed in this revision.
+
+\textbf{Limited size of potential providers.} First, our previous solutions may not achieve the redundancy goal due to the limited size of potential providers. Our response to your \textbf{Point 1} provides an adequate answer on this aspect because the effects of both $m$ and $k$ are integrated into $\theta$ and $\xi$.
+
+Let us remind how the redundancy algorithm works in P2P storage platforms. Under a $k$-of-$m$ erasure coding scheme, a P2P storage platform divides a renter's original file into $k$ shards and re-codes them into $m$ encrypted fragments ($m > k$). These parameters affect the platform and providers through determining 1) the failure probability, 2) the redundancy rate, and 3) the operating cost.
+
+The failure probability is calculated as: 
+\begin{equation*}
+\begin{aligned}
+F(t; m, k) = \sum_{j=0}^{k-1} {m \choose j}t^j (1-t)^{m-j}
+\end{aligned}
+\end{equation*}
+where $t$ is the required uptime. To meet the certain level of failure probability, the platform needs to set an appropriate combination of $t$, $m$, and $k$. The set $m$ and $k$ determine the redundancy rate as $\theta=m/k$, and the set $t$ determines the unit operating cost for a provider, $\xi(t)$. In this way, $\theta$ and $\xi$ capture how $(m, k)$ combination affects the provider's decision. 
+
+\textbf{Endogenous decisions on redundancy algorithm.} Second, and importantly, the platform can make decisions on the redundancy algorithm to maximize its profit. In the revised version, we have incorporated endogenous decisions on the algorithm, which were provided as a separate theorem (previous \textbf{Theorem 3}), into our main analysis. We have shown that the platform determines its redundancy algorithm indifferently across pricing schemes, as long as they are achievable or operating costs are not negligible (see our response to \textbf{Point 1} for such conditions).
+
+Correspondingly, we also revise the sequence of events to incorporate the algorithm decision as shown in \textbf{Figure SE1}.
+
+\setcounter{figure}{0}
+\begin{figure}[ht!]
+\def\figurename{Figure SE}
+\centering
+\includegraphics[width=16cm]{fig1_timeline_revised.pdf} 
+\caption{The Sequence of Events}
+\end{figure}
+
+\ju{■■■ End of Response Draft ■■■}
+
+% \begin{itemize}
+%     \item 첫번째 질문에 대한 답이 두번째에 대한 답으로써 어느정도 작용할 수 있음. 본문 내의 순서를 바꿔서, redundancy 및 pricing 간의 endogenous decision을 다루었다는 것 만으로도 충분한 답변이 될 수 있을 것 이라고 판단됨.
+%     \item 부가적인 설명으로 redundancy level 자체가 자유자재로 바꿀 수 있는 것은 아니다. 따라서 pricing을 고려해서 redundancy level을 고려하는 것은 맞으나, redundancy level 이후에 pricing을 결정하는 순서로 결정되는 것이 자연스러움
+%     \item redundancy가 어려운 decision이 될 수 있다는 부분을 얘기하기 위하여 Sia 예시도 충분히 이용할 수 있음 (10-29 $\rightarrow 64-96$ 부수적인 목적으로써)
+% \end{itemize}
+
+
+% (재웅) 우리가 설명이 충분하지 않았던 것인지, 무언가 고려하지 못한 게 있었던 것인지 확실하게 논의 필요
+
+% + Redundancy m \& k를 임의로 바꾸기에 기술적 한계 등이 제약이 되기도 함\\
+% + Sia가 10-29 $\rightarrow$ 64-96로 바꾸려고 시도 중에 있음 \\ 
+% + 이와 같은 내용이 price랑 endogeneous하게 결정하는 것이 아니라, technical issue에 가깝다고 할 수 있음 
+
+% provider의 function에서만 penalty를 반영하는 형태로 잡아서, uptime t와 penalty 사이의 관계를 보여준다. numerically하게
+% 이 것이 세 가지 pricing scheme에 따라 다를 수도 있다.
+% 가로축: penalty
+% 세로축: failure probability
+
+% $\xi$에 따른 lowerbound가 pricing scheme에 따라 다르다
+
+% \yj{the actual realised redundancy level 이 명확히 어떤것을 의미하는지에 대해 약간 모호하기는 하지만, 블록체인이라는 기술 내에서의 신뢰도 이슈는 상당히 중요한 부분이라는 점도 같이 강조할 수 있을지 생각해볼 필요는 있을듯}
+
+% + 한 번 정하고 나서 수정하기 쉽지 않으므로, 먼저 정하고 들어간다는 느낌
+
+% \ju{(구체적으로 R1이 원하는 포인트가 무엇인지 자세히 논의해보기) 아주 좋은 포인트임. 이러한 algorithm 체계는 platform이 초기 단계에서 자체적으로 결정할 수 있는 여지가 있으며, 이러한 부분을 고려하여 revised manuscript에서는 redundancy algorithm에 대한 결정을 main model에 포함하였음. 한편 한 번 결정된 알고리듬을 변경하는 것은 매우 큰 작업이 들어가는 요인이므로 상대적으로 변경이 용이한 가격체계에 대한 결정 이전에 미리 알고리즘이 결정되는 형태를 유지하였다. 그리고 m \& k의 경우 일단 알고리듬 상에서 결정된 parameter인 경우 renter와 provider의 contract 단계에서 지정된 숫자만큼을 매칭하기 때문에 오차가 발생하지는 않으나, 중간에 계약을 맺은 provider가 bandwidth를 제공하지 않는 경우 your concern과 같은 현상이 발생할 수 있다. 이러한 현상을 방지하기 위해 플랫폼들은 penalty scheme 및 contracted storage 중 유효하지 않은 provider들을 유효한 provider로 교체하여 계약을 갱신하는 형태로 운영하고 있다.}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\large \bf Authors' Response to Reviewer 2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{quotation}
+%{\em
+%\noindent \textbf{Reviewer 2: }
+%The study examines pricing schemes of a peer-to-peer (P2P) storage sharing platform, which is a two-sided marketplace of renters with various storage and bandwidth needs and providers with available storage capacity. The pricing scheme considered is a two-part tariff: a storage fee that is dependent of the volume of the files and a bandwidth fee that is dependent of the access rate.
+%Renters decide whether to adopt the P2P platform, while providers determine the uptime that influences the service level. Based on a model that captures the renters’ and providers’ utilities, the optimal pricing parameters are derived under different objectives of the platform: profit-seeking, consumer-welfare maximizing, and a mixed objective that combines both.
+%}
+%\end{quotation}\vspace{-4mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2: }
+In this revised manuscript, the most notable changes, as compared to the previous manuscript, are as follows. (1) The contribution of this paper is re-positioned as investigation of the impacts of different pricing schemes (subscription-based, two-part tariff, and hybrid). (2) The objective of the platform is changed to maximize its expected profit, and the impacts of the platform’s optimal pricing decisions on the total social surplus are examined. (3) Heterogeneity (renters’ willingness to-pay and providers’ operating costs) is incorporated. (4) The motivation examples are enhanced. As can be seen, the authors have put substantial efforts to address the review team’s concerns raised in the last round, and, as a result, this paper has been completely revamped. I would like to thank them for their sincere efforts. On the positive side, I think the introduction section has been tightened with better explanations for the two motivation examples. Moreover, the potential contribution of this paper is clearer with the focus on comparing the impacts of the three common pricing schemes. Last, I think the results about the ranking of the performance of those pricing schemes based on different performance measure (platform’s profit vs total social surplus) and different supply-demand conditions (sufficient vs insufficient supply) are interesting. Since the paper has been improved in those areas mentioned above, it has good potential to get published. Having said that, I feel that there are some significant questions or concerns about the revised model and there is still plenty of room for improvement in the writing. Hence, I think the paper still needs to be strengthened and polished. My recommendation is Major Revision, hoping that the authors would clear those concerns in a satisfactory fashion (as they did in the last round) such that we can see a clearer path for acceptance.
+}
+\end{quotation}\vspace{-4mm}
+
+\ju{■■■ Beginning of Response Draft ■■■}
+
+We sincerely appreciate your thorough review and positive assessment of our last revision. We could make significant improvements in our framework, analysis, and motivations owing to your constructive comments. In the current revision, we have exerted significant efforts to address your remaining questions and concerns about our model and writing and hope that such efforts meet your expectations.
+
+\ju{■■■ End of Response Draft ■■■}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent\textbf{Concerns on key model features/assumptions:
+}\\[-11mm]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2 (Point A1): }
+1. The most distinct model features of storage sharing in cloud as compared to other P2P platforms are still not very clear or highlighted enough. First, one may argue that the pricing schemes under consideration as well as the heterogeneity of renters’ (buyers’) willingness to pay and providers’ (suppliers’) operating costs are also common features of other P2P platforms. Second, according to the authors’ response letter, it sounds like the redundancy algorithm is the distinct feature. But on the other hand, the study of the redundancy algorithm is only an extension to check the robustness of the model; in other words, the main results are somewhat independent of the redundancy algorithm, so it can be assumed as exogenously given. The authors should summarize the distinct model features specific to the storage sharing in cloud business model and emphasize them more.}
+\end{quotation}\vspace{-4mm}
+
+\ju{■■■ Beginning of Response Draft ■■■}
+
+This is a valid point. As you noted, pricing schemes and renter/provider (buyer/supplier) heterogeneity are common features of P2P platforms. Also, our previous model accounts for the algorithm decision only in its extension part. 
+
+In this revision, we have strengthened our main model and its description to emphasize how distinct our setup is from other P2P contexts. First, we have relaxed the main model's assumption that the redundancy algorithm is exogenously given. We have incorporated this decision and let the platform choose the algorithm $(\theta, t)$ to maximize its expected profit. Note that our main insights from the previous model still hold after accounting for this decision. Also, we have reorganized the sections and theorems to reflect such changes, and please refer to \textbf{Table R2-1}.
+
+(\textbf{Table R2-1} will be here.)
+
+Second, we have further elaborated how our provider's cost structure differs from those in other P2P contexts. (...)
+
+\ju{■■■ End of Response Draft ■■■}
+
+\yj{2022.01.08}
+\begin{itemize}
+    \item comment에 제시된 바와 같이, heterogeneity 자체는 많은 literature에서 다루는 common한 feature가 맞음.
+    \item 이 외에 우리 논문이 다른 sharing economy와 다른 부분은 크게 두 가지가 있음
+    \item 1. renter의 사용량이 provider의 operating cost에 영향을 미침. renter의 사용량이 provider에게 영향을 미치는 형태는 에어비앤비(고객의 수가 많아지면 더 많이 청소해야하는 등을 통하여 간접적으로 cost 상승으로 이어질 수 있음) 와 같은 플랫폼 등에서도 충분히 발생될 수 있으나, 실제 모델에서는 이러한 요소가 반영된 경우가 많이 없음(literature check 필요)
+    \item 따라서, 우리는 renter의 참여가 provider의 cost로 이어질 수 있다는 요소를 반영하여 renter와 provider 사이의 interdependence를 고려함.
+    \item 이러한 요소는 provider의 cost에 직접적인 영향을 미치는 '다운로드'라는 행위 자체에 대해 무료로 주는 것이 발생하는 여러 효과를 반영하므로, 기업이 bandwidth에 대해 무료로 제공하는 것이 다양한 현상을 만들어 낼 수 있다는 점을 시사하기도 함
+    \item 2. 우리 논문의 또 다른 특징 중 하나는 redundancy level. 이는 decentralized cloud storage system 자체만이 가지는 고유한 성질이라고 할 수 있음
+    \item redundancy와 관련된 요소는 모든 모델에 내재화되어 포함되어 있으나, 현재의 서술에서는 extension에 들어가면서 robustness를 체크하는 정도로 밖에 안써져있는 것이 사실임
+    \item 따라서 이 부분을 우리의 모델의 주요한 특징으로써 강조하기 위하여 본문으로 내용을 옮기고 이와 관련된 insight도 제공함
+    \item (Note) 우리의 결과가 단순히 p2p storage platform 뿐 아니라, 다른 delivery platform 등으로 연결될 수 있다고 생각했었을 때, 위의 두 가지 요소가 delivery platform과의 차이도 크게 만드는 요소로 작용할 수도 있음. 우리가 제공하는 타 sharing economy에도 적용할 수 있는 인사이트(provider와 renter의 수가 조금 더 유동적으로 변하는 플랫폼의 경우, 현재의 provider 및 renter의 수의 비율에 따라서 단순히 '가격'자체만을 변경하는 것이 아니라 '보상 시스템'자체를 변경하는 것이 더 platform의 surplus 차원에서 좋을 수 있다)를 이어가기 위한 설명도 함께 고민하면 좋을 듯
+\end{itemize}
+
+
+% \begin{itemize}
+%     \item 두 가지요소를 둘 다 강조
+%     \item 1. renter의 사용량이 provider의 operating cost에 영향을 미침. 
+%     \item 2. redundancy level이라는 decentralized cloud storage system의 고유한 성질
+%     \item heterogeneity 자체는 common한 게 맞음. 따라서 우리는 renter이 provider에게 cost를 미치는 영향 자체를 고려하면서 둘 사이의 interdependence에 더욱 집중. -- 이 부분에 대한 설명은 왜 우리가 bandwidth를 무료로 주는 것만 고려하는지에 대한 설명과 연관이 되므로 이 둘 사이에서의 충돌이 나지 않도록 논리 전개 필요
+%     \item redundancy의 경우에는 모든 모델에 내재화되어 포함되어 있음 -- reviewer 1한테 설명하는 부분이 $\xi - \theta$ 사이의 역할이니까, redundancy 관련된 요소들을 포함함
+% \end{itemize}
+
+% \yj{우리가 highlight할 distinct model features는 redundancy algorithm이 되어야 함. 기존에는 사용량에 비례하는 cost를 조금 더 강조하였었는데, 이 부분은 기존의 sharing economy 차원에서도 해석할 수 있음. e.g.) airbnb를 사용한다 하더라도 숙박 후 정리하는 과정들이 많아진다는 형태로 언급할 수 있음. 하지만 redundancy 의 개념은 본 논문에서 다루는 내용의 고유한 특성이라고 확실히 얘기할 수 있음 - 실제로 용량도 관련이 있으므로, 특히 platform을 운영하는 관점에서도 중요하다고 할 수 있음. 따라서 redundancy와 관련된 부분을 앞 chapter로 가져와서 아예 이 부분을 강조하는 식의 chapter 구성 변경이 필요할 것으로 판단. stage of the game을 redundancy algorithm 결정(systemetic한 decision이므로 가장 빠르게) -> provider 및 renter의 수 realize -> optimal price 결정으로 구성하는 것도 괜찮을듯함}
+
+% \ju{다시 읽고 느낀 점은 algorithm 부분이 main model로 가는 것 자체로 이 부분은 사실상 해소될 것 같음.}
+
+\begin{quotation}
+{\em
+\noindent \textbf {Reviewer 2 (Point A2a): }2. The assumptions that a renter needs a storage space for her unit volume of files and that the provider can share his unit volume of storage space need a second thought. 
+
+a. As can be seen, the model focuses on the heterogeneity of renters’ bandwidth usage level only, while the heterogeneity of their storage volume is absent due to the assumption of unit volume per renter. This assumption takes away an important tradeoff from the model. In reality, there are renters with large storage volume and low frequency of download request versus renters with small storage volume and high frequency download request. The specific pricing scheme must have different impacts on renters with different storage and bandwidth needs, thus affecting the segmentation of renters. In short, I wonder whether the authors could build their model based on heterogeneity of not only bandwidth usage but also storage volume.
+}
+\end{quotation}\vspace{-4mm}
+
+\ju{■■■ Beginning of Response Draft ■■■}
+
+We take your point, and we agree in retrospect that the implications of pricing schemes might be different across renter segments depending on their storage and bandwidth needs. Following your suggestion, we have examined the cases where different segments of renters in terms of storage volume and download requests coexist in the market.
+
+Let us summarize key findings from our additional analyses. We have found that the main insights from the basic setup remain unchanged. Interestingly, depending on how the platform designs hybrid pricing, the influence of hybrid pricing can become similar to that of a two-part tariff because a larger portion of renters demands more bandwidth volume than the bandwidth allowance. We have obtained these findings based on numerical analyses and summarized their conditions and results below.
+
+\textbf{Renter heterogeneity.} We have considered two segments of renters: 1) low-storage renters with storage volume $v_l$, and 2) high-storage renters with storage volume $v_h$, where $v_l < v_h$. Regarding the heterogeneity of download request frequency, we have examined both 1) the case where download request frequency is unrelated to storage volume 2) and the case where low-storage renters are likely to request downloads more frequently than high-storage renters. For the second case, we have assumed that the Pareto distribution of low-storage renters has a heavier tail than that of high-storage renters; that is, $b_l < b_h$. In doing so, we have explored several combinations of $(v_l, v_h)$ and $(b_l, b_h)$.
+
+\textbf{Pricing schemes.} In converting our basic setup to this setting, it is straightforward how to deal with the two-part tariff and subscription-based pricing. However, there could be multiple ways to price bandwidth services in hybrid pricing. For instance, the platform may offer the volume of bandwidth allowance proportionally to storage volume, which is widely observed in cloud service contracts. Also, the platform may provide the volume constantly across all renters regardless of their storage volume. Since these possibilities seem plausible, we have examined both cases to explore the implications of hybrid pricing in the new setting.
+
+\textbf{Bandwidth allowance proportionally to storage volume.} Closed form proof? No difference? (...) 
+\yj{용량에 관계없이 q가일정, $q< 1$인 경우에는 어차피 two-part tariff = hybrid이기에 고려할 필요 x 따라서 $q>1$인 set만 해도 충분}
+
+
+
+\textbf{Bandwidth allowance constantly across renters.}
+\yj{용량에 따라서 renter가 체감하는 q가 달라질 수 있음. 기본이 $q$라면, 용량이 $v_h$인 고객은 $\frac{q}{v_h} ( < q)$로 체감. i) $q<1$인 경우는 위와 마찬가지로 고려할 필요X, ii) $q>1$이면서 $\frac{q}{v_h} \ge 1$ 이 케이스는 사실 hybrid와 매우 유사 iii) 그래서 조금 더 확실히 달라지게 만드는 $\frac{q}{v_h} <1$인 case로 잡아서 numerical analysis 진행}
+
+Numerical analysis
+
+Storage volume: $v_l=1, v_h=10$; Request frequency: ($b_l=2, b_h=2$) where $2\lambda_0 = 75\%$, ($b_l=2, b_h=5$) where $2\lambda_0 = 97\%$ (...)
+
+$v_l = 1, v_h = 10(5?)$, $b_l = 2, b_h = 2 \text{ or } 5, q = 1.5$\\
+low volume : 10\%, high volume = 90\%\\
+low volume : 50\%, high volume = 50\%\\
+low volume : 90\%, high volume = 10\%\\
+6개 \\
+
+$v_l = 1, v_h = 10(5?)$, $b_l = 2, b_h = 2 \text{ or } 5, q= 1.5$\\
+low volume : 10\%, high volume = 90\%\\
+low volume : 50\%, high volume = 50\%\\
+low volume : 90\%, high volume = 10\%\\
+6개\\
+
+\yj{profit 그래프랑 surplus 그래프 같이 두는 형식으로는 배치 x}\\
+\yj{그래프를 넣을 때 전부 어떤 목적으로 넣는지를 결정해서}\\
+i) consistent하다: 용량의 비율에 따라 달라지는것도 보여줄 필요 없고 
+$b_l = 2, b_h = 2$ / $b_l = 2, b_h = 5$ 두 가지 그래프 보여주면서 b가 같을 때 다를 때 같다! 보여주면 됌\\
+2) high volume이 많아짐에 따라서, two-part tariff에 가까워진다\\
+라는 설명을 쓰고 싶다면 이 때는 volume 3개에 대한 numerical analysis 보여주기\\
+
+(...)
+
+We have discussed this aspect in the new manuscript as follows:
+
+``Fourth, our assumption of homogeneous storage demand may have driven our findings. In particular, pricing schemes might have unexpected influences if their storage and bandwidth needs are correlated. To assess this possibility, we conduct numerical analyses utilizing various distributions of storage and bandwidth volumes (please see Appendix \textcolor{red}{??} for technical details and results).
+
+According to our results, the main insights from the basic setup remain qualitatively unchanged. Specifically, when we allow some renters to have more storage demand than the unit volume, a larger share of renters may need more bandwidth capacity than the bandwidth allowance. Consequently, the influence of hybrid pricing becomes similar to that of a two-part tariff, altering the boundaries in Theorem \ref{thm:surplus_market}. Except that, we do not see any changes from relaxing the assumption.''
+
+\ju{■■■ End of Response Draft ■■■}
+
+\yj{2022.01.08}\\
+(Note, 용량이 달라지는 경우에 용량에 비례하여 utility도 더 많이 획득한다는 부분에 대해서는 구체적인 서술이 필요)
+\begin{itemize}
+    \item 실제로 comment 내용과 같은 trade-off가 있을 수 있음. 저장용량이 많은 고객들(혹은 파일)의 다운로드 양이 적을 수도 있고, 반면 저장용량이 적은 고객들(혹은 파일)의 다운로드 양이 많은 경우들이 발생할 수 있음
+    \item 이러한 요소들을 반영하기 위하여 우리는 volume이 heterogeneous한 경우를 함께 고려함
+    \item 한 가지 미리 염두해둬야하는 점은, renter들의 행동/segment 등이 어떻든 관계 없이, provider 및 platform의 입장에서는 aggregate 된 용량만이 중요함
+    \item 따라서 저장 용량에 따라 renter의 다운로드 빈도가 달라지는 경우에 달라지는 renter의 효과만 집중하면 충분함
+    \item 본문 내에서는 unit volume인 renter에 대하여 집중하고, volume이 heterogeneous한 경우에 대한 robustness check를 numerical study로 진행(이 항목은 충분히 본문으로 들어갈만한 가치가 있지 않을까 싶음) 
+    \item renter의 volume이 heterogeneous한 경우를 고려하기 위하여 우리는 다음과 같은 case들을 고려할 수 있음 ($v_l = 1, v_h = 10$)
+    \item $b_l = 2, b_h = 5$: 용량이 큰 고객들이 다운로드를 많이 받는 경우가 더 적음
+    \item $b_l = 2, b_h = 2$: 용량과 관련없이 다운로드 빈도는 같음
+    \item low volume renter와 high volume renter의 비율을 변경하면서 numerical study
+    \item 용량이 다른 고객들이 endogeneous하게 가지는 성질인 다운로드 빈도가 다를 수 있다는 점을 제외하고, 저장 용량이 다름으로써 발생할 수 있는 현상은 hybrid인 경우에 무료로 제공하는 용량에 따라 무료로 다운로드 되는 빈도가 달라진다는 점만 존재함(two-part tariff 및 subscription은 어차피 사용량에 비례하여 모든 비용을 지불하기에 provider 및 platform 입장에서는 용량이 다른 것이 아무런 영향으로 다가오지 않음)
+    \item 따라서, hybrid에 집중하여 무료로 제공되는 용량이 어떠한 형태로 제공되는지에 따른 두 가지 가능성을 모두 다룸
+    \item 1. 무료로 제공되는 다운로드 용량이 저장하는 양에 비례한 경우: 모두 cancel out 되어 사실상 다른게 없어지는 상황
+    \item 2. 무료로 제공되는 용량이 fix되어 있는 경우: 용량이 더 큰 고객들이 받는 무료 용량이 상대적으로 적어지는 것으로 보여지게 됌.
+    \item 이와 관련하여 분석할 parameter set은 다음과 같음
+\end{itemize}
+$v_l = 1, v_h = 10$은 고정\\
+향후 전체적인 parameter set으로 $q=1.5$, $b=2 \text{ or } 5$로 선택\\
+$b=2$ 인 경우와 $b=5$인 경우에 대하여 각 비율은 다음과 같음\\
+
+\begin{table}[h!]\small
+\begin{center}
+\begin{tabular}{ccc}\toprule
+& $b=2$ & $b=5$ \\\hline \\[-1em]
+$1\lambda_0$ & 0 & 0\\ \\[-1em]
+$1.5\lambda_0$ & 0.56 & 0.87\\ \\[-1em]
+$2\lambda_0$ & 0.75 & 0.97 \\ \\[-1em]
+$3\lambda_0$ & 0.89 & 1.00 \\ \\[-1em]
+$4\lambda_0$ & 0.94 & 1.00 \\ \\[-1em]
+$5\lambda_0$ & 0.96 & 1.00 \\ \\[-1em]
+\bottomrule
+\end{tabular}
+\end{center}
+\end{table}
+위의 비율로 봤었을 때, hybrid인 경우에 무료로 주는 비율을 $q=2$ 정도로 했을 때, 적절하게 무료로 사용하는 비율들이 조절 될 것 같은데, 이 부분에 대한 검토 부탁(hybrid이지만 완전 subscription처럼 무료로 사용하는 사람의 비율을 줄이려면 $q=1.5$로 하는 것도?)
+
+low type의 비율을 $\beta_l$, high type의 비율을 $\beta_h$로 지칭($\beta_l + \beta_h = 1$, 전체 용량은 $\beta_l v_l + \beta_h v_h$)\\
+1. $(\beta_l, \beta_h) = (0.9, 0.1)$ and $(b_l, b_h) = (2, 2)$\\
+2. $(\beta_l, \beta_h) = (0.9, 0.1)$ and $(b_l, b_h) = (2, 2)$\\
+3. $(\beta_l, \beta_h) = (0.5, 0.5)$ and $(b_l, b_h) = (2, 5)$\\
+4. $(\beta_l, \beta_h) = (0.5, 0.5)$ and $(b_l, b_h) = (2, 5)$\\
+이 네 가지 외에 다른 parameter set이 필요할 것 같으면 comment 주세요\\
+low type과 high type의 b가 다른 경우에는 한 타입의 고객만 있는 경우와 완전하게 identical해질 수는 없기에, 위의 모든 case에 대하여 numerical study를 시행할 필요가 있음. 따라서, 무료로 제공되는 다운로드 용량이 저장하는 양에 비례하는 경우 및 fix 되어 있는 경우 각각을 고려하여 총 8가지의 graph가 나오게 될 예정.\\
+이와 같은 8개의 graph를 통하여 우리의 결과가 renter의 volume이 heterogeneous한 경우에는 consistent하다는 것을 보이는 것을 주 목적으로 삼음\\
+해석적으로 하나 추가할 수 있는 부분은 다음과 같음. 만약 무료로 제공하는 용량 자체가 저장 용량과 관계 없이 고정되어 있는 경우에는, 이는 저장 용량이 많은 고객들에게 무료로 사용할 수 있는 빈도를 줄이는 방향으로 작용하는 것을 의미. 따라서, hybrid로 무료로 제공하기는 하지만,  $q<1$이 되는 경우와 같아지게 되어, 용량이 큰 고객들에게는 사실상 two-part tariff와 다름 없는 가격체계로 작용하게 됌. 따라서 용량이 더 큰 고객의 비율이 늘어남에 따라서 two-part tariff와 더 가까운 그래프를 보여주는 형태로 결과가 나옴\\
+
+\begin{figure}[ht!]
+    \centering
+    \subfigure[Profit graph ($b_l=2, b_h = 2$ and $p_l = 0.9, p_h = 0.1$ )]{\includegraphics[width=6cm]{figure_3rd/combine_1_profit.png}}
+    \subfigure[Surplus graph ($b_l=2, b_h = 2$ and $p_l = 0.9, p_h = 0.1$ )]{\includegraphics[width=6cm]{figure_3rd/combine_1_surplus.png}}
+    \subfigure[Profit graph ($b_l=2, b_h = 2$ and $p_l = 0.5, p_h = 0.5$ )]{\includegraphics[width=6cm]{figure_3rd/combine_2_profit.png}}
+    \subfigure[Surplus graph ($b_l=2, b_h = 2$ and $p_l = 0.5, p_h = 0.5$ )]{\includegraphics[width=6cm]{figure_3rd/combine_2_surplus.png}}
+    \caption{$q= 2$, $v_l = 1$, $v_h = 10$}
+\end{figure}
+
+\begin{figure}[ht!]
+    \centering
+    \subfigure[Profit graph ($b_l=2, b_h = 5$ and $p_l = 0.9, p_h = 0.1$ )]{\includegraphics[width=6cm]{figure_3rd/combine_3_profit.png}}
+    \subfigure[Surplus graph ($b_l=2, b_h = 5$ and $p_l = 0.9, p_h = 0.1$ )]{\includegraphics[width=6cm]{figure_3rd/combine_3_surplus.png}}
+    \subfigure[Profit graph ($b_l=2, b_h = 5$ and $p_l = 0.5, p_h = 0.5$ )]{\includegraphics[width=6cm]{figure_3rd/combine_4_profit.png}}
+    \subfigure[Surplus graph ($b_l=2, b_h = 5$ and $p_l = 0.5, p_h = 0.5$ )]{\includegraphics[width=6cm]{figure_3rd/combine_4_surplus.png}}
+    \caption{$q= 2$, $v_l = 1$, $v_h = 10$}
+\end{figure}
+
+
+
+% \begin{itemize}
+%     \item 본 논문에서는 그대로 volume 1로 homogeneous하게 가정
+%     \item volume heterogeneous는 모두 extension or appendix에 언급
+%     \item 세 가지 고려해야 할 부분, 1) writing 적인 측면에서 volume이 포함되어 있는 utility식을 어디에 처음 언급할 것인가 2) renter의 net utility가 $u\lambda$로 시작하는데, 이 부분이 용량과 비례하게 늘어난다는 부분에 대한 서술 3) 기존에는 free bandwidth allowance라는 느낌으로 $q\lambda_0$라는 빈도와 이어지는 개념으로써 무료 다운로드 용량을 정의 -- 이 부분은 저장과 비례하게 다운로드를 제공한다는 형태로 일관되게 서술 필요 
+%     \item volume heterogeneous가 있는 경우는 크게 두 가지 요소로 구분 1) 무료로 다운로드를 제공하는 용량이 저장용량에 비례하는 경우 2) 무료로 다운로드를 제공하는 용량이 고정되어 있는 경우 
+%     \item 이 모든 것에 대해서 volume을 high인 그룹 low 인 그룹으로 나누어 numerical study 실시
+%     \item 1)인 경우에는 volume이 모두 cancel out되어서 어차피 aggregate된 관점에서는 provider 및 platform 입장에서는 완전 동일
+%     \item 2)인 경우에 대하여 numerical study 를 진행한 것은 아래 그림과 같음 -- profit의 rank와 surplus가 역전되는 부분의 측면에서 기존의 결과와 완벽히 consistent하게 나옴 
+%     \item 이때의 효과를 요약하면 저장 용량이 큰 사람은 무료로 제공받는 용량이 작아지는 것으로 이어짐 -- 따라서 용량이 큰 사람이 많아지는 경우에는 two-part tariff와 비슷한 결과로 이어지게 됌.
+%     \item 추가적으로 용량이 큰 고객들의 b가 높다고 가정하고 (용량이 큰 고객 중에는 high frequency인 고객이 적다고) numerical을 돌리는 것도 가능 
+% \end{itemize}
+% \begin{figure}[ht!]
+% \centering
+% \includegraphics[width=6cm]{figure_3rd/volume_hetero_profit_1.png} 
+% \includegraphics[width=6cm]{figure_3rd/volume_hetero_surplus_1.png} 
+% \caption{$b = 2$, $v_h = 10$, $v_l = 1$, $q= 5$ $n_h : n_l = 1:90$}
+% \end{figure}
+
+% \begin{figure}[ht!]
+% \centering
+% \includegraphics[width=6cm]{figure_3rd/volume_hetero_profit_2.png} 
+% \includegraphics[width=6cm]{figure_3rd/volume_hetero_surplus_2.png} 
+% \caption{$b = 2$, $v_h = 10$, $v_l = 1$, $q= 5$ $n_h : n_l = 9:10$}
+% \end{figure}
+
+
+% \yj{volume의 heterogeneous를 고려하기 위해서 free bandwidth allowance에 대한 두 가지 접근 방식이 있음. 1. 사용하는 용량에 비례하여 무료 빈도를 준다. 2. 무료로 주는 용량 자체가 정해져있다. 이 두 가지 경우에 대해서 모두 고려해야 할 것은 1. volume이 포함된 utility function을 어떻게 처리할 것이냐. - net utility를 $V u \lambda$로 할 것이냐? 한다면 이를 명시적으로 쓸 것이냐? 2. 각 results는 어디에 넣을 것이냐? - response letter만 넣을 것인가? 혹은 본문이나 appendix  or extension에 넣을 것이냐? + 추가적으로 결과는 consistent할 것이라고 추측하고 있지만 이 부분에 대해서도 검증은 필요함 (현재 numerical study 진행 중)}
+
+% 1. 다름을 강조할 때는 redundancy에 집중\\
+% 2. sharing economy니까 dropbox와 무엇이 다를까? - storage와 bandwidth 를 구분\\
+% - dropbox는 infra가 있으므로 storage에 부과하는게 자연스러운 반면, sharing economy는 infra보다는 provider의 cost에 집중하기에 bandwidth에 집중하는게 자연스러움
+
+% \yj{만약 volume에 대해서 numerical study를 진행한다면, high v인 고객들에 대해서는 b가 크고, low v 인 고객들에 대해서는 b가 작은 형태로 study 를 진행.}
+
+% \ju{두 번째 이야기는 comment 4a에서 답하면 될듯?}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+우리는 서로 다른 volume을 지니는 고객들이 있을 때 어떻게 되는지를 분석하기 위하여, 저장 volume이 high인 고객 $v_h$과 low인 고객 $v_l( = 1)$ 두 타입의 고객이 있는 경우를 가정하고, 저장용량에 비례하여 무료 용량을 주는 경우, 이와 관계 없이 무료 용량을 주는 경우 두 가지 형태를 구분하여 numerical study를 진행하였다. 용량이 큰 고객들이 사용하는 다운로드 양이 적을 수 있다는 부분을 고려하여 $b_h = b_l$ 인 경우와 $b_h > b_l$인 경우를 모두 고려하였고, 각 타입의 고객의 비율이 달라짐에 따라 어떠한 현상을 보이는지 observe하기 위하여 각 고객의 비율인 $q_h, q_l (q_h + q_l = 1)$의 경우도 나누어 구분하였다. 모든 실험 set은 $(v_h, v_l) = (10, 1), (b_h, b_l) = (2, 2)\text{ or }(5, 2)$ and $(q_h, q_l) = (0.9, 0.1) \text{ or } (0.5, 0.5) \text{ or } (0.1, 0.9)$ 로 진행하였다.\\
+
+\textbf{Bandwidth allowance proportionally to storage volume.} 
+\yj{만약 storage volume에 관계 없이 사용량이 일정하다면 이는 정확하게 우리가 기존 solution에서 제공한 것과 같은 결론을 낸다. 하지만, storage volume이 커짐에 따라 많이 사용하는 유저가 줄어든다면($b$가 커지는 것으로 capture).,.... (자세한내용 추가 예정)}
+
+\textbf{Bandwidth allowance constantly across renters.} 
+\yj{만약 bandwidth allowance가 렌터가 저장하는 양과 관련없이 일정하다면, 저장용량이 높은 고객들은 bandwidth allowance를 적게 받는 것과 같은 효과를 만들어 낸다. For example, 두 타입의 고객의 storage volume이 있따고 했을 떄, 플랫폼이 무료 용량을 $q\lambda_0$만큼 제공한다면, 용량이 $v_l(=1)$인 고객은 $\frac{q \lambda_0}{v_l}$의 frequency만큼 다운로드를 진행할 수 있으나, 용량이 $v_h$인 고객은 $\frac{q\lambda_0}{v_h}$만큼의 frequency를 다운로드 할 수 있다. 우리는 용량이 큰 고객이 존재했을 때 발생하는 효과를 극대화하기 위하여 $q < 10$인 경우, 즉, 용량이 큰 고객들은 bandwidth에 대한 비용을 무조건 지불하여야하는 경우를 고려하여 numerical study를 진행하였다. 이 경우에는 용량이 큰 고객들은 기존 케이스 중 $Hl$ 케이스에 포함되게 되고, 즉 기업 입장에서는 이들에게만 service를 제공한다면 two-part tariff와 같은 형태로 제공되게 된다. 이러한 경우를 고려하기 위하여 우리는 numerical study를 위한 set으로 $q=5$라고 가정하여서 numerical study를 진행하였따.......(자세한 내용 추가 예정)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2 (Point A2b): }
+b. Compared to the concern on the unit volume of each renter, perhaps the assumption that each provider supplies unit volume of unused capacity is fine. But the implication is that the provider’s income and cost are both proportional to the volume of capacity supplied. If this is most likely the case in the storage sharing industry, the authors need to explain this point to justify this assumption; otherwise, I wonder whether the authors could relax this assumption, i.e., whether the impacts of a specific pricing scheme on providers with different capacity are different.}
+\end{quotation}\vspace{-4mm}
+
+\ju{■■■ Beginning of Response Draft ■■■}
+
+This is another great point. As you indicated, we can safely ensure the validity of our findings if each provider's income and cost are both proportional to his storage capacity. Specifically, we set each provider's operating cost to be proportional to $\hat{\omega_b}$ (i.e., the expected bandwidth volume for each provider), and $\hat{\omega_b}$ is proportional to each provider's shared storage capacity. Below, we discuss whether this assumption is consistent with the reality, and potential implications of alternative cost forms.
+
+\textbf{Is the operating cost proportional to $\hat{\omega_b}$?} The operating costs may include various sources, such as Internet bandwidth, electricity costs, and obsolescence of the computing device. Intuitively, bandwidth and electricity costs are proportional to bandwidth usage. Hardware obsolescence is directly related to the computational burden, and it is attributable to both computation amount and running time. Although the exact functional form of this relationship is unknown, its impact tends to be secondary than other direct costs (i.e., bandwidth and electricity) and is partially absorbed by $\xi(t)$. Thus, it is plausible to assume that the operating cost is proportional to $\hat{\omega_b}$.
+
+\textbf{Is $\hat{\omega_b}$ proportional to the provider's capacity?} P2P storage platforms usually encourage providers to share more capacity by mentioning that sharing more capacity will lead to more access from renters and more earnings. Also, it is commonly observed that providers with higher capacity tend to store more files than those with lower capacity on these platforms. Thus, it is plausible to assume that the platform assigns more files and bandwidth services to high-capacity providers than low-capacity ones.
+
+\textbf{How would alternative cost forms affect the results?} Alternative cost functions may affect our main insights as follows. First, we may consider a convex function, such as quadratic and exponential forms, where operating costs are particularly burdensome for high-capacity providers. In this case, as high-capacity providers bear much higher operating costs and join the platform less, the first-best prices will be less achievable. Hence, compensating for offering bandwidth services will have a higher impact on the storage capacity. Consequently, the relative benefits of two-part tariff and hybrid pricing (vs. subscription-based pricing), which mainly come from enhancing the platform's capacity, will be greater in this situation.
+
+Second, we may also consider a concave function of operating costs like a square root function. Since high-capacity providers bear relatively less operating burden than they do in the current setup, the platform will attract more providers under the subscription-based pricing---which does not compensate for offering bandwidth services. Therefore, the profit/surplus gap between the subscription and other pricing schemes will decrease as a result. However, although the magnitudes decline, we expect the differences to remain qualitatively unchanged.
+
+\ju{■■■ End of Response Draft ■■■}
+
+% \yj{2022.01.08}
+
+
+\begin{itemize}
+    \item 실제로 말이 된다 정도로 언급
+    \item cost적인 측면에서 전기료 같은 실제 operating cost를 강조할 것인지--$\hat{\omega}_b$에 대응, 다운로드 용량 등의 cognitive한 cost를 강조할 것인지 고려 필요--$\xi$에 대응.
+    \item 특히 두 term이 곱으로 되어있어서 설명에 대한 주의 필요 
+    \item 이 답변은 초안 써보고 계속해서 수정하는 식으로.... 
+    \item 계속 아이디어 붙여가면서 써가면서 수정
+\end{itemize}
+
+용량이 큰 PROVIDER의 PROFItability가 그리 떨어지는 것이 아니다 따라서 cost가 qudratic한 형태 등 가파르게 증가하는 것이 현실적이지 않다.
+
+% \ju{Provider의 저장용량과 revenue가 비례하는 것은 구조 상으로 이야기하면 될 것 같고, operating cost가 비례하는 것은 조금 더 justify할 필요가 있을 것 같음. (논의 필요)}
+
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2 (Point A3):  }3. A provider’s decision is based on his knowledge of the expected demand for the storage service and the bandwidth service, which, however, are dependent on conditions of the whole market. In practice, how can an individual provider possess such information? Does the platform facilitate information sharing?}
+\end{quotation}\vspace{-4mm}
+
+\ju{■■■ Beginning of Response Draft ■■■}
+
+P2P storage providers have multiple sources that offer information before joining the platform. For example, SiaStats is a website that publicizes Sia's storage sharing status, such as used storage, number of transactions, network revenues, and hash rates. Also, individual providers have actively analyzed and shared their profitability in online forums like Reddit. Moreover, the P2P platforms notice the minimum requirement and recommended capacity of computing resources before individual providers decide to participate in their networks. Such information can partially inform them about their expected operational costs. After joining the platform, providers can receive real-time feedback on their network performance; thus, they can quickly correct their behaviors on the platform. Even when unsuccessful on the platform, they can quickly leave the network similarly to other digital markets. Thanks to the platform-offered information, online forums, and easiness of market entry/exit, we expect that P2P participants will reach market equilibrium very rapidly. We have described this background in the new version as follows:
+
+``(To be updated)''
+
+\ju{■■■ End of Response Draft ■■■}
+
+\yj{2022.01.08}
+\begin{itemize}
+    \item 완전 zero information은 아님(저장된 용량, 전체 capacity 등의 정보 공시 하는 플랫폼 많음, 본인의 operation 역량에 대해서는 확실히 알고있음
+    \item 1. online platform이라는 특성상 각 provider과 renter의 behavior을 빠르게 tracking 할 수 있음 2. provider와 renter의 가입절차가 다르므로 각 player들도 구분할 수 있음. $\rightarrow$ 결과적으로 equilibrium으로 빠르게 수렴한다고 할 수 있음
+\end{itemize}
+
+
+
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2 (Point A4a):  }4. Other model assumptions to justify: a. The assumption about independence of a renter’s utility from the download bandwidth service from her download frequency is questionable. One may argue that the two parameters are positively correlated as the more frequent the renter needs to access the storage, the more valuable the bandwidth service means to her.}
+\end{quotation}\vspace{-4mm}
+
+\ju{■■■ Beginning of Response Draft ■■■}
+
+This is another great point. In our analysis, we have postulated that a renter's utility per bandwidth volume is independent of her download frequency. Let us note that among renters adopting the platform, the utility per volume and the download frequency are positively associated with each other as a result of self-selection. In this regard, if the two parameters are positively correlated among all potential renters, we will obtain a more dramatic relationship among platform-adopting renters. Therefore, we expect that the implications of pricing schemes will be qualitatively consistent.
+
+We have validated this conjecture by examining a scenario where potential renters with the higher utility per download volume tend to have more frequent download requests. Specifically, we have divided potential renters into two groups: 1) renters whose unit utility is uniformly distributed in $[0, 0.5]$ and whose frequency follows the Pareto distribution with $b=5$ (i.e., having a lighter tail), and 2) those whose unit utility is uniformly distributed in $[0.5, 1]$ and whose frequency follows the Pareto distribution with $b=2$ (i.e., having a heavier tail).
+
+For this scenario, we have conducted a numerical analysis. (...)
+
+The revised manuscript provides a summary of this discussion as:
+
+``\textcolor{blue}{Fifth, our model postulates that the distributions of the utility per bandwidth volume and the download frequency are independent. Although this leads to a positive association between these variables as a result of self-selection, it is also possible that they are positively associated with each other before the renter's decision. We examine whether the implications of pricing schemes are qualitatively consistent after relaxing this assumption by conducting a numerical study (technical details are in Appendix} \textcolor{red}{??}\textcolor{blue}{). We observe that our main findings remain qualitatively consistent.}''
+
+\ju{■■■ End of Response Draft ■■■}
+
+\yj{2022.01.09}
+\begin{itemize}
+    \item download에 대한 utility를 보는 여러가지 측면이 있을 수 있음. 만약, bandwidth utility가 centralized platform과 비교하여 가지는 + utility 정도라고 생각한다면(보안 이슈 등으로 부터 얻는 추가 효용) 이는 다운로드 빈도와 충분히 independent함
+    \item 하지만, 순수하게 다운로드 받는 용량에 대한 utility라고 하였을 때는, 이 부분 자체가 다운로드 빈도와 충분히 연관될 수 있음. 따라서 우리는 이 부분을 체크하기 위하여 numerical study를 진행
+    \item 전체 user를 utility가 [0, 0.5]인 유저, [0.5, 1]인 유저 이 두 가지로 쪼개서 numerical study. low utility인 집단은 상대적으로 b가 높고(사용량이 적은 고객의 수가 더 많고), high utility인 집단은 상대적으로 b가 낮은(사용량이 많은 고객의 수가 더 많고) 형태로 numerical study를 진행한 후 consistent함을 서술하는 쪽으로 진행
+\end{itemize}
+
+현재 진행하고자 하는 parameter set은 \\
+$[0, 0.5]$: $b=5$\\
+$[0.5, 1]$: $b=2$ \\
+인데, 한 가지의 numerical study로 결과의 consistent를 보여주는 것이 부족하다고 생각될 경우 추가적으로 parameter 설정이 필요.
+
+\begin{figure}[ht!]
+    \centering
+    \subfigure[Profit graph ($b_l=2, b_h = 5$)]{\includegraphics[width=6cm]{figure_3rd/half_profit.png}}
+    \subfigure[Surplus graph ($b_l=2, b_h = 5$)]{\includegraphics[width=6cm]{figure_3rd/half_surplus.png}}
+\end{figure}
+
+% \begin{itemize}
+%     \item utility를 [0, 0.5] [0.5, 1]로 쪼개서 numerical study
+%     \item [0, 0.5]에게 high b, [0.5, 1]에게 low b를 주어서 결과 값 보이고 consistent하다는 것을 서술하는 쪽으로 진행
+% \end{itemize}
+
+
+% \yj{independence자체에 대해서 직접다루기보다는 pareto distribution에서 b가 변화하더라도 결과가 consistent하다는 것을 numerical로 보임으로써 u와 lambda의 관계가 달라지더라도 결과가 유지된다는 것에 집중하여 argue}
+
+% \ju{+ b의 변화가 correlation과 거의 같음을 설명하기}
+% \yj{설명 가능한지에 대한 검토 필요}
+
+For this scenario, we have conducted a numerical analysis. 
+\yj{그래프는 추후 추가 예정. }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+결과 추가 예정
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2 (Point A4b):  }b. The assumption that the renters’ bandwidth usage level follows a Pareto distribution
+needs better justification. Are there other studies (or empirical evidence) than Li and Kumar (2018) that also adopt this assumption? Can the same results be derived based on other distributions (e.g., Poisson)?}
+\end{quotation}\vspace{-4mm}
+
+\ju{■■■ Beginning of Response Draft ■■■}
+
+We apologize that we did not sufficiently justify our using a Pareto distribution. In adherence to your comments, we have added prior studies that adopted this assumption and examined whether our results are restricted to the heavy tail distribution in this revision.
+
+In our description of the related literature, we have supplemented prior studies that utilized the Pareto distribution following the empirical findings of Loboz (2012). Moreover, we have provided additional examples showing that digital consumption is likely to have heavy-tailed distributions. The following presents our revised paragraph:
+
+``This model concerns renters with a continuum of bandwidth usage level (or frequency of download requests) of stored files denoted by $\lambda$. It \textcolor{red}{has been empirically} observed in the literature that the usage of cloud-resource is distributed with relatively heavy tails compared with exponential, log-normal, and normal distributions (Loboz, 2012)\textcolor{red}{, similarly to other digital resources like smartphone and YouTube usage (Falaki et al., 2010; Gill et al., 2008)}. Thus, we assume that a renter’s bandwidth usage $\lambda$ follows the Pareto distribution in keeping with the extant literature (\textcolor{red}{Bandi et al., 2015;} Li and Kumar, 2018\textcolor{red}{; Ramírez-Velarde et al., 2017}).''
+
+The main concern about using the Pareto distribution is that the heavy-tail assumption might have driven our results. To assess this possibility, we have conducted a numerical analysis across different levels of skewness. For ease of comparison, we have varied the Pareto's shape parameter $\beta$ to generate a light-tail distribution.
+
+\textcolor{red}{(technical details and findings to be here)}
+
+This is intuitive considering that under the hybrid pricing, more renters will have less bandwidth demand than bandwidth allowance in this circumstance. So, it becomes more similar to the subscription-based pricing than the two-part tariff.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+pareto distribution의 b가 높아짐에 따라, pareto distribution의 tail이 얇아지게 되고, 이는 사용량이 많은 고객들의 비중이 줄어듦을 의미한다. 이로 인해 발생하는 현상으로는 ...... (추가 예정)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\textbf{References}
+
+Bandi, C., Bertsimas, D., & Youssef, N. 2015. Robust Queueing Theory. \textit{Operations Research}, 63(3), 676-700.
+
+Falaki, H., R. Mahajan, S. Kandula, D. Lymberopoulos, R. Govindan, D. Estrin. 2010. Diversity in smartphone usage. S. Banerjee, ed. \textit{Proceedings of the 8th International Conference on Mobile Systems, Applications, and Services}. ACM, New York, NY, 179–194.
+
+Gill, P., M. Arlitt, Z. Li, A. Mahanti. 2008. Characterizing user sessions on youtube. R. Rejaie, R. Zimmermann, eds. \textit{Electronic Imaging} 2008. International Society for Optics and Photonics, Bellingham, WA, 681806–681814.
+
+Li B, Kumar S (2018) Should you kill or embrace your competitor: Cloud service and competition
+strategy. \textit{Production and Operations Management} 27(5):822–838.
+
+Loboz C (2012) Cloud resource usage—heavy tailed distributions invalidating traditional capacity planning models. \textit{Journal of Grid Computing} 10(1):85–108.
+
+Ramírez-Velarde, R., Tchernykh, A., Barba-Jimenez, C., Hirales-Carbajal, A., & Nolazco-Flores, J. 2017. Adaptive Resource Allocation with Job Runtime Uncertainty. \textit{Journal of Grid Computing}, 15(4), 415-434.
+
+\ju{■■■ End of Response Draft ■■■}
+
+\yj{2022.01.09}
+\begin{itemize}
+    \item Pareto distribution에 대한 내용은 추가 필요(Li and Kumar에 있는 reference들을 조금 더 자세히 가지고 오면 될듯)
+    \item Other distribution에 대해서는 크게 두 가지 형태로 볼 수 있음. 1. increasing -> decreasing 2. decreasing
+    \item increasing -> decreasing인 경우를 굳이 고려할 필요가 없다고 본다면, pareto distribution에서 b가 변경되는 것으로 decreasing하는 여러 분포를 근사할 수 있다고 볼 수 있음
+    \item 따라서 b를 변화시키면서 여러가지 형태로 numerical study 진행
+    \item 현재 b=2, b=5 두 가지 정도로만 진행할까 고려중인데, 더 다양한 케이스에 대해(e.g., 조금 더 극단적인 경우)해야할 것 같으면 제안 부탁
+    \item 위의 parameter set에 대한 numerical study 결과는 아래와 같음
+\end{itemize}
+\begin{figure}[ht!]
+    \centering
+    \subfigure[Profit graph ($b=2$ and $q = 0.5$)]{\includegraphics[width=6cm]{figure_3rd/main_b2q5.png}}
+    \subfigure[Surplus graph ($b=2$ and $q = 0.5$)]{\includegraphics[width=6cm]{figure_3rd/main_b2q5_2.png}}
+    \subfigure[Profit graph ($b=5$ and $q = 0.5$)]{\includegraphics[width=6cm]{figure_3rd/main_b5q5.png}}
+    \subfigure[Surplus graph ($b=5$ and $q = 0.5$)]{\includegraphics[width=6cm]{figure_3rd/main_b5q5_2.png}}
+\end{figure}
+\begin{figure}[ht!]
+    \centering
+    \subfigure[Profit graph ($b=2$ and $q = 2$)]{\includegraphics[width=6cm]{figure_3rd/main_b2q20.png}}
+    \subfigure[Surplus graph ($b=2$ and $q = 2$)]{\includegraphics[width=6cm]{figure_3rd/main_b2q20_2.png}}
+    \subfigure[Profit graph ($b=5$ and $q = 2$)]{\includegraphics[width=6cm]{figure_3rd/main_b5q20.png}}
+    \subfigure[Surplus graph ($b=5$ and $q = 2$)]{\includegraphics[width=6cm]{figure_3rd/main_b5q20_2.png}}
+\end{figure}
+
+
+% \begin{itemize}
+%     \item Poisson distribution까지는 굳이 하지 말고, pareto distribution 내에서 b를 변화가면서 (decreasing 하지만 tail의 두께가 변화하는 형태) numerical study 진행
+%     \item b가 커짐에 따라서 각 pricing scheme에 따른 차이가 줄어듬 $\rightarrow$ 이는 pricing scheme이 영향을 주는 부분들은 결국 bandwidth 사용량이 많은 고객들인데, b가 커짐에 따라 이 비율이 줄어들게 됌
+%     \item 따라서 surplus적인 측면에서도 $n_p$가 적은 경우에 provider에게 two-part tariff 등을 통해 incentive를 주어서 전체 total surplus가 증가하는 효과도 작아짐(효과 자체는 유지)
+% \end{itemize}
+
+
+% \yj{distribution을 바꿔서 numerical 시행하는 것에 대해서는 검토가 필요 - 한다면 heavy tail distribution으로 한정지어서 진행?}
+
+% \ju{다른 논문은 인용할 예정, 혹시 Poisson으로 풀리는지? (expected value는 간단할텐데) - numerical로 하면 될 것이기는 한데, 모든 분포를 고려해야할지(concave한 형태 등)에 대한 고민 필요}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent\textbf{Suggestions on writing of some subsections:}\\[-11mm]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2 (Point B1):  }1. In subsection 3.2, the presentation of the provider’s profit function is somewhat unclear. The reader may wonder how to derive the expected storage and bandwidth volume for each provider ($\hat{\omega}_s, \hat{\omega}_b$, and $\hat{\omega}_{bp}$), while it turns out that the derivations will be introduced later in section 4. Moreover, to facilitate the reader’s understanding of the formulation, it would be better to explain why $\hat{\omega}_b = \hat{\omega}_s \cdot \nu_b / (\theta \nu_s)$ holds (i.e., the meaning of the ratio $\nu_b / (\theta \nu_s) $is not immediately clear to the reader). }
+\end{quotation}\vspace{-4mm}
+
+\ju{■■■ Beginning of Response Draft ■■■}
+
+(...)
+
+\ju{■■■ End of Response Draft ■■■}
+
+\yj{2021.01.09}
+\begin{itemize}
+    \item 식 자체를 표현 하는 관점에서, 조건을 조금 더 직관저긍로 제시하는 것이 필요할 것으로 보임
+    \item $\frac{\nu_b}{\theta \nu_s}$가 가지는 `frequency'라는 해석적인 요소가 unclear하게 받아들여졌다는 느낌
+    \item $\hat{\omega}_b = \nu_b \cdot \frac{\hat{\omega}_s}{\theta \nu_s}$ 와 같이 표현을 바꿔서, 다운로드 용량 자체가 저장 용량의 크기에 비례하여 증가/감소 한다.의 의미를 명확히 제공하는 것으로 해결할 수 있지 않을까 싶음.
+\end{itemize}
+
+
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2 (Point B1a):  }a. Similarly, it would be better to explain, for the platform’s decision problem, why $V_{bp} = V_s \cdot \nu_{bp} / (\theta \nu_s)$(i.e., the meaning of the ratio $\nu_{bp} / (\theta \nu_s) $ is not immediately clear to the reader).}
+\end{quotation}\vspace{-4mm}
+
+\ju{■■■ Beginning of Response Draft ■■■}
+
+(...)
+
+\ju{■■■ End of Response Draft ■■■}
+
+\yj{2021.01.09}
+\begin{itemize}
+    \item 위의 내용과 마찬가지로 $V_{bp} = \nu_{bp} \cdot \frac{V_s}{\theta \nu_s}$로 하면서부터 위와 같은 형태로 clear하게 서술할 수 있지않을까 싶음
+\end{itemize}
+
+
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2 (Point B1b):  }b. On a related note, in the formulation of the providers’ total surplus PS (at the end of page 20), it seems that the authors assume $\rho_j$ is uniformly distributed over $[0,1]$, but I didn’t find the statement of this assumption (or perhaps I just missed it).}
+\end{quotation}\vspace{-4mm}
+
+\ju{■■■ Beginning of Response Draft ■■■}
+
+Yes, $\rho_j$ is uniformly distributed over $[0,1]$, as you mentioned. You can find this on page 12 in the previous version, and on page \textcolor{red}{XX} in the new version (Section 3.1). 
+
+(...)
+
+\ju{■■■ End of Response Draft ■■■}
+
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2 (Point B2):  }2. The literature review needs to be streamlined. For example, on top of page 7, the discussion is about “this study also extends the literature on sharing platforms for computing resources,” then, on the same page, the discussion continues to be about “emerging platforms have enabled sharing various computing resources.” But, later on page 8, again the discussion goes back to “this study also contributes to the literature on the pricing for resource sharing services.” The writing of these paragraphs feels like on an ad hoc basis. Maybe a better sequence is as follows: (1) pricing (and capacity management) in centralized public cloud; (2) P2P sharing of computing resources; (3) literature on other forms of sharing economies. Finally, in the last paragraph, summarize the distinct model features and contribution to the existing literature.}
+\end{quotation}\vspace{-4mm}
+
+\ju{■■■ Beginning of Response Draft ■■■}
+
+(...)
+
+\ju{■■■ End of Response Draft ■■■}
+
+\begin{table}[ht]\small 
+\begin{center}
+\begin{tabular}{p{0.5\linewidth} | p{0.5\linewidth}}\toprule
+\textbf{Before Revision} & \textbf{After Revision} \\\hline \\[-1em]
+\textbf{1. Introduction} & \textbf{1. Introduction}\\ \\[-1em]
+\textbf{2. Related Literature} & \textbf{2. Related Literature}\\ \\[-1em]
+\textbf{3. Model} & \textbf{3. Model}\\ \\[-1em]
+\hspace{3mm} 3.1. Model Setups & \hspace{3mm} 3.1. Model Setups \\ \\ [-1em]
+\hspace{6mm} Renters & \hspace{6mm} Renters\\ \\[-1em]
+\hspace{6mm} Providers & \hspace{6mm} Providers\\ \\[-1em]
+\hspace{6mm} Platform & \hspace{6mm} Platform\\ \\[-1em]
+\hspace{3mm} 3.2. Decisions of Providers and the Platform & \hspace{3mm}3.2. Peer Decisions \\ \\[-1em]
+\hspace{6mm} A Provider's Decision &  \hspace{6mm}A Renter’s Decision\\ \\[-1em]
+\hspace{6mm} A Platform's Pricing Problem& \hspace{6mm}A Provider’s Decision\\ \\[-1em]
+\textbf{4. Analysis of First-Best Prices} & \textbf{4. Optimal Decisions}\\ \\[-1em]
+\hspace{3mm} 4.1. Optimal Service Fees for Each Pricing Scheme& \hspace{3mm}A Platform’s Decision Problem\\ \\[-1em]
+\hspace{6mm} Two-part Tariff & \hspace{3mm}4.1. Optimal Service Fees: First-Best Prices\\ \\[-1em]
+\hspace{6mm} Subscription-based Pricing& \hspace{6mm}Two-part Tariff\\ \\[-1em]
+\hspace{6mm} Hybrid Pricing& \hspace{6mm}Subscription-based Pricing\\ \\[-1em]
+\hspace{6mm} \textit{Lemma 1 (First-best prices)} & \hspace{6mm}Hybrid Pricing \\ \\[-1em]
+\hspace{3mm} 4.2. Platform's Profit and System Surplus& \hspace{6mm}\textit{Lemma 1 (First-best prices)} \\ \\[-1em]
+\hspace{6mm} \textit{Theorem 1 (Comparison of profit and total surplus under first-best prices)}& \hspace{3mm}4.2. Optimal Service Fees: Market-Clearing Prices\\ \\[-1em]
+\textbf{5. Analysis of Market-Clearing Prices }&\hspace{3mm}\textit{Lemma 2 (Market-clearing price thresholds)} \\ \\[-1em]
+\hspace{3mm}\textit{Lemma 2 (Market-clearing price thresholds)} & \hspace{3mm}4.3. Optimal Redundancy Algorithm\\ \\[-1em]
+\hspace{3mm}\textit{Theorem 2 (Comparison of profit and total surplus under market-clearing prices)} & \hspace{3mm}\textit{Theorem 1 (Optimal redundancy algorithm)}\\ \\[-1em]
+\textbf{6. Analysis of Platform’s Endogenous Operations Decisions}& \textbf{5. Pricing Schemes, Profit, and System Surplus}\\ \\[-1em]
+\hspace{3mm}6.1. The Platform’s Endogenous Decision on Redundancy Algorithms & \hspace{3mm}5.1. Under First-Best Prices
+ \\ \\ [-1em]
+\hspace{3mm}\textit{Theorem 3 (Comparison of profit and total surplus under endogenous algorithm)}& \hspace{3mm}\textit{Theorem 2 (Comparison of profit and total surplus under first-best prices)}\\ \\[-1em]
+\hspace{3mm}6.2. The Platform’s Endogenous Decision on Commission Rates& \hspace{3mm}5.2. Under Market-Clearing Prices\\ \\[-1em]
+\hspace{3mm}\textit{Theorem 4 (Comparison of profit and total surplus under endogenous commission rates)}& \hspace{3mm}\textit{Theorem 3 (Comparison of profit and total surplus under market-clearing prices)}\\ \\[-1em]
+\textbf{7. Discussion and Conclusion}& \textbf{6. Model Extension and Discussion}\\ \\[-1em]
+&\hspace{3mm}6.1. Endogenous Decision on Commission Rates\\ \\ [-1em]
+&\hspace{3mm}\textit{Theorem 4 (Comparison of profit and total surplus under endogenous commission rates)}\\ \\ [-1em]
+&\hspace{3mm}6.2. Assumptions and Sensitivity of Findings\\ \\ [-1em]
+&\hspace{6mm}6.2.1. Assumptions on Operating Costs\\ \\ [-1em]
+&\hspace{6mm}6.2.2. Assumptions on Renter/Provider Heterogeneity\\ \\ [-1em]
+&\textbf{7. Conclusion}\\ \\ [-1em]
+\bottomrule
+\end{tabular}
+\end{center}
+\end{table}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+$U_i = \lambda_i u_i - \theta p_s - (\lambda_i - q \lambda_0) p_b$\\
+i) $q \lambda_0$: 용량당 무료로 주는 frequency인가?\\
+ii) $v = 1$이라는것을 암묵적으로 둔 다음에, $q \lambda_0 v = q \lambda_0$라는 것이 무료로 주는 용량을 의미하는 것인가?\\
+
+
+$U_i = \lambda_i u_i v - \theta p_s v - \lambda_i p_b v + q \lambda_0 p_b v$\\
+$U_i = \lambda_i u_i v - \theta p_s v - \lambda_i p_b v + q v_0 p_b $\\
+용량이 고려가 될 경우 net utility:\\
+$\lambda_i u_i v $ 이것에 대한 당위성이 부여가능한지? 만약 부여가능하다면 이걸 어디에다가 언급할건지?\\
+
+Main model: $v=1 $ homogeneous하다고 가정하고, 기존 식 $U_i = \lambda_i u_i - \theta p_s - (\lambda_i - q \lambda_0) p_b$ 만 설명, footnote 등으로 appendix 혹은 extension에서 v가 heterogeneous한 경우를 다루었다고 언급 정도만\\
+extension or appendix: $v > 1$인 경우를 언급 $\rightarrow$ 이때 우리는 net utility가 용량에 비례한다고 가정 (이 부분에 대해서 당위성을 부여할 수 있는지에 대한 고려 필요) \\
+
+heterogeneity : $v_l = 1 \rightarrow \gamma$ / $v_h >1 \rightarrow 1-\gamma$\\ 
+
+i) 만약에 용량이 큰 사람에 대해서 이에 비례하는 저장용량에 비례하여 무료 용량을 준다고 가정했을 때(기존의 $q \lambda_0$) $\rightarrow $ 이 경우는 우리가 하는 경우와 완전 일치 ($v$가 cancel out)\\
+$U_i = \lambda_i u_i v - \theta p_s v - (\lambda_i - q \lambda_0) p_b v $\\
+$v$ 가 큰 경우 / 작은 경우를 $b$를 다르게 set해서 numerical 시행\\
+용량 작은경우/ 큰 경우 관계없이 : $q \lambda_0$의 frequency만큼 무료로 사용가능\\
+
+ii) 그런데 만약, 비례하지 않는 경우, $v_0$만큼 주는 경우\\
+$U_i = \lambda_i u_i v - \theta p_s v - (\lambda_i v - v_0) p_b $\\
+$v_l = 1$ / $v_h, v_0$\\
+용량이 작은 경우: $v_0$의 frequency만큼\\
+용량이 큰 경우: $\frac{v_0}{v_h}$의 frequency만큼\\
+
+
+
+수정할 내용:\\
+contents:\\
+1) redundancy algorithm $\rightarrow$ 각 provider들에게 할당되는 cost가 매우 작아서, 모든 provider들이 in을 하는 경우\\
+1-1) 어떠한 region을 reasonable 가정둔 후, 본문에서는 기존 결과 그대로 진행\\
+1-2) 그런데, 만약 provider들의 cost가 너무 작아져서 모든 provider들이 들어오는 경우가 된다면 어떤 일이 발생할 수 있는지에 대해서 extension or appendix에 추가 \\
+
+2) Volume heterogeneous: 위에서 언급한 대로 진행\\
+
+3) redundancy algorithm을 더 차별점으로 강조하기 위해서, $\xi \theta$가 어떠한 형태로 구성되는지 numerical analysis을 통하여 설명. 이때 그냥 A일때는 B다 라는 형식으로 설명하기 보다는, 어떠어떠한 cost structure일 때는 $\theta$를 그리 높이지 않는 것이 좋다 라는 것을 위주로, 우리가 $\xi$는 적당히 크고, $\theta$는 적당히 작은 경우를 고려하는 것이 바람직하다 라는 것을 목표로 설명 \\
+
+
+writing: \\
+1. redundancy algorithm 자체를 앞으로 빼서 구성\\
+2. 이 부분을 우리 모델의 main diffence로 설명 \\
+3. bandwidth만 무료로 제공하는 것을 다룸 $\rightarrow$ 기존에는 model이 가지는 main difference를 bandwidth로 나오는 cost에 조금 비중을 뒀었음 $\rightarrow $ 저장이 아니라 다운로드 자체에만 heterogeneous를 둔 것에 대해 당위성이 어느정도 부여되었다. 그런데 key feature를 redundancy algorithm으로 간다면 `왜' bandwidth만 무료로 주는 것을 고려하냐! 에 대한 어느정도 다른 당위성 부여 방법이 필요할듯하다. 
+
+
+
+
+
+
+\end{document} 

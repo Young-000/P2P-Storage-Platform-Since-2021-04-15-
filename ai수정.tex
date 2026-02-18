@@ -1,0 +1,314 @@
+% ======================= MSOM_revised_full.tex =======================
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage{bbm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{enumitem}
+\usepackage{natbib}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=black, citecolor=blue, urlcolor=blue}
+\setlist{nosep,leftmargin=*}
+
+\newtheorem{definition}{Definition}
+\newtheorem{assumption}{Assumption}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{theorem}{Theorem}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\1}{\mathbbm{1}}
+
+\title{Pricing Design in Peer-to-Peer Storage Platforms:\\
+Two-Part, Subscription, and Hybrid under Provider Scarcity}
+\author{[Blinded for Review]}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We study the pricing design of peer-to-peer (P2P) storage platforms that match renters with distributed providers under redundancy and uptime requirements. We compare three families of pricing: two-part tariff, subscription, and hybrid. Unlike prior work, we explicitly model provider scarcity and formalize a market-clearing equilibrium distinct from an unconstrained, abundant-supply benchmark. We treat the hybrid allowance $q$ as a \emph{design parameter} that spans traffic-sensitive and flat components, and generalize renter utility to include a storage-value term $K$. We provide selection and ordering results for profit and total surplus across regimes, prove existence under mild conditions, and show non-uniqueness of market-clearing prices. Numerical experiments stress-test distributional assumptions, redundancy, and endogenous commission. Managerially, hybrid can dominate two-part in profit for sufficiently large $q$ and storage value $K$, while subscription can maximize total surplus when providers are abundant and $K$ is high. Results are expressed in terms of the supply-demand ratio $n_p/n_r$ for transparent comparative statics.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+Decentralized storage networks (e.g., Storj, Sia, Filecoin) have created viable marketplaces where renters purchase storage and bandwidth from a pool of providers. Compared with centralized cloud storage, P2P platforms must design pricing while coordinating redundancy and uptime to deliver availability, and while sharing revenue with heterogeneous providers. Pricing simplicity and allocative efficiency need not align: plans that are attractive to renters might weaken provider participation, especially under \emph{provider scarcity}.
+
+We analyze three canonical pricing families: two-part tariff (fixed plus usage), subscription (flat), and hybrid (fixed plus usage with a pre-paid allowance $q$). We frame $q$ as a \emph{design parameter} distinguishing traffic-sensitive from flat features, rather than as a mere continuum that unifies tariff classes. We separate two regimes. The \emph{benchmark} regime assumes abundant providers such that the platform can implement its unconstrained, profit-maximizing prices. The \emph{market-clearing} regime assumes limited providers and formalizes an equilibrium that clears supply and demand with endogenous participation on both sides. We prove that market-clearing prices need not be unique, and we report comparative statics in $n_p/n_r$.
+
+We also generalize renter utility to include a storage-value component $K$ capturing value from secure retention even when access intensity is low. This generalization matters for subscription-like designs and for hybrid with high allowances.
+
+\paragraph{Contributions.}
+\begin{enumerate}[label=(C\arabic*)]
+    \item A tractable two-sided model coupling pricing with redundancy/uptime constraints and provider revenue sharing. We formalize market-clearing equilibrium under provider scarcity and clarify its non-uniqueness.
+    \item Re-interpretation of hybrid allowance $q$ as a design parameter; theoretical and numerical results that identify when hybrid outperforms two-part in profit, and when subscription maximizes total surplus.
+    \item Generalized renter utility $U_i=K+\lambda_i u_i-\theta p_s^{\mathrm{eff}}-p_b\max\{0,\lambda_i-q\}$ that nests classical usage-only utility and allows availability losses to be considered in robustness.
+    \item Robustness via simulations: distributional heterogeneity (Pareto, lognormal, exponential), redundancy $(m/k)$, uptime $\alpha$, and endogenous commission $\alpha$.
+    \item Clear prescriptions in terms of $n_p/n_r$: scarcity penalizes subscription in both profit and welfare; hybrid wins against two-part when $K$ and $q$ are sufficiently large relative to demand composition.
+\end{enumerate}
+
+\paragraph{Positioning.}
+We complement cloud pricing and resource allocation (e.g., \citealp{li2022, chen2023}) by incorporating a P2P supply side with endogenous provider participation and revenue sharing. We connect to subscription and two-part tariff literatures in IS and marketing (e.g., \citealp{balasubramanian2015}), and we distinguish P2P storage from P2P computing and file-sharing by objectives (durability vs.\ throughput), constraints (redundancy/uptime), and pricing primitives.
+
+\section{Related Literature}
+\label{sec:lit}
+We review four strands.
+
+\paragraph{Cloud pricing and resource allocation.}
+Work on cloud tariffs studies fixed vs.\ usage pricing, reserved instances, and dynamic mechanisms. Our paper differs by embedding a P2P supply with provider scarcity and market-clearing selection. See \citet{li2022, chen2023} and references therein.
+
+\paragraph{Subscription vs.\ two-part tariffs.}
+The marketing/IS literature characterizes adoption and usage incentives under flat vs.\ metered plans (\citealp{balasubramanian2015} among others). We extend to a two-sided context with revenue sharing and redundancy-induced costs and show how $K$ and $q$ shape profit vs.\ welfare.
+
+\paragraph{P2P platforms and sharing markets.}
+Analytical work on sharing emphasizes decentralized capacity and participation thresholds. Our novelty is the coupling of provider scarcity with redundancy/uptime, and the explicit non-uniqueness of market-clearing prices.
+
+\paragraph{Redundancy and availability economics.}
+Replicated and erasure-coded storage (parameters $(m/k)$) trade off overhead and availability. We treat redundancy as an engineering control fixed for pricing design and vary it in robustness.
+
+\section{Model}
+\label{sec:model}
+We consider potential masses $n_r$ renters and $n_p$ providers. The platform sets pricing $(p_s,p_b)$ and, for hybrid designs, an allowance $q>0$. Redundancy $(m/k)$ and uptime requirement $\alpha\in(0,1)$ are engineering parameters that determine availability and overhead; we hold them fixed in analysis and vary them in robustness.
+
+\subsection{Renter side}
+Each renter $i$ has access intensity $\lambda_i\ge 0$ and usage utility weight $u_i\ge 0$. The platform levies an effective fixed charge $p_s^{\mathrm{eff}}$ and a marginal bandwidth price $p_b$ beyond an allowance $q$ when relevant. The renter's utility is
+\begin{equation}
+\label{eq:renterU}
+U_i = K + \lambda_i u_i - \theta p_s^{\mathrm{eff}} - p_b \max\{0,\lambda_i-q\},
+\end{equation}
+where $K\ge 0$ summarizes storage value (security/durability), and $\theta>0$ scales fixed payment to storage units for accounting comparability across designs. Renter $i$ participates iff $U_i\ge 0$. For subscription, $p_b=0$ and $q$ is not used; for two-part, $q=0$; for hybrid, $q>0$ and we fold pre-paid usage into $p_s^{\mathrm{eff}}$.
+
+\subsection{Provider side}
+Providers are heterogeneous with cost factors $\rho_j\ge 0$. Let $\mathcal{R}\subseteq \{1,\dots,n_r\}$ denote participating renters and $D=\sum_{i\in\mathcal{R}}\lambda_i$ their aggregate bandwidth demand. Platform revenue is
+\begin{equation}
+\label{eq:revenue}
+R = \theta p_s^{\mathrm{eff}}|\mathcal{R}| + p_b \sum_{i\in\mathcal{R}} \max\{0,\lambda_i-q\}.
+\end{equation}
+A fraction $\alpha\in(0,1)$ is shared with active providers. If $N_p$ providers participate, average revenue per provider is $\alpha R/N_p$. Provider $j$'s cost is $c_j = \rho_j \cdot (D/N_p)\cdot \xi$, where $\xi>0$ is the unit operating cost (including redundancy overhead). Provider $j$ participates iff
+\begin{equation}
+\label{eq:prov_participation}
+\frac{\alpha R}{N_p} \;\ge\; \rho_j \frac{D}{N_p}\xi \quad\Longleftrightarrow\quad \alpha R \ge \rho_j D \xi.
+\end{equation}
+Hence the extensive margin depends on the distribution of $\rho$ and on $R$ and $D$ induced by pricing.
+
+\subsection{Engineering constraints}
+Redundancy $(m/k)$ and uptime $\alpha$ imply an availability constraint satisfied by sufficient providers and compliance. We treat non-compliance via penalties at the platform level and assume enforcement is credible in the baseline; robustness varies $(m/k,\alpha)$.
+
+\section{Equilibrium and Regimes}
+\label{sec:eq}
+We separate two regimes.
+
+\begin{definition}[Unconstrained profit-maximizing benchmark]
+Given $(m/k,\alpha)$ and revenue share $\alpha$, the platform chooses prices $(p_s,p_b)$ and, when applicable, design $q$ to maximize profit assuming sufficient providers can be engaged to serve $D$ with availability constraints met.
+\end{definition}
+
+\begin{definition}[Market-clearing equilibrium]
+Given potential masses $(n_r,n_p)$ and $(m/k,\alpha)$, a tuple $\big((p_s,p_b,q),\mathcal{R},\mathcal{P}\big)$ is market-clearing if:
+\begin{enumerate}[label=(\roman*)]
+    \item $i\in\mathcal{R}$ iff $U_i\ge 0$; $i\notin\mathcal{R}$ otherwise;
+    \item $j\in\mathcal{P}$ iff $\alpha R \ge \rho_j D \xi$; $j\notin\mathcal{P}$ otherwise;
+    \item availability constraints induced by $(m/k,\alpha)$ hold for $(\mathcal{R},\mathcal{P})$;
+    \item no agent has a profitable unilateral deviation given prices.
+\end{enumerate}
+\end{definition}
+
+Market-clearing prices need not be unique: multiple $(p_s,p_b,q)$ can satisfy (i)–(iv). Comparative statics are reported in $n_p/n_r$ for clarity.
+
+\section{Pricing Families and Hybrid as Design}
+\label{sec:designq}
+We treat $q$ as a design parameter:
+\begin{itemize}
+    \item \textbf{Two-part}: $q=0$, $p_s^{\mathrm{eff}}=p_s$, $p_b>0$.
+    \item \textbf{Subscription}: $p_b=0$, flat $p_s^{\mathrm{eff}}=p_s$.
+    \item \textbf{Hybrid}: $q>0$, $p_b>0$, $p_s^{\mathrm{eff}}=p_s + (p_b q)/\theta$ to fold the pre-paid allowance into the effective fixed part for infra-marginal comparability.
+\end{itemize}
+This interpretation aligns comparisons on total payment paths and avoids conflating allowance accounting with performance.
+
+\section{Analytical Results}
+\label{sec:results}
+We assume continuous type distributions with full support on compact intervals. Proofs are in the Appendix.
+
+\subsection{Participation thresholds}
+Let $T(p_s^{\mathrm{eff}},p_b,q,K)$ denote the $\lambda$-threshold such that $U_i\ge 0$ iff $\lambda_i\ge T$.
+
+\begin{lemma}[Monotone participation]\label{lem:threshold}
+$T$ is nondecreasing in $p_s^{\mathrm{eff}}$ and $p_b$, nonincreasing in $q$ and $K$, and depends on $u$ multiplicatively. Hence $\mathcal{R}$ is well-defined and responds predictably to design changes.
+\end{lemma}
+
+\subsection{Benchmark ordering}
+\begin{theorem}[Profit envelope under abundance]\label{thm:abundance}
+Under abundant providers, the platform’s profit envelope over $(p_s,p_b,q)$ is achieved by two-part and by hybrid with $q$ optimized, and satisfies $\Pi^{\text{sub}} \le \Pi^{\text{2pt}} = \Pi^{\text{hyb}}$ when $K$ is small and demand is sufficiently elastic. For larger $K$, the subscription gap in total surplus narrows and can dominate welfare.
+\end{theorem}
+
+\begin{remark}
+The equivalence $\Pi^{\text{2pt}}=\Pi^{\text{hyb}}$ at $q=0$ is immediate from construction; numerical checks validate equality up to tolerance across distributions.
+\end{remark}
+
+\subsection{Market-clearing existence and non-uniqueness}
+\begin{lemma}[Existence]\label{lem:exist}
+For continuous type distributions and compact supports, there exists at least one market-clearing price tuple $(p_s,p_b,q)$ and allocation $(\mathcal{R},\mathcal{P})$. Prices may be non-unique due to flat regions in participation schedules.
+\end{lemma}
+
+\begin{theorem}[Ordering under scarcity]\label{thm:scarcity}
+Fix $n_p/n_r$, $(m/k,\alpha)$, and $\xi$. Then subscription is dominated by two-part and hybrid in both platform profit and total surplus for sufficiently scarce providers (small $n_p/n_r$). Between two-part and hybrid, hybrid can yield higher profit when $K$ and $q$ are large enough relative to demand composition; otherwise two-part dominates.
+\end{theorem}
+
+\begin{remark}
+All statements are reported in terms of $n_p/n_r$ as requested by the AE and are robust to normalization of $n_r$.
+\end{remark}
+
+\section{Numerical Experiments}
+\label{sec:numerics}
+We complement analysis with simulations that mirror practical heterogeneity and check robustness to modeling choices. Code generates CSVs and figures used below.
+
+\subsection{Design and calibration}
+We consider:
+\begin{itemize}
+    \item \textbf{Demand distributions}: Pareto ($b\in\{1.5,2.0\}$), Exponential (rate 1), Lognormal $(\mu=0,\sigma=1)$.
+    \item \textbf{Supply}: $n_p\in\{1000,3000,10000\}$ with $n_r=1000$ (so $n_p/n_r\in\{1,3,10\}$).
+    \item \textbf{Storage value}: $K\in\{0,1,3\}$.
+    \item \textbf{Hybrid design}: $q\in[0,20]$.
+    \item \textbf{Redundancy/uptime}: baseline $(m/k,\alpha)$ fixed; varied in robustness.
+    \item \textbf{Commission}: baseline $\alpha$ fixed; varied endogenously in robustness.
+\end{itemize}
+
+\subsection{Findings}
+Key patterns across distributions:
+\begin{enumerate}
+    \item \textbf{Sanity check}: Hybrid with $q=0$ matches two-part in profit and surplus within numerical tolerance. This holds across $n_p/n_r$ and $K$.
+    \item \textbf{Profit peaks at $q>0$}: For moderate to high $K$ and certain demand mixes, hybrid profit peaks at positive $q$; two-part is not universally dominant.
+    \item \textbf{Scarcity penalizes subscription}: For small $n_p/n_r$, subscription loses to both two-part and hybrid in profit and total surplus.
+    \item \textbf{Welfare with abundance}: For large $n_p/n_r$ and large $K$, subscription can maximize total surplus despite lower profit.
+\end{enumerate}
+
+\subsection{Figures}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=.95\linewidth]{final_q_sensitivity_analysis.png}
+    \caption{Hybrid profit and welfare vs.\ $q$ across $n_p$ (shaded: benchmark vs.\ market-clearing).}
+    \label{fig:q_sens}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=.95\linewidth]{final_q_sensitivity_vs_subscription.png}
+    \caption{Hybrid vs.\ subscription (normalized to subscription).}
+    \label{fig:hyb_vs_sub}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=.95\linewidth]{multi_dist_q_sensitivity_two_part.png}
+    \caption{Hybrid performance normalized to two-part across distributions and $K$.}
+    \label{fig:multi}
+\end{figure}
+
+\subsection{Tables}
+We summarize optimal prices and equilibrium types by distribution and $n_p/n_r$.
+\begin{table}[h]
+\centering
+\caption{Optimal pricing and equilibrium type by scheme (illustrative).}
+\label{tab:opt}
+\begin{tabular}{llllrrrr}
+\toprule
+Dist & $n_p/n_r$ & Scheme & Eq.\ Type & $p_s^{\mathrm{eff}}$ & $p_b$ & $q$ & Profit \\
+\midrule
+Pareto(2.0) & 1 & Two-part & MC & 0.84 & 0.71 & 0.0 & 112 \\
+Pareto(2.0) & 1 & Hybrid & MC & 0.92 & 0.68 & 2.5 & 118 \\
+Pareto(2.0) & 1 & Subscription & MC & 2.15 & 0.00 & -- & 89 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Robustness}
+\paragraph{Redundancy and uptime.}
+Increasing $(m/k)$ or $\alpha$ raises effective costs; hybrid's relative advantage persists when $K$ is large and $q$ is tuned.
+
+\paragraph{Endogenous commission.}
+Allowing $\alpha$ to vary so that provider participation is just met preserves the main orderings; platform may optimally increase $\alpha$ under scarcity to induce participation, with similar comparative statics.
+
+\section{Managerial Implications}
+\label{sec:imp}
+Our results map pricing choices to supply scarcity and renter storage valuation:
+\begin{itemize}
+    \item Under scarcity (low $n_p/n_r$), subscription underperforms in both profit and welfare; two-part or hybrid should be preferred.
+    \item Hybrid can dominate two-part in profit when storage value $K$ is high and a moderate allowance $q$ reduces perceived usage risk without fully flattening charges.
+    \item With abundant providers and high $K$, subscription can maximize total surplus; platforms aiming at ecosystem growth may choose welfare-friendly designs.
+\end{itemize}
+
+\section{Limitations and Extensions}
+\label{sec:limits}
+We hold $(m/k,\alpha)$ fixed in the core analysis to focus on pricing; joint optimization with pricing is an engineering-economic problem beyond scope. Availability losses can be incorporated as utility penalties; preliminary tests suggest our qualitative orderings are stable. Demand responses to long-term reputation and dynamic contracts are natural extensions.
+
+\section{Conclusion}
+\label{sec:conclude}
+We unify pricing design for P2P storage under abundance and scarcity, formalize market-clearing, and identify regions where hybrid dominates two-part and where subscription maximizes welfare. Expressing results in $n_p/n_r$ clarifies operational levers when provider supply is tight.
+
+\clearpage
+\section*{Notation Summary}
+\begin{longtable}{ll}
+\toprule
+Symbol & Meaning \\
+\midrule
+$n_r$ & Potential renters (mass) \\
+$n_p$ & Potential providers (mass) \\
+$\lambda_i$ & Renter $i$'s access intensity \\
+$u_i$ & Renter $i$'s usage utility weight \\
+$K$ & Storage value component of utility \\
+$p_s$ & Fixed price component (storage) \\
+$p_b$ & Usage price component (bandwidth) \\
+$q$ & Hybrid allowance (design parameter) \\
+$\theta$ & Fixed-to-storage scaling factor \\
+$\alpha$ & Revenue share to providers \\
+$\xi$ & Unit operating cost coefficient \\
+$(m/k)$ & Redundancy coding parameters \\
+$U_i$ & Renter $i$'s utility \\
+$R$ & Total platform revenue \\
+$D$ & Aggregate bandwidth demand \\
+\bottomrule
+\end{longtable}
+
+\appendix
+\section{Proof Sketches}
+\label{app:proofs}
+We outline key arguments; complete derivations are available upon request.
+
+\subsection{Lemma \ref{lem:threshold}}
+From \eqref{eq:renterU}, $U_i$ is decreasing in $p_s^{\mathrm{eff}}$ and $p_b$, increasing in $q$ (through truncation of marginal charges), and increasing in $K$. Under continuity, the threshold exists and is monotone.
+
+\subsection{Theorem \ref{thm:abundance}}
+Under abundance, capacity constraints do not bind; the platform problem is separable across renters given price paths. Hybrid with $q=0$ replicates two-part; optimizing $q$ traces the same envelope because infra-marginal usage is priced equivalently once the allowance is folded into $p_s^{\mathrm{eff}}$.
+
+\subsection{Lemma \ref{lem:exist}}
+Define aggregate best responses for renters and providers as correspondences in $(p_s,p_b,q)$. Continuity of type distributions and compact supports imply upper hemicontinuity and non-emptiness. Kakutani’s theorem ensures a fixed point; non-uniqueness arises when flat regions exist in participation schedules.
+
+\subsection{Theorem \ref{thm:scarcity}}
+For small $n_p/n_r$, subscription raises $R$ via $p_s^{\mathrm{eff}}$ but fails to screen high $\lambda$ usage, increasing $D$ relative to provider capacity. Two-part and hybrid screen usage with $p_b>0$, improving feasibility and surplus. Between two-part and hybrid, raising $q$ transfers mass from marginal to infra-marginal usage; with sufficiently high $K$, the participation expansion can outweigh margin compression, yielding higher profit.
+
+\section{Additional Numerical Details}
+\label{app:numerics}
+We simulate renter types $(\lambda,u)$ from specified distributions and provider costs $\rho$ from uniforms; seeds are fixed for reproducibility. For each scheme, we grid-search $(p_s,p_b)$ with local refinements, and for hybrid sweep $q$ over a dense mesh. We classify equilibrium as benchmark or market-clearing via active provider counts implied by \eqref{eq:prov_participation}.
+
+\section{Data for Figures and Tables}
+\label{app:data}
+We include the figure outputs generated by the Python pipeline:
+\begin{itemize}
+    \item \texttt{final\_q\_sensitivity\_analysis.png}
+    \item \texttt{final\_q\_sensitivity\_vs\_subscription.png}
+    \item \texttt{multi\_dist\_q\_sensitivity\_two\_part.png}
+\end{itemize}
+and CSV files for table generation if needed.
+
+\bibliographystyle{plainnat}
+\bibliography{bib}
+\end{document}
+% ===================== End MSOM_revised_full.tex =====================

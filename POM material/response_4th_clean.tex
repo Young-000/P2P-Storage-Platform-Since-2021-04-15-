@@ -1,0 +1,713 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{times}%, babel}
+\usepackage{secdot,natbib}
+\usepackage{latexsym, amsthm, amsmath, amssymb, color, rotating, multirow, graphicx, hhline, array, tablefootnote}
+\usepackage{scalefnt, enumerate}
+\usepackage{footnote}
+\usepackage{threeparttable,booktabs}
+\usepackage{natbib}
+\usepackage[hyphens]{url}
+%\usepackage{bm, url}
+%\usepackage{slashbox}
+\usepackage{tikz,pgfplots}
+%\usepackage{subcaption}
+\usepackage[margin=10pt,font=small,labelfont=bf,labelsep=endash]{caption}
+\usepackage{subfigure}
+
+\usepackage{kotex} %Korean TeX
+%\usepackage[latin9]{inputenc} % kotex package와 충돌. 향후 kotex 삭제하면 될 듯.
+
+
+
+
+%%% ----------------------------------------------------------------------
+%\clubpenalty=10000 \widowpenalty=10000
+%\renewcommand{\baselinestretch}{1.5}
+% \renewcommand{\theequation}{{\rm \thesection.\arabic{equation}}}
+\renewcommand{\theequation}{{\rm \arabic{equation}}}
+\oddsidemargin 0in  %.10in
+\evensidemargin 0in
+\hyphenpenalty 2000
+
+\textwidth 6.5in    %6.5
+\textheight 8.75in     %8.5
+\topmargin 0.0in      %0in
+\headsep 0in \makeatletter
+\newcommand{\singlespacing}{\let\CS=\@currsize\renewcommand{\baselinestretch}{1.1}\tiny\CS}
+\newcommand{\doublespacing}{\let\CS=\@currsize\renewcommand{\baselinestretch}{1.5}\tiny\CS}
+\newcommand{\realdoublespacing}{\let\CS=\@currsize\renewcommand{\baselinestretch}{2.0}\tiny\CS}
+\newcommand{\mydoublespacing}{\let\CS=\@currsize\renewcommand{\baselinestretch}{1.499}\tiny\CS}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\def\N{\mathbb{N}}
+\def\1{\mathbf{1}}
+\def\P{\mathbf{P}}
+\def\E{\mathbf{E}}
+\newcommand{\maximize}{\mathop{\mbox{{\rm maximize}}}\limits}
+\newcommand{\minimize}{\mathop{\mbox{{\rm minimize}}}\limits}
+\newcommand{\argmax}{\mathop{\mbox{{\rm arg\,max}}}\limits}
+
+
+%\newcommand\ks[1]{{\textbf{#1}}}
+\newcommand{\ks}[1]{{\color{blue} #1}}
+\newcommand{\ju}[1]{{\color{magenta} #1}}
+\newcommand{\yj}[1]{{\color{red} #1}}
+
+
+\setlength\parindent{0cm}
+\setlength{\parskip}{12pt}%
+
+\renewcommand\ttdefault{cmvtt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{center}
+{{\Large \bf Response to Review Reports on POM-Jul-20-SI-0934.R2}\\[6mm]
+{\LARGE ``Sharing Economy in the Cloud:\\ Pricing Schemes for Peer-to-Peer Storage Platforms''}\\[15mm]}
+\end{center}
+
+\baselineskip 18pt
+
+\noindent \underline{\large \bf General Response to the Review Team}
+
+We appreciate the review team for assessing our work positively and suggesting a minor revision in the previous round. Also, we thank you very much for numerous valuable comments and suggestions, which helped us better streamline and polish the manuscript. Below, we have summarized our major changes in this round.
+
+\textbf{1. Organizing Notations and Setup}
+
+One of the biggest issues is whether $n_r$ and $n_p$ are exogenous or endogenous. We apologize for the ambiguous description in the last round. In this round, we have clarified that 1) $n_r$ and $n_p$ are exogenous sizes of potential renters and providers, 2) the platform's algorithm and service fee decisions determine how many renters and providers among the potential peers, and 3) the relationships among different types of notations. 
+
+Specifically, in keeping with R1's suggestion, we have classified our notations into parameters, decision variables, performance measures, and intermediate variables. Moreover, following R2's suggestion, we have reversed the sequence of the first two events--i.e., the platform's algorithm decision and observing $n_r$ and $n_p$ to clarify that these parameters are exogenous. In addition, we have revised the description of our notations and provided a concrete example of the relationships among $n_r$, $n_p$, and intermediary variables.
+
+\textbf{2. Polishing Overall Writing}
+
+The review team provided several great comments on how to improve the quality of our manuscript. In adherence to R2's suggestions, we have rewritten our research questions, contributions, mathematical formulae, and discussion. Also, we have supplemented our description of algorithm parameters and utility function to address issues raised by R1.
+
+Again, we are grateful for the review team's thorough review and constructive comments throughout the review process. We have provided our point-by-point responses to your comments below and hope their quality meets your high standard.
+
+\newpage
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent \underline{\large \bf Authors' Response to SENIOR EDITOR}\\[-11mm]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Senior Editor: } I sent this revised paper to the same two reviewers. The reviewers saw the good progress made in the revision and appreciated the effort that the authors exerted. However, their recommendations split. One reviewer recommended a minor revision, and the other recommended rejection. I carefully read the paper and the revision note, and I also saw the paper has improved from the previous version. Further, I feel that the authors should be able to address the remaining comments with reasonable effort. Therefore, I would recommend a minor revision. 
+}
+\end{quotation} \vspace{-4mm}
+
+We sincerely thank for SE's appreciation of our works made in the previous revision. We are also happy to hear that we are able to address the remaining issues with reasonable efforts with a round of a  revision. In this minor revision, we have tried our best to address any remaining concerns and suggestions clearly.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{quotation}
+{\em
+\noindent \textbf{Senior Editor (Point 1): }  
+The remaining issues center on the writing and exposition. R2 provides a list of valuable and detailed suggestions on how to improve the paper along this line. I would encourage the authors to carefully consider these suggestions. If the authors decide not to incorporate some of these suggestions, please provide detailed and convincing explanation in the response document.}
+\end{quotation} \vspace{-4mm}
+
+As you mentioned, R2 suggested numerous valuable directions to improve our writing and exposition. Here are major changes we have made in this round:
+
+\textbf{Research Questions (Point 1):} We have consolidated our research questions into three points (from five), and revised the last question to emphasize the two-sided aspect of our model.
+
+\textbf{Contributions (Point 2):} We have supplemented recent sharing-economy studies and clarified the unique contributions of our model and findings.
+
+\textbf{Clarifying exogenously given $n_r$ and $n_p$ (Points 3, 4, 5, 6, 11)} We apologize for confusing the review team about the potential sizes of renters ($n_r$) and providers ($n_p$). They are exogenous parameters, and we have clarified this in the new version as follows. First (\textbf{Point 3}), we have added the illustration of potential peer sizes and intermediate variables in \textbf{Figure 2} (also in \textbf{Figure R2-1}). Second (\textbf{Point 4}), we have categorized parameters, decision variables, performance measures, and intermediate variables in \textbf{Tables 1} and \textbf{2} (also in \textbf{Tables R2-1} and \textbf{R2-2}). Third (\textbf{Point 6}), we have reversed the sequence of the first two events---i.e., the platform's algorithm decision and observing $n_r$ and $n_p$---in adherence to R2's suggestion (\textbf{Figure 1} or \textbf{Figure R2-2}). Fourth (\textbf{Point 5}), we have rewritten the description of the event sequence. Lastly (\textbf{Point 11}), we have summarized our remedies and briefly described how $n_r$ and $n_p$ can be inferred in practice.
+
+\textbf{Other Notation Issues (Points 7, 8, 9)} To make the intermediate variable notations more interpretable, we have provided a concrete numerical example of $\upsilon_b, \upsilon_s, \omega_b, \omega_s, \hat{\omega}_b$ and $\hat{\omega}_s$ (\textbf{Point 7}). We have also addressed other remaining description and notation issues raised by R2 (\textbf{Points 8, 9}).
+
+\textbf{Discussion (Point 10)} In keeping with R2's suggestion, we have reorganized Section 6, made this section more concise, and provided some insights obtained from additional analyses.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{quotation}
+{\em
+\noindent \textbf{Senior Editor (Point 2): }
+R1 is concerned about the model setup and complains about the unclear presentations. In fact, echoing the reviewers, I also find some of the description is unclear or even confusing. One critical issue raised by R1 is how $n_r$ and $n_p$ are determined by $p_s$ and $p_b$. The same as the other reviewer, I guess $n_r$ and $n_p$ are just two exogenously given parameters. If this is true, R1 might have misunderstood the setup because of the confusing presentations. I would encourage the authors to think carefully about these model components and clearly state them in the paper. Another critical issue raised by R1 is about the renters’ utility functions. The authors should provide more justifications or explanation as well.}
+\end{quotation} \vspace{-4mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+R1 raised several important issues that can critically determine the manuscript quality. In this revision, we have carefully addressed these issues as summarized below.
+
+\textbf{Clarifying notations and exogeneity of $n_r$ and $n_p$ (Points 0, 1, 2, 3c, 3d):} R1 mentioned several important points on our model notations and setups. In our responses to these comments, we have first clarified the relationships between $n_r$, $n_p$, and active participants (\textbf{Point 0}). For ease of understanding, we have illustrated the relationship between potential and active peers in the new manuscript (\textbf{Figure 2}) and the response letter (\textbf{Figure R1-1}). If the review team finds it relevant and helpful, we can also include this figure in our manuscript. Second (\textbf{Point 1}), we have classified our notations into parameters, decision variables, performance measures, and intermediate variables in \textbf{Tables 1} and \textbf{2} (also in \textbf{Tables R1-1} and \textbf{R1-2}). Third (\textbf{Point 2}), we have further resolved the ambiguity of $n_r$ and $n_p$ by shifting the sequence of events (\textbf{Figure 1} or \textbf{Figure R1-2}), as suggested by R2 (see R2's \textbf{Point 6}). Lastly (\textbf{Points 3c, 3d}), we have addressed the concerns about $n_r$ and $n_p$ and detailed the roles of service fees $p_s$ and $p_b$.
+
+\textbf{Justification of Utility Function (Points 3a, 3b):} We have supplemented the role of algorithm parameters $\theta$ and $t$ to clarify why higher $\theta$ imposes higher storage costs on renters rather than increasing the renter's utility. Specifically, we have elaborated on the trade-off between $\theta$ and $t$ and how relevant algorithm decisions can shift the operating burden from providers to renters and vice versa.
+
+\begin{quotation}
+{\em
+\noindent \textbf{Senior Editor (Point 3): }
+To avoid a prolonged review process, I would encourage the authors to give these comments a serious thought and endeavor to successfully address these remaining issues in next round.
+}
+\end{quotation} \vspace{-4mm}
+
+Once again, we deeply appreciate SE for giving us another chance to address any remaining issues in this round. We have clarified the model setup and exposition of the paper to avoid misunderstandings. We hope SE and the review team are satisfied with this revision.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\large \bf Authors' Response to Reviewer 1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 1 (Point 0): }
+Thanks the authors for the revisions. However, I am still very confused about the model settings. Especially, how the prices ($p_s$ and $p_b$) are selected to induce the number of active participants (e.g., $n_r$ and $n_p$), which then guarantees the first-stage decision on service level (e.g., $\theta$ and $t$) is still unclear to me.
+}
+\end{quotation}\vspace{-4mm}
+
+We sincerely thank the reviewer for a thorough review of our paper. We also apologize for the ambiguous descriptions of $n_r$ and $n_p$. In fact, $n_r$ and $n_p$ in our model do not indicate the number of active participants. Instead, they simply indicate the number of \textit{potential} participants, which are exogenously given and observed by the platform.
+
+% \yj{active participants는 $\upsilon_s$ - renter 및 $\omega_s$ - provider라는 부분을 한 번 더 명시하고 가는 것이 어떨까요? 이들은 영향을 받는다는 느낌으로}\\
+
+% \ju{[그림 그려서 넣어보겠습니다] 단순하게 potential renters, willing to, active renters 차이를 이해할 수 있게만 간단히 그려서 response에만 넣기}\\
+
+For ease of understanding, we have added the conceptual illustration of potential peers ($n_r$ and $n_p$) and active participants (\textbf{Figure 2}) in the new manuscript (also in \textbf{Figure R1-1}). For the notations, please refer to either our responses to your \textbf{Point 2} or our new manuscript. As shown in this figure, $n_r$ ($n_p$) indicates the number of potential renters (providers) deciding whether or not to participate in the platform. Also, potential peers include both active and inactive individuals. Importantly, any providers willing to join the platform can become active peers, but renters cannot because the total storage capacity is constrained by the number of active providers.
+
+To describe the effect of such constraint, we can consider two cases: \textit{i}) when the storage demand among potential renters is smaller than or equal to the number of active providers (i.e., $\theta \upsilon_s \le \omega_s$), and \textit{ii}) when the number of renters willing to participate in the platform is greater than that of active providers (i.e., $\theta \upsilon_s > \omega_s$). In the first case, all renters who want to join the platform can use the P2P storage service because the provided capacity ($\omega_s$) is sufficient to serve the storage demand ($\theta \upsilon_s$). Here, ($\omega_s - \theta \upsilon_s$) implies the redundant capacity of the P2P network. Conversely, in the second case, some of $\upsilon_s$ renters willing to adopt the platform cannot join the P2P network because the provided capacity ($\omega_s$) is insufficient to meet the storage demand ($\theta \upsilon_s$). Consequently, the P2P network leaves the storage demand of ($\theta \upsilon_s - \omega_s$) unsatisfied.
+
+\setcounter{figure}{0}
+\begin{figure}[ht!]
+\def\figurename{Figure R1 -}
+\centering
+\includegraphics[width=16cm]{figure_potential_peers.pdf} 
+\caption{Illustration of Potential and Active Peers (when $n_r > n_p$)}
+\end{figure}
+
+In this revised manuscript, we have revamped our model description to avoid any ambiguity and confusion that substantially undermined our contributions in the previous version. Please refer to our responses to your \textbf{Points 1} through \textbf{3} for how we revised our paper.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 1 (Point 1): }
+To name a few:
+1. To avoid confusion, please differentiate different types of notation, e.g., parameter, decisions (across stages), intermediate variables, objectives/performance measures,
+}
+\end{quotation}\vspace{-4mm}
+
+We appreciate this constructive comment. In keeping with your suggestion, we have clarified and differentiated notation types in the notation tables as follows. Specifically, we have rewritten \textbf{Table 1} (also in \textbf{Table R1-1}) and categorized our main variables into four types: 1) environmental parameters, 2) heterogeneity parameters, 3) platform's decision variables (with stage information), and performance measures. Intermediate variables, such as volume notations and peer utility, are now separately reported in \textbf{Table 2} (also in \textbf{Table R1-2}), as shown below. Accordingly, we have revised the description of \textbf{Table 2} on the manuscript (page 12). By doing so, we could mitigate the confusion that occurred in the previous version.
+
+% \ju{(...) In Table 1, we clarify (...)
+% \begin{itemize}  
+% \item Table 1: Parameter / Decision variable / Performance 구분(decision variable에서는 description에 각각 스테이지 써주기), Performance measure로는 Profit, system surplus를 추가하기 
+% \item Table 2: Intermediate variable이라는 단어가 들어가게 Table 이름 바꾸기
+% \item Table 2: $\pi_j$, $U_i$도 intermediate variable로 묶어서 쓰기
+% \end{itemize}  
+% }
+
+% \begin{table}[h] \centering
+% \textbf{\caption{A Summary of Basic Notations\label{tbl:summary}}}
+% \vspace{0.1in}
+% \begin{tabular}{l | p{9cm}}
+% \textbf{Notation} & \textbf{Description} \\ \hline
+% $n_r$ & Number of potential renters \\
+% $n_p$ & Number of potential providers \\
+% $u_i$ & Renter $i$'s unit utility of bandwidth usage \\
+% $\lambda_i$ & Renter $i$'s bandwidth usage \\
+% $\rho_j$ & Provider $j$'s sensitivity to bandwidth provision\\
+% $\theta$ & Redundancy rate \\
+% $\xi$ & Unit operating cost\\
+% $\alpha$ & Proportion of revenue that providers receive \\
+% $p_s$ & Storage fee\\
+% $p_b$ & Bandwidth fee
+% \end{tabular}
+% \end{table}
+
+\setcounter{table}{0}
+\begin{table}[h] \centering
+\def\tablename{Table R1 -}
+\textbf{\caption{A Summary of Basic Notations\label{tbl:summary}}}
+\vspace{0.1in}
+\begin{tabular}{l  p{12cm}}
+\toprule
+\textbf{Notation} & \textbf{Description} \\\hline
+\multicolumn{2}{l}{\textbf{Parameters: Environment}}\\\hline
+$n_r$ & Number of potential renters \\
+$n_p$ & Number of potential providers \\
+$\alpha$ & Proportion of revenue that providers receive \\\hline
+\multicolumn{2}{l}{\textbf{Parameters: Heterogeneity}}\\\hline
+$u_i$ & Renter $i$'s unit utility of bandwidth usage \\
+$\lambda_i$ & Renter $i$'s bandwidth usage \\
+$\rho_j$ & Provider $j$'s sensitivity to bandwidth provision\\\hline
+\multicolumn{2}{l}{\textbf{Platform's decision variables}}\\\hline
+$\theta$ & (Algorithm decision) Redundancy rate \\
+$t$ & (Algorithm decision) Required uptime, determining unit operating cost $\xi$\\
+$p_s$ & (Pricing decision) Storage fee\\
+$p_b$ & (Pricing decision) Bandwidth fee\\\hline
+\multicolumn{2}{l}{\textbf{Performance measures}}\\\hline
+$\Pi$ & Platform's profit\\
+TS & Total system surplus\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% \begin{table}[h] \small \centering
+% \textbf{\caption{A Summary of Volume Notations\label{tbl:volume}}}
+% \vspace{0.1in}
+% \begin{tabular}{l | l | l | p{10cm}}
+% \textbf{Notation}  & \textbf{Peer} & \textbf{Unit}& \textbf{Description} \\ \hline
+% $\upsilon_s$ &\multirow{2}{*}{Renter}&\multirow{4}{*}{Total}& Total storage volume of renters willing to adopt the platform\\
+% $\upsilon_b$&&& Total bandwidth volume of renters willing to adopt the platform \\\cline{2-2}
+% $\omega_s$ &\multirow{4}{*}{Provider}&& Total storage volume of providers willing to join the platform\\
+% $\omega_b$  &&& Total bandwidth volume of providers willing to join the platform \\\cline{3-3}
+% $\hat{\omega}_s$&&\multirow{2}{*}{Individual}& Expected storage volume for each provider\\
+% $\hat{\omega}_b$ &&& Expected bandwidth volume for each provider \\
+% \end{tabular}
+% \end{table}
+
+\begin{table}[h] \small \centering
+\def\tablename{Table R1 -}
+\textbf{\caption{A Summary of Intermediate Variable Notations\label{tbl:volume}}}
+\vspace{0.1in}
+\begin{tabular}{c  c  c  p{10cm}}
+\toprule
+\textbf{Notation}  & \textbf{Peer} & \textbf{Unit}& \textbf{Description} \\ \hline
+\multicolumn{4}{l}{\textbf{Volume notation}}\\ \hline
+$\upsilon_s$ &\multirow{2}{*}{Renter}&\multirow{4}{*}{Total}& Total storage volume of renters willing to adopt the platform\\
+$\upsilon_b$&&& Total bandwidth volume of renters willing to adopt the platform \\\cline{2-2}
+$\omega_s$ &\multirow{4}{*}{Provider}&& Total storage volume of providers willing to join the platform\\
+$\omega_b$  &&& Total bandwidth volume of providers willing to join the platform \\\cline{3-3}
+$\hat{\omega}_s$&&\multirow{2}{*}{Individual}& Expected storage volume for each provider\\
+$\hat{\omega}_b$ &&& Expected bandwidth volume for each provider\\\midrule
+\multicolumn{4}{l}{\textbf{Peer utility}}\\\hline
+$U_i$ & Renter & \multirow{2}{*}{Individual}& Renter $i$'s total utility\\\cline{2-2}
+$\pi_j$&Provider&& Provider $j$'s profit\\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+  \small
+  \item Note. The following equations hold: $\upsilon_b = \upsilon_{bp} + \upsilon_{bf}$, $\omega_b = \omega_{bp} + \omega_{bf}$, $\hat{\omega}_b = \hat{\omega}_{bp} + \hat{\omega}_{bf}$, where the subscripts \textit{bp} and \textit{bf} indicate the paid bandwidth volume and the free (i.e., unpaid) bandwidth volume, respectively. 
+\end{tablenotes}
+\end{table}
+
+% section 3 시작부분 (table 1)\\
+% parameters: $n_r, n_p, \alpha$, \\
+% heterogeneity variables: $ u_i, \lambda_i, \rho_j$\\
+% decisions: $\theta, t, (\xi?), p_s, p_b$\\
+% objectives/ performance measures: $\Pi$, TS
+
+% section 3.2 (table 2)\\
+% intermediate variables: volume notations, $\pi_j, U_i$\\
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em 
+\noindent \textbf{Reviewer 1 (Point 2): }
+2. "Specifically, given the pricing scheme and commission rate $(1 - \alpha)$, the platform first determines its redundancy algorithm $(\theta,  t)$. Then, the market size of peers $(n_r\text{ and }n_p)$ is realized. In response to this market, the platform decides its service fees $(p_s, p_b)$, which is consistent with the current market situation..."\\
+a. Why $n_r$ and $n_p$ can be realized before $p_s$ and $p_b$ are known? As in Figure 1?
+}
+\end{quotation}\vspace{-4mm}
+
+Again, we apologize for confusing the review team with $n_r$ and $n_p$. They denote the numbers of \textit{potential} renters and providers, respectively, instead of the active numbers, as shown in \textbf{Figure R1-1}. Thus, they are realized before $p_s$ and $p_b$ are determined.
+
+Previously, we intended to reflect that the platform can quickly respond to the market situation using service fees rather than algorithm decisions because it is costly and takes a huge amount of time to revise the platform's initial algorithm. However, we admit that \textbf{Figure 1} in the previous version (The Sequence of Events) can be misleading, considering that the potential peer sizes $n_r$ and $n_p$, which are exogenous, seem determined by the platform's algorithm.
+
+We have prevented such confusion by switching the orders of the algorithm decision and the realization of $n_r$ and $n_p$, as suggested by Reviewer 2. It is worth mentioning that this revision does not affect our analysis procedure and results for the following reasons. First of all, we have consistently considered that $n_r$ and $n_p$ are exogenously determined, not by the platform. Thus, it is more intuitive to move the realization of $n_r$ and $n_p$ before the platform's decisions. Second, even if we maintain the order, the results remain consistent because the optimal algorithm is independent of the market size, as shown in \textbf{Theorem 1}.
+
+For these reasons, we have revised the sequence of events (\textbf{Figure 1} or \textbf{Figure R1-2}) its description as shown below:
+
+``Figure 1 illustrates the sequence of the events for the platform, providers, and renters in our model. Specifically, the platform observes the potential market size of peers ($n_r$ and $n_p$). In response to the \textit{exogenously} given market condition, pricing scheme, and commission rate, the platform first determines its redundancy algorithm ($\theta$, $t$). Then, the platform sets its service fees $(p_s, p_b)$, which are consistent with the current market situation, wherein the development of a redundancy algorithm takes several months or years. (...)'' (page 9)
+
+\begin{figure}[ht!]
+\def\figurename{Figure R1 -}
+\centering
+\includegraphics[width=16cm]{fig1_timeline_minor_revision.pdf} 
+\caption{The Sequence of Events}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 1 (Point 3a): }
+3. For renter's decision, utility function $U=\lambda \cdot u - \theta\cdot p_s - \lambda \cdot p_b$. \\
+a. As theta increases, the utility decreases, why? Should higher theta (higher redundancy rate) increase the utility of renters?
+}
+\end{quotation}\vspace{-4mm}
+
+This is a great point. We admit that $\theta$ might seem to increase the utility by reducing the failure probability without more detailed explanations. Our setting postulates that the platform sets $(\theta, t)$ that achieves a certain failure probability by using two parameters: the redundancy rate $\theta$ and the required uptime $t$. Note that the platform is satisfied with a reasonable failure probability because further reducing the probability leads to higher marginal costs than potential benefits to platform participants, which crowd out both renters and providers.
+
+To achieve this probability, the platform may increase one algorithm parameter while reduce the other. When the platform meets the probability by increasing $\theta$ and reducing $t$, providers benefit from lower operating burden (i.e., lower $t$ and $\xi(t)$), whereas renters pay more for the storage service due to a higher redundancy rate $\theta$. On the other hand, when the platform reduces $\theta$ and raises $t$ to achieve the target probability, renters can pay less for the storage service, but providers need to maintain higher uptime and bear higher operating costs.
+
+% \yj{이 부분에 $\theta$ 및 $t$ 사이의 역할을 조금 더 명시하면 좋지 않을까 싶습니다.}\\
+% \yj{$\theta$가 높은 것은, renter들에게 더 많은 비용을 부과하여 provider를 확보하는 방법이고 반면, $t$가 높은 것은 provider에게 더 높은 required time을 요구하여 renter를 확보하는 방법이다. -- cost를 부여하는 대상이 반대다.}
+We have supplemented this point in our revised manuscript as follows:
+
+``We postulate that the platform considers the algorithm parameter combinations that maintain the same failure probability. In doing so, the platform may increase $\theta$ and decrease $t$ or vice versa. When the platform decides to raise $\theta$ and correspondingly reduce $t$, participating renters have to pay higher storage costs due to the higher redundancy rate, while providers can mitigate their operating burden. Consequently, the P2P network imposes a higher burden on renters. On the other hand, when the platform meets the probability by increasing $t$ rather than $\theta$, providers have to bear higher operating costs due to higher bandwidth uptime.'' (page 9)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 1 (Point 3b): }
+b. Why $p_s \cdot \theta$? Why use the product?
+}
+\end{quotation}\vspace{-4mm}
+
+As suggested in our response to your \textbf{Point 3a}, $\theta$ imposes a burden on renters by increasing a storage fee. To be specific, the required storage volume is proportional to the higher redundancy $\theta$, and consequently, to the total cost of storage service paid by all renters. Hence, we adopt $p_s \cdot \theta$ to express the storage cost considering redundancy rates in the renter's utility function.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 1 (Point 3c): }
+c. How $p_s$ and $p_b$ affect $n_r$ and $n_p$? 
+}
+\end{quotation}\vspace{-4mm}
+
+We again apologize for making the review team confused. As noted in our responses to your \textbf{Points 1} and \textbf{2}, $n_r$ and $n_p$ are the potential number of peers. Among them, renters and providers who expect positive utility and profit will join the P2P network and become active. Therefore, $p_s$ and $p_b$ do not affect $n_r$ and $n_p$; instead, they affect how many peers will participate in the network.
+% \yj{전체적으로 renter provider 순이므로 이에 맞추어 순서 수정 }
+
+Again, \textbf{Figure R1-1} illustrates how the notations summarized in \textbf{Table R1-2} are related to the numbers of potential and active peers. $\omega_s$ implies the number of providers willing to join the platform, and it is equivalent to the storage capacity of the P2P network. $\upsilon_s$ denotes the number of renters willing to adopt the platform, and depending on how many providers join the network, the platform can serve up to either $\upsilon_s$ or $\omega_s$ renters. We have revised \textbf{Figure 1} and its description to avoid such confusion as explained above.
+
+Also, let us clarify the role of service fees $p_s$ and $p_b$. The service fees determine the number of active renters and providers, which cannot be larger than $n_r$ and $n_p$, respectively. Higher service fees better incentivize providers and maintain higher storage capacity and bandwidth uptime. However, they impose higher costs for services on renters. Thus, $p_s$ and $p_b$ directly affect the profitability and utility of the given service, and indirectly affect them through changing the number of active peers on the opposite side. It is also worth mentioning that the impact of $p_s$ and $p_b$ varies across pricing schemes. For instance, the two-part tariff imposes both storage and bandwidth fees proportionally to the usage amount, while the subscription-based pricing does not charge the bandwidth fee.
+
+% \yj{이 부분에서 $p_b$와 관련된 부분까지 같이 녹여서 더 상세히 쓰는게 필요할 것 같습니다. $p_b$이 provider/renter에 영향을 미치는 방식은 pricing schemes에 따라서 달라진다.... }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 1 (Point 3d): }
+d. Why the $n_r$ and $n_p$ induced by the $p_s$ and $p_b$ could guarantee the first-stage service level decisions?
+}
+\end{quotation}\vspace{-4mm}
+
+In the revised version, we have clarified that $n_r$ and $n_p$ are parameters rather than outcome variables by rewriting the notation tables in keeping with your suggestion (\textbf{Point 1}) as well as revising \textbf{Figure 1}. For given $n_r$ and $n_p$, the algorithm and service fee decisions determine the numbers of participating peers. In our model, the number of providers willing to join the platform is equivalent to $\omega_s$. Due to this capacity limitation, potential renters can adopt the P2P platform up to $\omega_s/\theta$, where $\upsilon_s$ denotes the number of renters willing to adopt the platform. Moreover, as shown in \textbf{Theorem 1}, the optimal algorithm decision is independent of $n_r$ and $n_p$ because this decision solely relies on the cost minimization of active renters and providers.
+
+% \yj{이 부분에서 redundancy rates 자체는 $n_r$, $n_p$에 관련 없이 결정된다는 부분을 추가하면 어떨까요?}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\large \bf Authors' Response to Reviewer 2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2: }
+In this revision, the authors have clarified their distinct contributions to the literature and provided a thorough discussion of impacts of various model assumptions. I would like to thank them for their diligent work and detailed response letter. Now, I think the paper has been much strengthened. Below, I will provide a few more editorial suggestions that may be useful for the authors to streamline their exposition and improve the readability of the paper.
+}
+\end{quotation}\vspace{-4mm}
+
+We are delighted to hear that our revision efforts have made a meaningful progress, and we thank you for your valuable comments that have improved our manuscript significantly. In this round, we could further streamline this paper by incorporating additional suggestions from Reviewer 2. Below is a summary of the points-by-point answers.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent\textbf{Section 1:
+}\\[-11mm]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2 (Point 1): }
+Page 3 (of the paper): Consider consolidating the research questions into three points.
+}
+\end{quotation}\vspace{-4mm}
+
+Thank you for your comment, which has helped to make our introduction more readable. Following your suggestion, we have consolidated the research questions into three points and revised the last question to emphasize the two-sided aspect of our model, as shown below (page 3).
+
+\begin{itemize}
+	\item How should the platform set its redundancy algorithm and service fees according to the pricing scheme?
+    \item Which pricing scheme would maximize the platform's profit and the overall system surplus?
+	\item How do the numbers of potential renters and providers in the two-sided market affect effectiveness of pricing schemes?
+	% \item What is the impact of two-sided market sizes on the effectiveness of pricing schemes?
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent\textbf{Section 2:
+}\\[-11mm]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2  (Point 2): }
+Are there any studies of two-part tariff or subscription-based pricing schemes for the sharing economy in general? If yes, the similarities and differences of such studies as compared to this paper are worth mentioning.
+}
+\end{quotation}\vspace{-4mm}
+
+Thank you for pointing out this important aspect. The papers we cited before did not examine two-part tariff or subscription-based pricing schemes for the sharing economy, and we mentioned this aspect in the previous version. Hence, we have explored new sharing-economy studies to ensure our argument in this revision. The most notable paper was Zhang et al. (2022), which examined the effects of wage schemes, such as fixed commission rate, dynamic commission rate, and fixed wage, on competition between sharing platforms. Although this paper concerns pricing schemes by focusing on the relationship between prices and wages, it does not provide insights into how the platform should price each service differently by usage levels. We have added this aspect in the new manuscript as below:
+
+% \yj{price-wage relationship이라고 하는 부분이 조금 모호해보이지는 않을까요? renter에게 받은 비용을 provider에게 어떻게 줄지(?)에 대한 두 player 사이의 보상체계의 interaction에 대해서 집중했다....반면, 우리는 그 interaction은 고정한 대신 어떠한 방식으로 서비스 비용을 부과해야하는지에 대해 고민했다 같은 느낌으로 더 구분하여 자세히 쓸 수 있을까요?}
+
+``Prior studies on pricing in the sharing economy, such as Cachon et al. (2017) and Zhang et al. (2022), did not consider the potential of the pricing schemes that we have examined in this paper. Specifically, these studies postulated a common price and focused on price-wage relationships---i.e., how the platform should share its revenue with workers---rather than on how to price services depending on usage levels. Consequently, these studies paid scant attention to comparing service pricing schemes, such as a two-part tariff, subscription-based pricing, and hybrid pricing.'' (page 7)
+
+% ``Prior studies on pricing in the sharing economy, such as Cachon et al. (2017) and Zhang et al. (2022), did not consider the potential of the pricing schemes that we have examined in this paper. Specifically, these studies postulated a common price and focused on the price-wage relationships---i.e., how the platform should share its revenue with workers---rather than on how to price services depending on usage levels. Consequently, the two-part tariff and subscription-based pricing have not received their attention.'' (page 7)
+
+Note that Chen et al. (2019) is an example that compared pricing schemes similar to subscription-based pricing to pay-per-use for cloud services. However, their model does not include two-sided aspects that yield significant heterogeneity by the size of storage providers in our work.
+
+
+
+%\ju{Cachon, Zhang 둘은 scheme은 그대로 두고, wage랑 price 비율에 주로 집중 + surge pricing 정도}
+
+%\ju{Cachon -> Two-part tariff, subscription 반영 X (이미 서술되어 있음)}
+
+%\ju{Zhang Chen Raghu -> 여기도 wage-price combination, Cachon이랑 매우 비슷...Cachon과 달리 경쟁 세팅에서 provider/consumer in-out 동시에 고려...우리랑 비슷하긴 한데 결국 two-part tariff이나 subscription을 본 건 아님}
+
+%\ju{우리가 점프한 느낌... 뭐에 대해서 받아서 줄것이냐}
+
+%\ju{이런 식으로 pricing 비교한 것은 cloud computing인데 sharign econ이 아닌 곳에서...response에만 적어도...}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent\textbf{Section 3:
+}\\[-11mm]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2  (Point 3): }
+Some notations and their relationships are difficult for the reader to remember and digest. Given the importance of this section in developing the model, I’d like to urge the authors to consider how to streamline this section and make the exposition more concise and clearer. See below for specific comments.
+}
+\end{quotation}\vspace{-4mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We apologize for the difficult notations and relationships in the last manuscript. In this revision, we have revamped this section to make it clearer and more concise, thanks to your valuable comments. First of all, we have added the illustration of potential peers ($n_r$ and $n_p$) and active participants (\textbf{Figure 2}) in the new manuscript (also in \textbf{Figure R2-1}). As shown in this figure, $n_r$ ($n_p$) indicates the number of potential renters (providers) deciding whether or not to participate in the platform. Also, potential peers include both active and inactive individuals. Importantly, any providers willing to join the platform can become active peers, but renters cannot because the total storage capacity is constrained by the number of active providers. For more remedies, please refer to our point-by-point responses below.
+
+\setcounter{figure}{0}
+\begin{figure}[ht!]
+\def\figurename{Figure R2 -}
+\centering
+\includegraphics[width=16cm]{figure_potential_peers.pdf} 
+\caption{Illustration of Potential and Active Peers (when $n_r > n_p$)}
+\end{figure}
+
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2  (Point 4): } 
+Endogenous vs exogeneous parameters: It is important to clarify whether a parameter is exogenously given or not. For instance, it seems that $n_r$ and $n_p$ are exogeneous, while $\theta$, $p_s$ and $p_b$ are the platform’s decision variables, though all those parameters are mixed in Table 1. Moreover, all the parameters in Table 2 are endogenized parameters (or parameters dependent on other endogenized parameters), which should be clearly stated.
+}
+\end{quotation}\vspace{-4mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+This is a valid point. We have addressed this issue by categorizing parameters, decision variables, and performance measures \textbf{Table 1} (also in \textbf{Table R2-1}) in the revised manuscript, in keeping with the review team's suggestion. Also, we have separately reported intermediate variables, including volume notations and peer utility, in \textbf{Table 2} (also in \textbf{Table R2-2}). Moreover, we have revised the description of \textbf{Table 2} on the new version (page 12).
+
+\setcounter{table}{0}
+\begin{table}[h] \centering
+\def\tablename{Table R2 -}
+\textbf{\caption{A Summary of Basic Notations\label{tbl:summary}}}
+\vspace{0.1in}
+\begin{tabular}{l  p{12cm}}
+\toprule
+\textbf{Notation} & \textbf{Description} \\\hline
+\multicolumn{2}{l}{\textbf{Parameters: Environment}}\\\hline
+$n_r$ & Number of potential renters \\
+$n_p$ & Number of potential providers \\
+$\alpha$ & Proportion of revenue that providers receive \\\hline
+\multicolumn{2}{l}{\textbf{Parameters: Heterogeneity}}\\\hline
+$u_i$ & Renter $i$'s unit utility of bandwidth usage \\
+$\lambda_i$ & Renter $i$'s bandwidth usage \\
+$\rho_j$ & Provider $j$'s sensitivity to bandwidth provision\\\hline
+\multicolumn{2}{l}{\textbf{Platform's decision variables}}\\\hline
+$\theta$ & (Algorithm decision) Redundancy rate \\
+$t$ & (Algorithm decision) Required uptime, determining unit operating cost $\xi$\\
+$p_s$ & (Pricing decision) Storage fee\\
+$p_b$ & (Pricing decision) Bandwidth fee\\\hline
+\multicolumn{2}{l}{\textbf{Performance measures}}\\\hline
+$\Pi$ & Platform's profit\\
+TS & Total system surplus\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h] \small \centering
+\def\tablename{Table R2 -}
+\textbf{\caption{A Summary of Intermediate Variable Notations\label{tbl:volume}}}
+\vspace{0.1in}
+\begin{tabular}{c  c  c  p{10cm}}
+\toprule
+\textbf{Notation}  & \textbf{Peer} & \textbf{Unit}& \textbf{Description} \\ \hline
+\multicolumn{4}{l}{\textbf{Volume notation}}\\ \hline
+$\upsilon_s$ &\multirow{2}{*}{Renter}&\multirow{4}{*}{Total}& Total storage volume of renters willing to adopt the platform\\
+$\upsilon_b$&&& Total bandwidth volume of renters willing to adopt the platform \\\cline{2-2}
+$\omega_s$ &\multirow{4}{*}{Provider}&& Total storage volume of providers willing to join the platform\\
+$\omega_b$  &&& Total bandwidth volume of providers willing to join the platform \\\cline{3-3}
+$\hat{\omega}_s$&&\multirow{2}{*}{Individual}& Expected storage volume for each provider\\
+$\hat{\omega}_b$ &&& Expected bandwidth volume for each provider\\\midrule
+\multicolumn{4}{l}{\textbf{Peer utility}}\\\hline
+$U_i$ & Renter & \multirow{2}{*}{Individual}& Renter $i$'s total utility\\\cline{2-2}
+$\pi_j$&Provider&& Provider $j$'s profit\\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+  \small
+  \item Note. The following equations hold: $\upsilon_b = \upsilon_{bp} + \upsilon_{bf}$, $\omega_b = \omega_{bp} + \omega_{bf}$, $\hat{\omega}_b = \hat{\omega}_{bp} + \hat{\omega}_{bf}$, where the subscripts \textit{bp} and \textit{bf} indicate the paid bandwidth volume and the free (i.e., unpaid) bandwidth volume, respectively. 
+\end{tablenotes}
+\end{table}
+ 
+
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2  (Point 5): }
+Assumptions about $n_r$ and $n_p$ It seems to me that these two parameters are exogenously given. However, there are several places in the paper where it makes an impression that these two parameters are dependent on other things. For instance\\
+\begin{itemize}
+    \item Page 9: “. . . the platform first determines its redundancy algorithm $(\theta, t)$. Then, the market size of peers $(n_r \text{ and } n_p)$ is realized.”
+    \item Page 15: “As described in Figure 1, the platform sets its redundancy algorithm that maximizes the expected profit under the given pricing scheme and commission rate. Then, following the realization of the potential renter (provider) size, . . .”
+\end{itemize}
+The above two statements seem to imply that the market sizes of peers $(n_r \text{ and } n_p)$ could be influenced by the platform’s redundancy algorithm and commission rate, whereas the model actually assumes not. Please clarify or rephrase those sentences.
+}
+\end{quotation}\vspace{-4mm}
+
+Yes, $n_r$ and $n_p$ are exogenous parameters. In addition to revising the notation tables, we have rewritten the above statements to avoid any confusion related to these notations. Furthermore, we have changed the order of the first two events in adherence to your suggestion (please refer to your \textbf{Point 6} and our responses). As a result, the first statement has changed as follows:
+
+% \yj{여기서 아래 point 6에서 the first two events를 reverse했다도 한 번 넣어주는 것이 어떨까요?}
+
+``Figure 1 illustrates the sequence of the events for the platform, providers, and renters in our model. Specifically, the platform observes the potential market size of peers ($n_r$ and $n_p$). In response to the \textit{exogenously} given market condition, pricing scheme, and commission rate, the platform first determines its redundancy algorithm ($\theta$, $t$). Then, the platform sets its service fees $(p_s, p_b)$, which are consistent with the current market situation, wherein the development of a redundancy algorithm takes several months or years.'' (page 9)
+
+Let us also note that we still separate the algorithm decision from the service fee decisions because it takes a long time to revise the redundancy algorithm due to technical challenges. For instance, Sia and Storj have not officially changed their algorithms since their releases. Also, Sia has not adopted the 64-of-96 algorithm, which this platform announced its development plan in 2020. We have mentioned this background in the revised version as well.
+
+We have revised the second statement as: 
+
+``As described in Figure 1, the platform observes the potential renter (provider) size $n_r (n_p)$. Then, it sets its redundancy algorithm that maximizes expected profit under the given pricing scheme and commission rate. After that, the platform determines its service fees ($p_s, p_b$) based on expected behaviors of renters and providers.'' (page 17)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2 (Point 6): }On a related note, if the market sizes of peers $(n_r \text{ and } n_p)$ are independent of the platform’s redundancy algorithm, it should make more sense to reverse the sequence of the first two events in Figure 1; that is, Peer sizes are realized, then the platform sets the redundancy algorithm as well as the service fees.
+}
+\end{quotation}\vspace{-4mm}
+
+That is a very great point. As you noted, the market sizes of potential peers $n_r$ and $n_p$ are independent of the platform's decisions. Moreover, our \textbf{Theorem 1} suggests that the optimal algorithm decision does not depend on $n_r$ and $n_p$. Despite this robustness, we admit that the order switching will be substantially more reasonable and understandable.
+% \yj{theorem 한 번 mention해주는 것은? R1에 대해서도 마찬가지로!}
+Therefore, in keeping with your suggestion, we have switched the orders of the numbers of potential peers $n_r$, $n_p$ and algorithm decision as shown in \textbf{Figure R2-2}. Accordingly, we have revised the description of \textbf{Figure 1} as follows:
+
+``Figure 1 illustrates the sequence of the events for the platform, providers, and renters in our model. Specifically, the platform observes the market size of peers ($n_r$ and $n_p$). In response to the given market condition, pricing scheme, and commission rate, the platform first determines its redundancy algorithm ($\theta$, $t$). Then, the platform sets its service fees $(p_s, p_b)$, which are consistent with the current market situation, wherein the development of a redundancy algorithm takes several months or years.'' (page 9)
+
+\begin{figure}[ht!]
+\def\figurename{Figure R2 -}
+\centering
+\includegraphics[width=16cm]{fig1_timeline_minor_revision.pdf} 
+\caption{The Sequence of Events}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2 (Point 7): }
+The relationships among $\nu_b$, $\nu_s$, $\omega_b$, $\omega_s$, $\hat{\omega}_b$ and $\hat{\omega}_s$ are sometimes hard to remember
+and digest. For instance, page 14 states:
+\begin{equation*}
+    \hat{\omega}_b = \frac{\hat{\omega}_{s}}{\theta \upsilon_s}\cdot \upsilon_b
+\end{equation*}
+for which the interpretation is “the platform assigns bandwidth volume to each provider
+proportionally to his share from the entire stored volume.” I think the expression is
+correct, but the term of “the entire stored volume” is somewhat ambiguous, as the reader
+may think, alternatively, the entire stored volume = $\min\{\theta \upsilon_s, \omega_s\}$. \\
+Perhaps a good idea is to provide a concrete example of $\upsilon_b, \upsilon_s, \omega_b, \omega_s, \hat{\omega}_b$ and $\hat{\omega}_s$ to illustrate their relationships.
+}
+\end{quotation}\vspace{-4mm}
+
+Thank you for this constructive comment. Following your suggestion, we have provided numerical examples to describe how $\upsilon_b, \upsilon_s, \omega_b, \omega_s, \hat{\omega}_b$ and $\hat{\omega}_s$ are related to each other on the footnote on pages 15-16 as follows.
+
+``Here are numerical examples of how volume notations are related to each other. Suppose that under a certain pricing scheme, service fees, and redundancy rate $\theta=3$, the total storage demand of renters is $\upsilon_s = 20$ and the total bandwidth demand is $\upsilon_b = 30$. Since providers need to store replicated shards of the original files, the required capacity to meet the storage demand is $3 \times 20 = 60.$
+
+Then, we consider two scenarios: 1) $\omega_s = 40$ and 2) $\omega_s = 80$. In the first scenario, the total storage capacity that providers are willing to offer is smaller than the required capacity; that is, $\theta \upsilon_s = 3 \times 20 > \omega_s = 40$. Thus, this network can retain the storage volume at best their capacity $\omega_s = 40$. Considering that each provider offers the unit volume of storage, and thus $\omega_s$ is equivalent to the number of participating providers, each provider will use his storage by $\hat{\omega}_s = \min\{3 \times 20, 40\}/40 = 1$. Consequently, each provider serves the bandwidth service proportionally to the ratio of its stored space $\hat{\omega}_s = 1$ to the required capacity to meet the entire storage demand $\theta \upsilon_s = 60$; that is, $\hat{\omega}_b = (\hat{\omega}_s/\theta \upsilon_s)\cdot\upsilon_b = (1/60)\times30 = 0.5$.
+
+In the second scenario, the total capacity that providers are willing to offer is greater than the required capacity; that is, $\theta \upsilon_s = 3 \times 20 < \omega_s = 80$. Hence, the network can bear all storage demand, and each provider's storage usage is calculated as $\hat{\omega}_s = \min\{3 \times 20, 80\}/80 = 0.75$. As a result, each provider bears the bandwidth volume by $\hat{\omega}_b = (0.75/60)\times30 = 0.375$.'' (pages 15-16)
+
+% $\hat{\omega}_s = \frac{\min\{\theta \upsilon_s, \omega_s\}}{\omega_s}$
+
+% Suppose that $\upsilon_s = 20 (\le n_r)$\\
+% $\upsilon_b = 30$
+
+% i) $\omega_s = 40 (\le n_p)$\\
+% $\hat{\omega}_s = \frac{\min\{3\cdot 20, 40\}}{40} = 1$\\
+% $\hat{\omega}_b = \frac{1}{60}\cdot 30 = 0.5$
+
+% $\hat{\omega}_b = \frac{1}{40}\cdot 20 = 0.5$
+
+% ii) $\omega_s = 80 (\le n_p )$\\
+% $\hat{\omega}_s = \frac{\min\{3 \cdot 20, 80\}}{80} = 0.75$\\
+% $\hat{\omega}_b = \frac{0.75}{60}\cdot 30 = 0.375$
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2 (Point 8): }
+Note that $\upsilon_b$ and $\upsilon_s$ are critically dependent on the service fees, $p_s$ and $p_b$. I suggest the authors emphasize this dependency, not only when they are first introduced in Section 3 but also in the formulation and analysis of the optimal decisions in Section 4.
+}
+\end{quotation}\vspace{-4mm}
+
+We thank you for this suggestion, which can better clarify the relationship between service fees and volume notations. In the first paragraph of Section 4, we have emphasized this dependency as follows:
+
+``(...) Utilizing the volume notations (e.g., $\upsilon_s$, $\upsilon_b$, $\omega_s$ and $\omega_b$) describing intermediary variables induced by algorithm ($\theta, t$) and service fee ($p_s, p_b$) decisions in Section 3.2, we can express the platform's pricing decisions as the following optimization problem:'' (page 17)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2 (Point 9): }
+Page 15: In Lemma 1, why do we need a "*`` for the expected storage volume for each provider? Isn’t it just denoted by $\hat{\omega}_s$
+}
+\end{quotation}\vspace{-4mm}
+
+We previously intended to denote that this value is optimal, but we have found it is redundant thanks to your comment. We have removed ``*'' from our notation and just noted $\hat{\omega}_s$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent\textbf{Section 6:
+}\\[-11mm]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2 (Point 10): }
+Perhaps a better organization of the subsections is as follows: 6.1 Assumptions on the Platform (using the materials of current 6.1), 6.2 Assumptions on Providers (using the materials of current 6.2.1), and 6.3 Assumptions on Renters (using the materials of current 6.2.2). Also, consider making this section more concise and interesting, instead of simply repeating that the results derived from the base model still hold.
+}
+\end{quotation}\vspace{-4mm}
+
+Thank you for this constructive comment. Following this suggestion, we have revised the subsection titles and the section's content. Please refer to pages 24-27 for the shortened description and supplemented implications of our additional analyses.
+
+Also, as a result of reorganizing and shortening this section, the insights from \textbf{Theorem 4} in the previous manuscript have become more salient. Specifically, readers now can easily find the implication that it is still crucial for the platform to incentivize providers, even when it is free to change its commission rate. In addition, the paragraph discussing the plausibility of endogenous commission rates has a larger share in the first subsection of Section 6.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2 (Point 11): }
+As mentioned above, it may be necessary to add a discussion about how the market sizes $n_r$ and $n_p$ are determined or realized (in the model and in practice) in Section 6.1, and what if they are influenced by the commission fee and/or the redundancy algorithm.
+}
+\end{quotation}\vspace{-4mm}
+
+In our setting, the market sizes $n_r$ and $n_p$ are given, and the platform makes algorithm and service fee decisions in response to these parameters. To clarify this, we have first revised \textbf{Figure 1} to emphasize that $n_r$ and $n_p$ are exogenous. Second, we have categorized the variables into parameters, decision variables, performance measures, and intermediate variables in \textbf{Table 1} and \textbf{Table 2} in the revised manuscript. Also, we have repeated that the potential size of peers is exogenous in Section 6.1, as shown below:
+
+``(...) To verify the possibility that the endogenous selection of commission rates affects our findings, we re-analyze our model by considering $\alpha$ as a decision variable as well as $p_s$ and $p_b$. Theorem 4 summarizes the results by the exogenous size of potential providers $n_p$.'' (page 25)
+
+In practice, the P2P platforms have utilized various relevant statistics to estimate the potential two-sided market sizes. For instance, Storj compared the data storage of centralized cloud platforms with that of personal computer users (Thompson 2014). Also, these platforms have operated their preliminary versions for several years before launching their main services. Based on the market and operation statistics, they can reasonably estimate the market sizes and the effectiveness of algorithm in advance.
+
+To sum up, the potential numbers of renters $n_r$ and providers $n_p$ are exogenously given. Some of these peers self-select to participate in the P2P network following the platform's algorithm and service fee decisions. As a result, our model has already considered what if the numbers of active participants are endogenously determined. Also, the platform's consideration of the market sizes prior to its decisions is practically plausible.
+
+\newpage
+\textbf{References}
+
+Cachon, G. P., Daniels, K. M., Lobel, R. (2017). The role of surge pricing on a service platform with self-scheduling capacity. \textit{Manufacturing \& Service Operations Management}, 19(3), 368-384.
+
+Chen, S., Lee, H., Moinzadeh, K. (2019). Pricing schemes in cloud computing: Utilization‐based vs. reservation‐based. Production and Operations Management, 28(1), 82-102.
+
+Thompson, M. (2014). How big is the cloud? Storj, https://storj.io/blog/2014/08/how-big-is-the-cloud/
+
+Zhang, C., Chen, J., Raghunathan, S. (2022). Two-Sided Platform Competition in a Sharing Economy. \textit{Management Science}, forthcoming.
+
+\end{document} 

@@ -1,0 +1,596 @@
+\documentclass[12pt]{article}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{natbib}
+
+% Highlight Setting
+\usepackage{xcolor, soul}
+\sethlcolor{yellow}
+
+% Private macros
+\usepackage{latexsym, amsthm, amsmath, amssymb, color, graphicx, array}
+\usepackage{threeparttable,booktabs}
+\usepackage{enumitem}
+\usepackage{caption}
+
+% URL control
+\usepackage{url}
+\usepackage{xurl}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{center}
+{{\large Response to Review Reports on MSOM-2024-1493}\\[6mm]
+{\Large \bf Sharing Economy in the Cloud: }\\[2mm]
+{\Large \bf Pricing Schemes for Peer-to-Peer Storage Platforms}\\[10mm]}
+\end{center}
+
+\baselineskip 18pt
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\large \bf General Response to the Review Team}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vspace{4mm}
+\noindent We are deeply grateful to the Department Editor, Associate Editor, and the two anonymous reviewers for their thorough and constructive feedback. The review reports have significantly improved the rigor, clarity, and contribution of our manuscript. We have carefully addressed every point raised by the review team, making substantial revisions to the manuscript. All substantive changes are highlighted in \textcolor{red}{red} in the revised manuscript.
+
+\vspace{0.5em}
+\noindent Our major revisions include:
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Terminology and definitions:} We replaced the term ``first-best pricing'' with ``unconstrained pricing'' throughout the manuscript, as the original terminology incorrectly implied social welfare maximization rather than profit maximization. We also formally defined the ``market-clearing locus'' and clarified the conditions under which multiple market-clearing price pairs may exist.
+
+    \item \textbf{Model rigor:} We formalized the rational expectations equilibrium underlying provider participation decisions, explicitly describing the conjectural reasoning process. We clarified the distinction between endogenous decision variables (prices $p_s$, $p_b$) and exogenous parameters (redundancy $\theta$, commission $\alpha$).
+
+    \item \textbf{Assumption justification:} We provided extensive justification for our modeling assumptions based on industry practices from Storj, Sia, and Filecoin, including documented evidence on provider compensation structures, operating costs, and redundancy mechanisms.
+
+    \item \textbf{Robustness analysis:} We conducted comprehensive numerical experiments across different distributional assumptions (Pareto with varying shape parameters, lognormal, and exponential) and parameter values to demonstrate the robustness of our theoretical findings.
+
+    \item \textbf{Literature review:} We strengthened the literature review to clearly distinguish P2P storage platforms from file-sharing networks and computing-resource sharing platforms.
+
+    \item \textbf{Exposition:} We brought selective technical derivations into the main text for improved transparency and added intuitive explanations before key results.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\noindent \textbf{\underline{Response to Department Editor}}\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{quotation}
+{\em
+\noindent \textbf{Department Editor:} Thank you for submitting your paper to MSOM. The topic of your paper is of clear interest to the services, platforms, and revenue management department, and as such I sent your paper to an expert Associate Editor (AE) for evaluation. The AE in turn recruited two reviewers. All three members of the review team have now submitted their reports, and I want to thank each of them for their service to the journal.
+}
+\end{quotation}
+
+\noindent \textbf{Response:} Thank you for considering our manuscript for \textit{M\&SOM} and for coordinating the review process. We are grateful for the opportunity to revise our work based on the thorough and constructive feedback from the review team.
+
+\begin{quotation}
+{\em
+\noindent \textbf{Department Editor:} As you will see in the reports, the overall reaction to the paper is positive, and the AE has recommended a major revision. However, the AE (in an exceptionally thorough report) and the reviewers have provided quite a long list of comments and areas for improvement. I am not going to repeat the issues raised by the review team here, but suffice it to say that these comments center around stronger motivation of some assumptions, potentially relaxing other assumptions, ensuring the analytical rigor is high, and improving the exposition.
+}
+\end{quotation}
+
+\noindent \textbf{Response:} We appreciate the positive overall assessment and acknowledge the extensive list of comments provided by the review team. We have addressed each concern systematically, focusing on: (i) providing stronger motivation and justification for our modeling assumptions, grounded in industry practice; (ii) relaxing assumptions where feasible and providing robustness checks for others; (iii) strengthening analytical rigor by formalizing key concepts such as the market-clearing locus and equilibrium definitions; and (iv) substantially improving the exposition by bringing key derivations into the main text.
+
+\begin{quotation}
+{\em
+\noindent \textbf{Department Editor:} Given the care and thought put into the reports, I see no reason to disagree with the AE's recommendation, and my decision is a major revision. Thank you once again for submitting your work to MSOM, and best of luck in revising the paper.
+}
+\end{quotation}
+
+\noindent \textbf{Response:} We thank you for this decision and for the encouraging words. We have carefully revised the manuscript to address all points raised by the review team. We believe the revised version is substantially improved in terms of rigor, clarity, and contribution, and we hope it meets the standards of \textit{M\&SOM}. We provide detailed point-by-point responses below.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\noindent \textbf{\underline{Response to Associate Editor}}\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{quotation}
+{\em
+\noindent \textbf{Associate Editor (Main Comments):} I strongly recommend that the authors carefully address all the points raised by both reviewers to advance the paper to the next stage. Since the reviewer reports are detailed and comprehensive, I will refrain from repeating all their points here. Instead, I summarize below the key issues based on the reviewers' feedback, as well as my own observations and suggestions.
+}
+\end{quotation}
+
+\noindent \textbf{Response:} We sincerely thank the Associate Editor for the exceptionally thorough report and for synthesizing the key issues from both reviewers' feedback. We have addressed each point raised by the Associate Editor and both reviewers in detail below. The AE's guidance has been invaluable in prioritizing our revisions and ensuring that the manuscript meets the rigorous standards of \textit{M\&SOM}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{AE Point \#1: Justification of Context-Specific Assumptions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{quotation}
+{\em
+\noindent \textbf{Associate Editor:} Some of the paper's context-specific assumptions require further justification to strengthen the study's credibility. Below, I outline several areas of concern and related points for consideration.
+}
+\end{quotation}
+
+\noindent \textbf{Response:} We appreciate the AE's emphasis on strengthening the justification of our assumptions. We have made substantial revisions to address each concern, providing industry evidence and theoretical motivation where applicable.
+
+\vspace{0.5em}
+\noindent \textbf{Point \#1a: Provider and Renter Identity}
+
+\begin{quotation}
+{\em
+\noindent \textbf{Associate Editor:} The paper should clarify who the providers and renters are in practice. Are providers individual end users or firms/data centers? What are the typical renter profiles? This clarification is essential for understanding the real-world applicability of the model.
+}
+\end{quotation}
+
+\noindent \textbf{Response:} We have added a detailed discussion of provider and renter profiles in Section 3.1 of the revised manuscript. In practice, P2P storage platforms serve diverse participants:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Providers} range from individual users sharing unused storage on personal devices to small businesses and data centers operating dedicated nodes. For example, Storj's documentation explicitly states that ``anyone with extra disk space and bandwidth can become a storage node operator'' (\url{https://docs.storj.io/node}). The platform's redundancy mechanism ensures reliability regardless of individual provider characteristics.
+
+    \item \textbf{Renters} include individual consumers seeking cost-effective backup solutions, small businesses with moderate storage needs, and developers building decentralized applications. Sia's market data shows storage contracts ranging from personal backups (tens of GB) to enterprise deployments (multiple TB).
+\end{itemize}
+
+We have revised Section 3.1 to read: ``\textit{Providers on P2P storage platforms range from individual users sharing spare capacity on personal computers to small businesses operating dedicated storage nodes. Renters similarly span from individual consumers seeking affordable backup solutions to enterprises with distributed storage needs. Our model's unit storage abstraction captures the fundamental economic trade-offs faced by these heterogeneous participants, as the platform's redundancy mechanism aggregates diverse provider capacities into standardized storage units.}'' (p. XX)
+
+\vspace{0.5em}
+\noindent \textbf{Point \#1b: Revenue Structure for Providers}
+
+\begin{quotation}
+{\em
+\noindent \textbf{Associate Editor:} The paper should explain whether providers are compensated based on reserved capacity or realized usage. This distinction has significant implications for provider incentives and the model's applicability.
+}
+\end{quotation}
+
+\noindent \textbf{Response:} This is an important clarification. We have examined the compensation structures of major P2P storage platforms and found that \textbf{all leading platforms compensate providers based on realized usage rather than reserved capacity}:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Storj:} Providers receive \$1.50/TB/month for stored data and \$2.00/TB for bandwidth, paid monthly based on actual usage (\url{https://docs.storj.io/node/get-started/earn}).
+
+    \item \textbf{Sia:} File contracts specify payment for actual storage duration and bandwidth consumed; unused reserved capacity generates no revenue for providers.
+
+    \item \textbf{Filecoin:} Storage deals require providers to commit collateral, with payments released upon verified storage proofs; compensation is tied to actual data stored and retrieved.
+\end{itemize}
+
+Our model's assumption of usage-based compensation is therefore well-grounded in industry practice. We have added this justification to Section 3.2.2 and discuss the alternative (reserved-capacity compensation) in Section 6.2 as a model extension. As we show in Section 6.2, compensating providers for reserved rather than realized capacity creates misaligned incentives---providers may be incentivized to join when utilization is low but exit when capacity becomes valuable---which explains why leading platforms do not adopt this structure.
+
+\vspace{0.5em}
+\noindent \textbf{Point \#1c: Uptime and Redundancy Parameters}
+
+\begin{quotation}
+{\em
+\noindent \textbf{Associate Editor:} The paper should clarify how frequently platforms adjust key redundancy parameters such as $\theta$ and $t$. Are these parameters stable over time, or do they vary with market conditions?
+}
+\end{quotation}
+
+\noindent \textbf{Response:} We have added a detailed discussion of redundancy parameter stability in Section 3.1. In practice, redundancy parameters are highly stable for several reasons:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Technical constraints:} Once data is encoded with a specific redundancy scheme (e.g., Reed-Solomon with parameters $m$ and $k$), changing these parameters requires re-encoding all stored data---a computationally expensive operation that platforms rarely perform.
+
+    \item \textbf{Service commitments:} Platforms typically guarantee a specific level of data durability (e.g., ``11 nines'' or 99.9999999\% durability) in their service agreements. Changing redundancy parameters would affect these guarantees and require contract renegotiation.
+
+    \item \textbf{Industry evidence:} Storj has maintained its Reed-Solomon (29, 80) configuration since 2020, and Sia's default redundancy settings have remained stable at $3\times$ redundancy for over five years.
+\end{enumerate}
+
+We therefore treat $\theta$ as exogenous in our main analysis, which is consistent with the operational reality of these platforms. In Section 6.1, we extend our analysis to consider endogenous redundancy choice and show that the profit-maximizing redundancy algorithm minimizes total provider operating costs across all pricing schemes.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{AE Point \#2: Rigor of the Model}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{quotation}
+{\em
+\noindent \textbf{Associate Editor:} The rigor of the model is an essential aspect that requires further scrutiny and enhancement to address reviewer concerns and ensure the framework's robustness.
+}
+\end{quotation}
+
+\noindent \textbf{Response:} We have substantially strengthened the analytical rigor of our model in several key areas.
+
+\vspace{0.5em}
+\noindent \textbf{Point \#2a: Exogenous vs. Endogenous Variables}
+
+\begin{quotation}
+{\em
+\noindent \textbf{Associate Editor:} The justification for which parameters are treated as endogenous versus exogenous remains unclear. The paper should provide clearer reasoning for these modeling choices.
+}
+\end{quotation}
+
+\noindent \textbf{Response:} We have added a comprehensive discussion of our modeling choices in Section 3.1, with a summary table of all variables and their treatment. Our classification is as follows:
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+\textbf{Variable} & \textbf{Treatment} & \textbf{Justification} \\
+\hline
+$p_s$, $p_b$ & Endogenous & Platform's pricing decisions \\
+$q$ & Design parameter & Pricing scheme structure \\
+$\alpha$ & Exogenous (main) & Industry norms; endogenized in Section 6.1 \\
+$\theta$, $t$ & Exogenous (main) & Technical constraints; endogenized in Section 6.1 \\
+$n_r$, $n_p$ & Exogenous & Market size (potential demand) \\
+$\lambda_i$, $u_i$, $\rho_j$ & Exogenous & Agent heterogeneity (random draws) \\
+\hline
+\end{tabular}
+\end{center}
+
+The commission rate $\alpha$ is treated as exogenous in our main analysis because: (i) two-sided platforms face significant public scrutiny over commission rates, limiting their flexibility to adjust these rates frequently; and (ii) competitive pressures and regulatory constraints often bind commission rates to industry norms (e.g., Sia charges approximately 3.9\%, similar to payment processing fees). We extend our analysis to endogenous $\alpha$ in Section 6.1 and show that our main insights remain robust.
+
+\vspace{0.5em}
+\noindent \textbf{Point \#2b: Provider Participation Equilibrium}
+
+\begin{quotation}
+{\em
+\noindent \textbf{Associate Editor:} The equilibrium logic for provider participation should be formalized. The paper should explain the conjectural reasoning process and how the equilibrium is determined.
+}
+\end{quotation}
+
+\noindent \textbf{Response:} We have substantially revised Section 3.2.2 to formalize the provider participation equilibrium. The revised section now explicitly describes the rational expectations equilibrium as follows:
+
+``\textit{Each potential provider decides whether to offer their unused storage via the platform based on expected profitability. Given the market conditions and the platform's service fees under the given pricing scheme, a provider first forms a conjecture about the number of active renters and other providers in the market. Using this conjecture, the provider estimates the expected storage and bandwidth volumes that will be assigned to them, computes the expected revenue net of operating costs, and determines whether participation is profitable.}
+
+\textit{Formally, let $\hat{n}_r$ and $\hat{n}_p$ denote a provider's conjecture about renter and provider participation. Given these conjectures, provider $j$ with cost sensitivity $\rho_j$ expects profit:}
+\[
+\pi_j(\rho_j; \hat{n}_r, \hat{n}_p) = \alpha \left( \frac{\theta \hat{n}_r}{\hat{n}_p} p_s + \frac{\hat{v}_b}{\hat{n}_p} p_b \right) - \rho_j \frac{\hat{v}_b}{\hat{n}_p} \xi
+\]
+\textit{where $\hat{v}_b$ is the conjectured aggregate bandwidth demand. Provider $j$ participates if $\pi_j \geq 0$, yielding cutoff type $\rho^* = \alpha(p_s + \frac{\hat{v}_b}{\theta \hat{n}_r} p_b) / (\frac{\hat{v}_b}{\theta \hat{n}_r} \xi)$. In equilibrium, conjectures are consistent with actual participation: $\hat{n}_p = n_p \cdot \rho^*$ and $\hat{n}_r$ equals the actual number of adopting renters.}'' (p. XX)
+
+\vspace{0.5em}
+\noindent \textbf{Point \#2c: Market-Clearing Prices}
+
+\begin{quotation}
+{\em
+\noindent \textbf{Associate Editor:} The term ``market-clearing'' pricing needs to be clearly defined. Both reviewers note that market-clearing prices may not be unique when the price space is two-dimensional.
+}
+\end{quotation}
+
+\noindent \textbf{Response:} We have added a formal definition of market-clearing prices and the market-clearing locus in Section 4. The revised text reads:
+
+``\textit{We define a price pair $(p_s, p_b)$ as \textbf{market-clearing} if the number of participating providers exactly equals the storage demand from active renters, i.e., $n_p^* = \theta n_r^*$. When the pricing scheme involves two price instruments (as in the two-part tariff and hybrid pricing), the set of market-clearing prices forms a one-dimensional \textbf{market-clearing locus} $\mathcal{M}_q$ in the $(p_s, p_b)$ space:}
+\[
+\mathcal{M}_q = \{(p_s, p_b) : n_p^*(p_s, p_b) = \theta n_r^*(p_s, p_b)\}
+\]
+\textit{The platform selects the profit-maximizing pair along this locus. If $\Pi(\cdot)$ is strictly quasi-concave along $\mathcal{M}_q$, the maximizer is unique; otherwise, we select the pair that maximizes profit and, in case of ties, maximizes total surplus.}'' (p. XX)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{AE Point \#3: Expositional Suggestions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{quotation}
+{\em
+\noindent \textbf{Associate Editor:} Both reviewers have raised many good suggestions for improving the exposition of the paper. Additionally, I would like to emphasize several relatively major points.
+}
+\end{quotation}
+
+\noindent \textbf{Response:} We have made extensive revisions to improve the exposition throughout the manuscript.
+
+\vspace{0.5em}
+\noindent \textbf{Point \#3a: Terminology}
+
+\begin{quotation}
+{\em
+\noindent \textbf{Associate Editor:} The paper uses the term ``first-best'' pricing, but this terminology is misleading since first-best typically refers to social welfare maximization. Please use more appropriate terminology.
+}
+\end{quotation}
+
+\noindent \textbf{Response:} We agree that ``first-best'' was an inappropriate term. We have replaced all instances with ``\textbf{unconstrained pricing}'' to accurately reflect that these are profit-maximizing prices that the platform would set absent supply-side constraints. We have also added a clear definition: ``\textit{Under unconstrained pricing, the number of potential providers is large enough that the platform can set profit-maximizing prices without binding supply constraints, i.e., provider participation is sufficient to meet renter demand at the optimal prices.}'' (p. XX)
+
+\vspace{0.5em}
+\noindent \textbf{Point \#3b: Results Based on Ratios}
+
+\begin{quotation}
+{\em
+\noindent \textbf{Associate Editor:} Regarding results of the market-clearing pricing, it would make more sense to state the results based on the ratio of the potential providers to the potential renters, $n_p/n_r$, rather than based solely on $n_p$.
+}
+\end{quotation}
+
+\noindent \textbf{Response:} We appreciate this suggestion and have revised our presentation accordingly. The theoretical thresholds are now expressed as ratios relative to the number of potential renters:
+\begin{itemize}[leftmargin=*]
+    \item $\psi^T = \frac{1}{2}\xi\theta n_r$: Threshold below which both pricing schemes are constrained
+    \item $\psi^S = 3\xi\theta n_r$: Threshold above which both pricing schemes are unconstrained
+\end{itemize}
+
+These can be equivalently expressed as ratios $\psi^T/n_r = \frac{1}{2}\xi\theta$ and $\psi^S/n_r = 3\xi\theta$, which depend only on the redundancy rate and operating cost parameters. We have revised Figure 5 and related discussions to emphasize these ratio-based interpretations.
+
+\vspace{0.5em}
+\noindent \textbf{Point \#3c: Technical Details}
+
+\begin{quotation}
+{\em
+\noindent \textbf{Associate Editor:} It would enhance clarity of the formulations and key derivations if the authors could selectively move some necessary technical details into the main text.
+}
+\end{quotation}
+
+\noindent \textbf{Response:} We have brought several key derivations from the appendix into the main text, including:
+\begin{itemize}[leftmargin=*]
+    \item The derivation of the market-clearing locus and its properties (Section 4)
+    \item The proof sketch for the threshold conditions $\psi^T$ and $\psi^S$ (Section 4)
+    \item The intuition behind the equivalence of two-part tariff and low-$q$ hybrid pricing (Section 5)
+\end{itemize}
+
+We have also added intuitive explanations before each major theorem to help readers understand the economic logic before encountering the formal statements.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\noindent \textbf{\underline{Response to Referee 1}}\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent We thank Referee 1 for the constructive and detailed feedback. The comments have helped us substantially improve the clarity and rigor of our manuscript. We address each point below.
+
+\vspace{0.5em}
+\begin{quotation}
+{\em
+\noindent \textbf{Referee 1 (Point \#1):} Introduction: The data cited is not current. Please update the data you cite.
+}
+\end{quotation}
+
+\noindent \textbf{Response:} We have updated all market data in the Introduction with current figures from verifiable sources. Specifically:
+
+\begin{itemize}[leftmargin=*]
+    \item The global cloud storage market size has been updated to \$108.69 billion in 2023, with projected CAGR of 24.0\% through 2030 (Grand View Research, 2024).
+    \item P2P storage platform statistics have been updated: Storj's distributed network now spans over 20,000 storage node operators across 100+ countries, while Filecoin's network capacity exceeds 22 EiB (exbibytes) as of 2024.
+    \item We have added recent data on enterprise adoption of decentralized storage solutions.
+\end{itemize}
+
+All citations now include access dates to ensure verifiability.
+
+\vspace{0.5em}
+\begin{quotation}
+{\em
+\noindent \textbf{Referee 1 (Point \#2):} Page 3 of 48: Line 1: ``widely used the'': I think ``the'' should be deleted.
+}
+\end{quotation}
+
+\noindent \textbf{Response:} Thank you for catching this error. We have corrected it in the revised manuscript.
+
+\vspace{0.5em}
+\begin{quotation}
+{\em
+\noindent \textbf{Referee 1 (Point \#3):} Next paragraph: Redundancy algorithms are mentioned without telling the reader what that means.
+}
+\end{quotation}
+
+\noindent \textbf{Response:} We have added a clear explanation of redundancy algorithms when they are first introduced. The revised text reads:
+
+``\textit{P2P storage platforms employ redundancy algorithms to ensure data durability despite the inherent unreliability of individual providers. These algorithms, typically based on erasure coding schemes such as Reed-Solomon codes, divide files into multiple encoded segments and distribute them across different providers. For example, with a redundancy rate $\theta = 3$, a 1 GB file is expanded to 3 GB of encoded data distributed across multiple providers, such that the original file can be reconstructed from any subset of the segments (e.g., any 29 of 80 segments in Storj's implementation). This redundancy ensures that renters can retrieve their data even when some providers are offline or have failed.}'' (p. XX)
+
+\vspace{0.5em}
+\begin{quotation}
+{\em
+\noindent \textbf{Referee 1 (Point \#6):} When alpha is first introduced, please discuss why it is assumed to be exogenous.
+}
+\end{quotation}
+
+\noindent \textbf{Response:} We have added a detailed justification for treating the commission rate as exogenous when it is first introduced. The revised text explains:
+
+``\textit{We treat the commission rate $\alpha$ as exogenous in our main analysis for three reasons. First, two-sided platforms often face public scrutiny over provider compensation rates, limiting their flexibility to adjust commissions frequently. Second, competitive pressures typically constrain commission rates to industry norms---for example, Sia charges approximately 3.9\%, comparable to payment processing fees, while Google Play and Apple's App Store charge 30\%, rates that have already faced significant regulatory and public backlash. Third, treating $\alpha$ as fixed allows us to isolate the effects of pricing scheme design from commission policy. In Section 6.1, we relax this assumption and show that our main insights remain robust when $\alpha$ is endogenously determined.}'' (p. XX)
+
+\vspace{0.5em}
+\begin{quotation}
+{\em
+\noindent \textbf{Referee 1 (Point \#7):} Page 8: Isn't 100\% availability impossible? Also, do you assume a certain failure probability function (as a function of theta and t)?
+}
+\end{quotation}
+
+\noindent \textbf{Response:} The referee is correct that 100\% availability is impossible in practice. We have clarified our language and added the failure probability function. The revised text reads:
+
+``\textit{The platform targets a specific failure probability $\phi$ (e.g., $\phi = 10^{-11}$ for ``eleven nines'' durability). Given provider uptime $t$ (the probability that a provider is online at any given moment) and redundancy parameters $(m, k)$ from the erasure coding scheme, the failure probability is:}
+\[
+\phi(\theta, t) = \sum_{i=0}^{k-1} \binom{m}{i} t^i (1-t)^{m-i}
+\]
+\textit{which represents the probability that fewer than $k$ of the $m$ encoded segments are available. The redundancy rate $\theta = m/k$ and uptime $t$ jointly determine the platform's reliability guarantee. Higher $\theta$ allows for lower $t$ to achieve the same $\phi$, but increases storage and bandwidth costs.}'' (p. XX)
+
+\vspace{0.5em}
+\begin{quotation}
+{\em
+\noindent \textbf{Referee 1 (Point \#9):} Lemma 1: I was initially very confused by this statement because I thought only $(p_s, p_b)$ are fixed and everything else was supposed to be an output. Please reword this.
+}
+\end{quotation}
+
+\noindent \textbf{Response:} We have reworded Lemma 1 to clearly distinguish inputs from outputs. The revised statement explicitly lists all given parameters before stating the results:
+
+``\textit{\textbf{Lemma 1.} Consider a platform operating under a given pricing scheme with service fees $(p_s, p_b)$ and free bandwidth allowance $q$. Given the redundancy rate $\theta$, commission rate $\alpha$, renter heterogeneity distributions, and provider cost distribution, the equilibrium renter adoption and aggregate usage volumes are determined as follows: [...]}'' (p. XX)
+
+\vspace{0.5em}
+\begin{quotation}
+{\em
+\noindent \textbf{Referee 1 (Point \#11):} Last sentence of Lemma 2 about monotonicity with respect to $q$: Does this statement apply for hybrid pricing? My understanding is that $q$ is a parameter that appears only for hybrid pricing. But I think you are considering two-part tariff as $q=0$ and subscription as $q=\infty$. I don't recall this in the writing.
+}
+\end{quotation}
+
+\noindent \textbf{Response:} We appreciate this observation. The referee is correct that $q$ unifies the three pricing schemes. We have added explicit clarification in Section 2.3:
+
+``\textit{The hybrid pricing scheme with free bandwidth allowance $q$ nests both the two-part tariff and subscription-based pricing as special cases. When $q = 0$, the hybrid scheme reduces to the two-part tariff (no free bandwidth). When $q \to \infty$, all bandwidth becomes free, recovering subscription-based pricing. This unified framework allows us to analyze how the free bandwidth allowance affects platform outcomes and to interpret $q$ as a design parameter that determines the pricing scheme's structure.}'' (p. XX)
+
+\vspace{0.5em}
+\begin{quotation}
+{\em
+\noindent \textbf{Referee 1 (Point \#12):} Lemma 3: Please define ``market clearing prices'' before using that language.
+}
+\end{quotation}
+
+\noindent \textbf{Response:} We have added a formal definition of market-clearing prices before Lemma 3:
+
+``\textit{\textbf{Definition (Market-Clearing Prices).} A price pair $(p_s, p_b)$ is market-clearing if the capacity supplied by participating providers exactly equals the storage demand from adopting renters: $n_p^*(p_s, p_b) = \theta \cdot n_r^*(p_s, p_b)$. When the pricing scheme involves two price instruments, the set of market-clearing prices forms a market-clearing locus $\mathcal{M}_q$ in the $(p_s, p_b)$ space.}'' (p. XX)
+
+\vspace{0.5em}
+\begin{quotation}
+{\em
+\noindent \textbf{Referee 1 (Point \#14):} Page 21: ``Specifically, for a given pricing scheme, the platform is better off by increasing both $p_s$ and $p_b$ until the number of participating providers equals the number of renters willing to adopt the platform.'' There might be many ways of changing $(p_s, p_b)$. Which one do you pick?
+}
+\end{quotation}
+
+\noindent \textbf{Response:} We have clarified this in the revised manuscript. The platform optimizes profit along the market-clearing locus:
+
+``\textit{When the number of potential providers is limited, the platform faces a trade-off along the market-clearing locus $\mathcal{M}_q$. Different price pairs $(p_s, p_b)$ along this locus generate the same market-clearing quantity but different revenue compositions from storage versus bandwidth fees. The platform selects the profit-maximizing pair:}
+\[
+(p_s^*, p_b^*) = \arg\max_{(p_s, p_b) \in \mathcal{M}_q} \Pi(p_s, p_b)
+\]
+\textit{In our setting, we show that the profit-maximizing path involves increasing both prices proportionally, maintaining the relative contribution of storage and bandwidth revenue while extracting maximum surplus from both dimensions.}'' (p. XX)
+
+\vspace{0.5em}
+\begin{quotation}
+{\em
+\noindent \textbf{Referee 1 (Point \#17):} Page 24: Last paragraph of Section 5.1: ``renters' usage levels'': Renters don't decide usage levels, right? So, I didn't understand this sentence.
+}
+\end{quotation}
+
+\noindent \textbf{Response:} We apologize for the confusion. The term ``usage levels'' refers to the inherent bandwidth demand $\lambda_i$ that varies across renters---some renters access their stored files frequently (high $\lambda_i$) while others rarely access them (low $\lambda_i$). This heterogeneity is exogenous to renter decisions but affects which renters find it worthwhile to adopt the platform under different pricing schemes. We have clarified this in the revised text:
+
+``\textit{Interestingly, all pricing schemes attract the same number of renters under unconstrained pricing. Thus, differences in total surplus stem from variations in the composition of adopting renters, not the total number. Specifically, as $q$ increases, renters with higher inherent bandwidth demand (higher $\lambda_i$) are more likely to adopt the platform, because they benefit more from free bandwidth allowances. This compositional shift toward higher-usage renters means that the added renter surplus from increasing $q$ outweighs the platform's profit loss, ultimately boosting total system surplus.}'' (p. XX)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\noindent \textbf{\underline{Response to Referee 2}}\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent We thank Referee 2 for the thorough and insightful feedback. The comments have helped us strengthen the rigor and applicability of our analysis. We address each point below.
+
+\vspace{0.5em}
+\begin{quotation}
+{\em
+\noindent \textbf{Referee 2 (Point \#1):} The paper has a couple of strong technical assumptions that make the results hard to generalize. First of all, the paper assumes the bandwidth usage follows a Pareto distribution with $b = 2$. Second, they assume the unit operating cost is sufficiently large, i.e., $\xi > 3/4\alpha$. In addition, the paper assumes that each renter has a demand of one unit volume and each provider rents out one unit of capacity. The distributional assumptions may be contributing to driving the results in the current paper, and I am not sure how robust the results will be for other distributions.
+}
+\end{quotation}
+
+\noindent \textbf{Response:} We appreciate the referee's concern about generalizability. We have addressed each assumption through a combination of theoretical justification and numerical robustness analysis.
+
+\textbf{Point \#1.1: Bandwidth Usage Distribution.} We acknowledge that while we adopted the Pareto distribution from the literature to capture the heavy-tailed nature of cloud usage data, the specific assumption of $b=2$ limits generalizability. To address this concern, we conducted extensive numerical experiments across different distributions. Table~\ref{tab:dist_robust_r2} summarizes our results:
+
+\begin{table}[h]
+\centering
+\caption{Robustness to Bandwidth Usage Distribution}
+\label{tab:dist_robust_r2}
+\begin{tabular}{lcccc}
+\hline
+& \multicolumn{2}{c}{\textbf{Constrained ($n_p = 2{,}000$)}} & \multicolumn{2}{c}{\textbf{Unconstrained ($n_p = 25{,}000$)}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+\textbf{Distribution} & \textbf{Two-part} & \textbf{Subscription} & \textbf{Two-part} & \textbf{Subscription} \\
+\hline
+Pareto $b=1.5$ & \textbf{1,123.7} & 1,044.8 & 1,825.1 & \textbf{2,427.2} \\
+Pareto $b=2.0$ & 581.6 & \textbf{596.7} & 1,240.4 & \textbf{1,531.0} \\
+Pareto $b=2.5$ & \textbf{476.1} & 457.5 & 1,120.9 & \textbf{1,213.7} \\
+Pareto $b=3.0$ & \textbf{429.0} & 400.1 & 1,013.2 & \textbf{1,098.3} \\
+Lognormal & \textbf{911.2} & 834.0 & 1,799.4 & \textbf{2,011.5} \\
+Exponential & \textbf{1,029.4} & 950.1 & 2,033.2 & \textbf{2,163.6} \\
+\hline
+Two-part wins & \multicolumn{2}{c}{5/6 (83\%)} & \multicolumn{2}{c}{0/6 (0\%)} \\
+\hline
+\end{tabular}
+\end{table}
+
+The results strongly support our theoretical predictions: in the constrained regime, the two-part tariff yields higher surplus in 83\% of cases, while in the unconstrained regime, subscription-based pricing dominates across all distributions (100\%). This pattern holds for heavy-tailed distributions (Pareto with varying shape parameters), moderately skewed distributions (lognormal), and light-tailed distributions (exponential).
+
+\textbf{Point \#1.2: Operating Cost Assumption.} Our assumption $\xi > \frac{3}{4}\alpha$ ensures that operating costs are meaningful in provider decisions, which is consistent with industry evidence. We have added detailed documentation of operating costs in practice, including electricity costs (global average: \$0.170/kWh), internet bandwidth costs (varying from \$0.23/Mbps in the US to \$2.28/Mbps in South Africa), and hardware maintenance. When operating costs are negligible ($\xi \le \frac{3}{4}\alpha$), all providers participate regardless of prices, and the platform has no incentive to use bandwidth fees to attract providers. We discuss this limiting case in Section 6.2.
+
+\textbf{Point \#1.3: Unit Volume Assumption.} We have clarified that our unit storage abstraction represents standardized storage packages (e.g., 1 TB) that serve as basic trading units. The model's insights extend naturally to multi-unit cases: when a renter needs multiple units, both revenue and costs scale proportionally, preserving the qualitative insights. We have added this discussion to Section 6.3.
+
+\vspace{0.5em}
+\begin{quotation}
+{\em
+\noindent \textbf{Referee 2 (Point \#2):} The formulation of the provider's participation problem is poorly introduced. The paper should explain better the equilibrium model that drives the participation decision of providers.
+}
+\end{quotation}
+
+\noindent \textbf{Response:} We have substantially revised Section 3.2.2 to formalize the provider participation equilibrium. Following the referee's suggestion, we now explicitly describe the conjectural reasoning process:
+
+``\textit{Each potential provider decides whether to offer their unused storage via the platform based on expected profitability. Given the market conditions and the platform's service fees, a provider first forms a conjecture about the number of active renters and other providers in the market. Using this conjecture, the provider estimates the expected storage and bandwidth volumes that will be assigned to them, computes the expected revenue net of operating costs, and determines whether participation is profitable.}'' (p. XX)
+
+We then formally define the equilibrium condition that conjectures must be consistent with actual participation levels.
+
+\vspace{0.5em}
+\begin{quotation}
+{\em
+\noindent \textbf{Referee 2 (Point \#3):} The provider's profit function is questionable. In formulating $\pi_j$ (page 14), the paper assumes that the storage revenue of a provider is proportional to the actual usage. However, when a provider joins the platform, he/she rents out one unit of capacity and must set aside this capacity for usage by the platform. The service provider might expect a payment for the entire unit capacity rented to the platform.
+}
+\end{quotation}
+
+\noindent \textbf{Response:} This is an important clarification. We have examined the compensation structures of major P2P storage platforms and confirmed that \textbf{all leading platforms compensate providers based on realized usage rather than reserved capacity}. For example:
+\begin{itemize}[leftmargin=*]
+    \item Storj pays providers \$1.50/TB/month for stored data and \$2.00/TB for bandwidth, based on actual usage.
+    \item Sia's file contracts specify payment for actual storage duration and bandwidth consumed.
+    \item Filecoin ties payments to verified storage proofs of actual data stored.
+\end{itemize}
+
+We discuss the alternative (reserved-capacity compensation) in Section 6.2 and show that it creates misaligned incentives: providers would be incentivized to join when utilization is low but exit when capacity becomes valuable. This explains why leading platforms do not adopt this structure.
+
+\vspace{0.5em}
+\begin{quotation}
+{\em
+\noindent \textbf{Referee 2 (Point \#4):} There may be a continuum of prices that clear the market when demand exceeds supply, since the price decisions are two-dimensional. What do the market-clearing prices look like and which pair maximizes the platform's profit?
+}
+\end{quotation}
+
+\noindent \textbf{Response:} We have added a formal treatment of the market-clearing locus in Section 4. When both storage and bandwidth prices are decision variables, the set of market-clearing prices forms a one-dimensional locus $\mathcal{M}_q$ in the $(p_s, p_b)$ space. The platform selects the profit-maximizing pair along this locus:
+\[
+(p_s^*, p_b^*) = \arg\max_{(p_s, p_b) \in \mathcal{M}_q} \Pi(p_s, p_b)
+\]
+We characterize the shape of this locus and show that the profit-maximizing pair is generically unique under mild regularity conditions.
+
+\vspace{0.5em}
+\begin{quotation}
+{\em
+\noindent \textbf{Referee 2 (Point \#5):} In Section 5, the comparison between different pricing models is not presented in full length. For example, in Theorem 3, the paper omits the two-part tariff in the comparison. The abstract indicates the two-part tariff always dominates, and hence it must yield higher profit for the platform for the market-clearing price case.
+}
+\end{quotation}
+
+\noindent \textbf{Response:} We have expanded Theorem 2 (formerly Theorem 3) to include a complete profit comparison. The revised theorem now includes:
+
+``\textit{(iii) When $n_p \ge \psi^T$, the two-part tariff always yields weakly higher profit than subscription-based pricing; that is, $\Pi^T \ge \Pi^S$. This profit dominance holds regardless of whether the platform operates under unconstrained or constrained pricing.}'' (p. XX)
+
+We have also added a new subsection (Section 5.3) presenting numerical validation of our theoretical results. The numerical experiments confirm that:
+\begin{itemize}[leftmargin=*]
+    \item In the constrained regime ($n_p < \psi^T$): Two-part tariff wins in surplus 80\% of cases
+    \item In the transitional regime ($\psi^T \le n_p < \psi^S$): Mixed results, two-part wins 56\%
+    \item In the unconstrained regime ($n_p \ge \psi^S$): Subscription wins in surplus 100\%
+    \item For profit: Two-part tariff consistently outperforms subscription across all regimes
+\end{itemize}
+
+\vspace{0.5em}
+\begin{quotation}
+{\em
+\noindent \textbf{Referee 2 (Point \#6):} The prospect of the P2P storage sharing practice may not be bright due to the redundant nature of the sharing algorithm and the increased awareness on sustainability by consumers \& firms.
+}
+\end{quotation}
+
+\noindent \textbf{Response:} We appreciate this thoughtful concern. We have added a discussion of sustainability considerations in Section 7 (Conclusion). The environmental impact of decentralized storage remains an open question with competing effects:
+
+On the positive side, decentralized storage can reduce reliance on energy-intensive, continuously running data centers by leveraging underutilized existing devices. Posani et al. (2018) suggested approximately 77\% reduction in carbon footprint compared to centralized cloud systems.
+
+On the negative side, redundancy can increase total storage footprint and network traffic. The net environmental impact depends critically on implementation, redundancy strategy, energy sources, and utilization patterns.
+
+We acknowledge this uncertainty in our conclusion while noting that our pricing analysis remains relevant regardless of the industry's long-term trajectory, as it addresses fundamental economic trade-offs in two-sided platforms.
+
+\vspace{0.5em}
+\begin{quotation}
+{\em
+\noindent \textbf{Referee 2 (Point \#7):} There are quite a few serious typos in the paper. For example, on page 12, the calculation of $v_s^T$ and $v_b^T$ is missing a multiplicative factor ``$n_r$''.
+}
+\end{quotation}
+
+\noindent \textbf{Response:} We apologize for these errors. We have carefully proofread the entire manuscript and corrected all typos, including:
+\begin{itemize}[leftmargin=*]
+    \item The missing $n_r$ factor in the volume calculations on p. 12
+    \item Incorrect theorem reference numbers
+    \item Minor grammatical errors throughout
+\end{itemize}
+
+\vspace{0.5em}
+\begin{quotation}
+{\em
+\noindent \textbf{Referee 2 (Point \#9):} I also feel that a lot of the technical stuff is hidden in the appendix, and as a result, it makes it very hard to understand the main drivers for the presented results. Maybe the authors should include some selective technical details in the paper.
+}
+\end{quotation}
+
+\noindent \textbf{Response:} We have brought several key derivations into the main text, including:
+\begin{itemize}[leftmargin=*]
+    \item The derivation of the market-clearing locus $\mathcal{M}_q$ and its properties
+    \item The proof sketch for the threshold conditions $\psi^T$ and $\psi^S$
+    \item The intuition behind the equivalence of two-part tariff and low-$q$ hybrid pricing
+\end{itemize}
+
+We have also added intuitive explanations before each major theorem to clarify the economic logic and main drivers of the results.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{2cm}
+\begin{center}
+\rule{0.8\textwidth}{0.4pt}
+\end{center}
+
+\noindent We hope that our revisions adequately address the concerns raised by the review team. We are grateful for the opportunity to improve our manuscript and believe that the revised version makes a stronger contribution to the literature on platform pricing and the sharing economy. We remain available to address any additional questions or concerns.
+
+\end{document}

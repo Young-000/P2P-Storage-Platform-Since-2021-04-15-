@@ -1,0 +1,858 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{times}%, babel}
+\usepackage{secdot,natbib}
+\usepackage{latexsym, amsthm, amsmath, amssymb, color, rotating, multirow, graphicx, hhline, array, tablefootnote}
+\usepackage{scalefnt, enumerate}
+\usepackage{footnote}
+\usepackage{threeparttable,booktabs}
+\usepackage{natbib}
+%\usepackage{bm, url}
+%\usepackage{slashbox}
+\usepackage{tikz,pgfplots}
+\usepackage{subcaption}
+\usepackage[margin=10pt,font=small,labelfont=bf,labelsep=endash]{caption}
+\usepackage[labelsep=period]{caption}
+%\usepackage{kotex} %Korean TeX
+%\usepackage[latin9]{inputenc} % kotex package와 충돌. 향후 kotex 삭제하면 될 듯.
+
+
+
+
+%%% ----------------------------------------------------------------------
+%\clubpenalty=10000 \widowpenalty=10000
+%\renewcommand{\baselinestretch}{1.5}
+% \renewcommand{\theequation}{{\rm \thesection.\arabic{equation}}}
+\renewcommand{\theequation}{{\rm \arabic{equation}}}
+\oddsidemargin 0in  %.10in
+\evensidemargin 0in
+\hyphenpenalty 2000
+
+\textwidth 6.5in    %6.5
+\textheight 8.75in     %8.5
+\topmargin 0.0in      %0in
+\headsep 0in \makeatletter
+\newcommand{\singlespacing}{\let\CS=\@currsize\renewcommand{\baselinestretch}{1.1}\tiny\CS}
+\newcommand{\doublespacing}{\let\CS=\@currsize\renewcommand{\baselinestretch}{1.5}\tiny\CS}
+\newcommand{\realdoublespacing}{\let\CS=\@currsize\renewcommand{\baselinestretch}{2.0}\tiny\CS}
+\newcommand{\mydoublespacing}{\let\CS=\@currsize\renewcommand{\baselinestretch}{1.499}\tiny\CS}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\def\N{\mathbb{N}}
+\def\1{\mathbf{1}}
+\def\P{\mathbf{P}}
+\def\E{\mathbf{E}}
+\newcommand{\maximize}{\mathop{\mbox{{\rm maximize}}}\limits}
+\newcommand{\minimize}{\mathop{\mbox{{\rm minimize}}}\limits}
+\newcommand{\argmax}{\mathop{\mbox{{\rm arg\,max}}}\limits}
+
+
+%\newcommand\ks[1]{{\textbf{#1}}}
+\newcommand{\ks}[1]{{\color{blue} #1}}
+\newcommand{\ju}[1]{{\color{magenta} #1}}
+\newcommand{\yj}[1]{{\color{red} #1}}
+
+
+\setlength\parindent{0cm}
+\setlength{\parskip}{12pt}%
+
+\renewcommand\ttdefault{cmvtt}
+
+
+%%% Personal Functions -------------------------------------------------
+% To add {center} without spacing
+\newenvironment{tightcenter}{%
+  \setlength\topsep{0pt}
+  \setlength\parskip{0pt}
+  \begin{center}
+}{%
+  \end{center}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{center}
+{{\Large \bf Response to Review Reports on POM-Jul-20-SI-0934}\\[6mm]
+{\LARGE ``Sharing Economy in the Cloud:\\ Pricing Schemes for Peer-to-Peer Storage Platforms''}\\[15mm]}
+\end{center}
+
+\baselineskip 18pt
+
+%\begin{center}
+\noindent {\large \bf \underline{General Response to the Review Team}}
+%\end{center}
+
+
+We would like to express our sincere appreciation for the opportunity to further improve our work. We are also grateful for the insightful and constructive comments from the Department Editor, Senior Editor, and the two reviewers. The review team has provided numerous comments and suggestions that helped us substantially refine many aspects of the paper, including research contributions and focus, analytical modeling, and the validity of main findings.
+
+In this revision, we took all suggestions to heart and ensured that we devoted considerable efforts to satisfactorily addressing them. Here, we first outline and summarize major revisions in addressing the key issues raised by the review panel: new approaches, new model features, and modified model features. Then, we provide detailed point-to-point responses to the issues raised by the Senior Editor and each of the two referees. We hope that the review team finds our revision satisfactory. 
+
+For your convenience, we highlighted the revised parts of the manuscript in blue. 
+
+\textbf{1. New Approaches and Results}
+
+\textbf{1.1. Comparisons of Pricing Schemes}
+
+We endeavored to substantially improve the model and results sections of the manuscript in accordance with the recommendations provided by the SE and the reviewers. Based on our new model feature with the service adoption decision of renters and the service participation decision of providers, we investigated the effectiveness of pricing schemes through which the P2P service platform can properly incentivize both user groups. Specifically, we considered three pricing schemes, which are widely used either in the P2P file-sharing services or in the conventional file-sharing services: 
+
+i) the \textit{two-part tariff} with a storage fee for the storage capacity and a bandwidth fee for download requests for stored data. 
+
+ii) the \textit{subscription-based pricing} where renters gain unlimited access to stored files after paying for the storage capacity. 
+
+iii) the \textit{hybrid pricing}, which provides a limited free usage of bandwidth service and pay-per-use for excess bandwidth usage.
+
+Note that the main difference across the pricing schemes is the amount of free bandwidth allowance. We assumed that the platform maximizes its profit under a given pricing scheme. Then, we compared the outcomes across the pricing schemes in terms of the platform's profit and the total surplus of the system.
+
+We first derived the optimal storage and bandwidth fees of the P2P service platform for each pricing scheme appeared in Lemma 1 in the revised manuscript when there exists a sufficient number of potential providers in the market. Our analysis shows that the platform should charge a higher lump-sum fee (or storage fee) for the hybrid pricing than the two-part tariff. Also, it should charge a higher fee for the subscription-based than the hybrid pricing. As the platform selects a pricing scheme providing a free bandwidth allowance to renters more, providers obtain lower revenues from the bandwidth service. Furthermore, renters with a higher usage intensity are more likely to join the platform than those with lower usage intensity, resulting in a higher operating cost of the bandwidth service. For these reasons, the platform under the subscription-based (hybrid) pricing needs to ensure a higher profit from the initial storage sharing than the hybrid pricing (the two-part tariff) to reduce providers who cannot afford the bandwidth service. 
+
+\textbf{1.2. Comparisons of the Platform's Profit and the Total Surplus}
+
+Based on our findings above, we examined the platform's profit to understand its optimal choice on the pricing scheme. Then, we investigated the total surplus of the system that includes the benefits of renters, providers, and the platform for each pricing scheme that the platform can choose. These results show which pricing scheme would achieve the highest total surplus. In doing so, we considered two scenarios based on the size of potential providers: 1) pricing decisions when the number of potential providers is sufficiently large to meet the storage demand from renters (hereafter, \textit{the first-best prices}), and 2) pricing decisions when the size of potential providers is insufficient to fulfill the storage demand (henceforth, \textit{the market-clearing prices}). Figure 1 below illustrates the taxonomy of pricing schemes and pricing decisions in the revised manuscript.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=16cm]{old_figure/fig2_pricing_taxonomy.pdf} 
+\textbf{\caption{Taxonomy of Pricing Schemes and Pricing Decisions (Figure 2 in the revised manuscript)}}
+\end{figure}
+
+
+Theorems 1 and 2 summarize these findings. Specifically, we found that when the first-best prices are viable, the two-part tariff always maximizes the platform's profit and provider surplus, and the hybrid pricing follows. Notably, we see that the hybrid pricing yields the same outcomes when it offers a small amount of free bandwidth allowance. In contrast, the renter surplus is the highest in the subscription-based pricing because the welfare gain of renters with higher usage frequency exceeds the loss from renters leaving due to a high storage fee.
+
+Remarkably, we showed that the implications for the total surplus may change when the platform's pricing decision belongs to the market-clearing prices instead of the first-best prices. Specifically, when the size of potential providers is moderate or small, the platform is better off by adopting the hybrid pricing or the two-part tariff. In other words, the subscription-based pricing is dominated by the other pricing schemes in terms of the platform's profit and the total surplus. 
+
+\textbf{1.3. A Platform's Endogenous Operation Decisions}
+
+In addition to the platform's pricing decision, we  investigated the impact of other operations decisions of the platform. To be specific, we examined how the platform would set its redundancy algorithm in making file fragments in storing the files. Also, we analyzed the impact of the platform's endogenous decision on its commission rate. We found that our main insights continue to hold when the platform determines these operational parameters endogenously. Theorems 3 and 4 summarize these findings.
+
+
+\textbf{2. New Model Features}
+
+Many of the comments are related to enhancing and clarifying the model features, which we accordingly addressed in this revision. That is, we have added new model features about the key drivers in the P2P file-sharing services, which made the model setting more reasonable and realistic. To be specific, considering the main feature of the two-side platform for the decentralized P2P file-sharing service, we have revised the model of renters and providers to reflect their in-out decisions to the P2P storage service. 
+
+In our new model, we first considered a storage renter with a unit volume of files that decides whether or not to adopt the P2P file-sharing service. If a renter adopts the service, she will obtain the usage value by storing and accessing her files via the P2P platform, and she pays the service cost according to the storage and the bandwidth volume. A renter will join the platform if her usage value exceeds her service cost. In this revision, we assumed a continuum of potential users whose usage of stored files $\lambda$ varies, which follows the Pareto distribution just as other relevant studies in the literature. In addition, we incorporated the heterogeneity of the willingness to pay for the service usage.
+
+Second, we incorporated a storage provider that participates in the platform if the expected revenue is higher than his operating cost. If a provider joins the service, he earns the revenue based on the amount of storage and bandwidth services he offers. Also, we took account for the potential number of providers as a parameter and allowed it to be smaller than the storage demand. In this revision, we incorporated such participation decisions, heterogeneous operating costs of providers to maintain the services, and the scarcity of potential providers. 
+
+Third, we considered a P2P file-sharing service platform that enables encrypted transactions between storage renters and providers in the common marketplace. The profit-seeking platform makes a profit by charging commission fees on completed transactions between renters and providers. Thus, the P2P service platform should give proper economic incentives with its pricing scheme to gather a sufficient number of renters and providers to the platform. 
+
+Lastly, we investigated the P2P service platform's operational decisions in this revision. In this regard, we have incorporated the redundancy algorithm of the P2P service platform that is used in storing renters' files to providers. Specifically, in storing a renter's file, the redundancy algorithm (a $k$-of-$m$ erasure coding scheme) used by the P2P service platform divides each file into $k$ number of fragments and assigns encrypted copies of these fragments to $m$ ($> k$) providers. Here, we define the redundancy rate as the stored volume divided by the original file volume, i.e., $m/k$. With the redundancy algorithm, the platform can satisfy storage demand only up to the capacity of participating providers divided by the storage redundancy. In this revision, we investigated how the P2P service platform would set the redundancy to maximize its profit. Similarly, we also investigated the platform's endogenous decision on the commission rate that the platform charge for file-sharing transactions through the P2P network between renters and providers. 
+
+
+\textbf{3. Modified Model Features}
+
+In this revision, we have modified the uptime decision of providers. In addition, we have revised the platform's objective function. % since in practice, the platforms essentially require a sufficiently high uptime to ensure a negligible file transfer error to renters such that the P2P file-sharing service is competitive to the conventional storage services.
+
+The uptime of providers determines the availability of the bandwidth service. Although a higher uptime leads to a higher level of service availability, it increases the operating costs of providers. However, the availability of the bandwidth service is critical for the P2P storage platform. For that reason, the P2P storage platforms currently impose the minimum uptime requirements for joining the platform and strictly penalize providers who do not meet the minimum uptime in various ways, which results in a negligible file transfer error of the service. Following such practices, we assumed that providers keep participating in the P2P storage network only if they meet the minimum uptime requirement. As a result, to better focus on providers' participation decisions in the P2P service platform, we set all providers in the service to maintain the same uptime level. At the same time, we accounted for the heterogeneity of operating costs of providers. 
+
+In our original submission, we assumed that the platform's objective has two terms---its profit and the social welfare---that result in a weighted multi-objective problem. We agree with the review team's valuable comments and now revised the platform's objective such that it is only interested in maximizing its own profit without the social welfare term in its objective function. Nevertheless, in this revision, we examined the impact of the platform's profit maximization through its pricing scheme on the total surplus of the system and derived relevant implications. 
+
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\large \bf  Point-wise Responses to Senior Editor's Comments}\\[-11mm]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{quotation}
+{\em
+\noindent \textbf{Senior Editor: } I sent this manuscript to two experienced referees. The referees provide valuable comments. While they find the topic interesting and see some merits of the research, both referees raise major concerns. I went over the paper and deliberated for some time. On the one hand, I find the topic to be interesting. On the other hand, I agree with the referees that the contribution of the paper seems to be thin, not mentioning the other issues raised by the referees. In case that the authors could enhance the contribution and convince the review team, I would like to recommend a major revision. Meanwhile, I want to alert the authors, given the nature of the concerns, this revision will be risky.
+}
+\end{quotation} \vspace{-4mm}
+We are much obliged for your constructive and insightful commentaries as they indeed helped us further clarify our research motivations, contributions, model framework and analysis. The attentive and detailed evaluation of the review panel is much appreciated. 
+
+In addition to the major refinements specified above, thorough re-writing was implemented for clarity, readability, and the elimination of any remaining ambiguity. We believe that our revisions have enhanced the presentation and flow of the writing and the positioning of the related domain.
+
+We hope the revised manuscript reflects our commitment to the quality expected by the panel. The succeeding paragraphs are our point-by-point responses to the issues raised.
+\\[-4mm]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent\textbf{Main Concern: Motivation}\\[-11mm]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{quotation}
+{\em
+\noindent \textbf{Senior Editor: } The authors need to provide a clear and strong motivation. It seems the paper primarily uses Sia and Storj as the motivating examples. If this is true, I have a few suggestions which might help make the motivation and background clearer.
+}
+\end{quotation} \vspace{-4mm}
+
+This is a very important point, and we thank you for your valuable suggestions on the institutional backgrounds. For each of these comments, we provide detailed responses about how we addressed the critical comments in this revision below.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Senior Editor (Point A1): }  1. These two companies are introduced first time in a footnote on page 2. Then, the authors assume readers see the fine print in the footnote and start using these two example from page 3 on. This arrangement is confusing; at least, it confused me---when I saw these two names on page 3, it sounds the authors have introduced them already. After I searched these two names, I figured indeed two names have been introduced already, but in a footnote. Given the importance of these two examples, the authors should clearly introduce them in the main body of the paper.}
+\end{quotation} \vspace{-4mm}
+
+This is a valid point, and we apologize for the lack of clarity about the important research motivation in the earlier manuscript. In compliance with your direction, we have considerably added more information and descriptions of the two firms, which are now located in the main body of the revised manuscript. Please see the paragraph on the bottom of page 2 in the introduction of the revised manuscript. We believe that this revision has enhanced the clarity of our research motivation. 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Senior Editor (Point A2): }  2. More background is needed about these two motivating examples. Are P2P storage sharing platforms their main products/services? Do they make good profits from the platforms? How many users are on both sides of each platform? Who are the typical renters and providers?}
+\end{quotation} \vspace{-4mm}
+
+That is another important point, and we thank you for raising those specific questions. As a response to them, we have provided additional details on their service features and backgrounds for better understanding in this revision. To be specific, all of Sia, Storj, and Filecoin were designed as cryptocurrency-based markets for P2P storage sharing, and their white papers firmly support this argument \citep{vorick2014sia, wilkinson2016storj, protocol2017filecoin}. While P2P storage platforms' exact profits are not publicly known, we find an estimate suggesting that their profits range between \$2 million and \$15 million.\footnote{Please refer to this link: https://www.owler.com/company/storj.} It is worth noting that the P2P storage market is in an early stage, as suggested by the numbers of participating providers in these platforms. For instance, Storj offers 36.7PB of the total storage capacity operated by 71,689 users. In contrast, approximately 500 and 700 providers are now operating Sia and Filecoin, respectively. Despite their immature status, these platforms are highly valued in the market perhaps due to their advanced technologies and the high potential to expand the market. As of August 12, 2021, Sia reached a market cap of \$872.9 million, Storj has a market cap of \$391.0 million, and Filecoin set a new record in ICO funding of \$257 million in 2017 and currently ranks 24th among all cryptocurrencies with a market capitalization of \$6.816 billion.
+
+Relatedly, P2P storage users seem relatively profit-seeking and tech-savvy than conventional public cloud users. From online postings on Sia, Storj, and Filecoin, we observe that they mainly concern the profitability of their participation as providers and the price competitiveness of these platforms for renters. We also see that such content often includes highly technical description. Being aware of this issue, P2P storage platforms are struggling to improve the user interface and experiences to further attract less tech-savvy users.\footnote{For example, Storj emphasizes that its network speed can be faster than that of centralized services such as Dropbox (retrieved from https://bitcoinmagazine.com/business/storj-vs-dropbox-decentralized-storage-future-1408177107).}
+
+We reflect these points in the revised manuscript as shown below:
+
+\textit{"While P2P storage services are still at a beginning stage, they have already attracted significant attention in the cryptocurrency market with massive successes from the initial coin offerings (ICOs). For instance, Storj, a platform that appeared in 2014, has already reached a market capitalization of \$391.0 million with a total storage capacity of 36.7 PB, 71,689 platform users, and 285 million files. Similarly, Sia has reached a market capitalization of \$872.9 million. It has a total 3.5PB storage capacity and 1.2 million accumulated downloads. Filecoin, which appeared relatively recently, set a new record in ICO funding of \$257 million in 2017 and currently ranks 24th among all cryptocurrencies with a market capitalization of \$6.816 billion. Surprisingly, it reached a total 629.3PB storage capacity within ten months from its service launch. These cases demonstrate the expectation that P2P file-sharing services will rapidly grow by successfully mitigating security issues with a blockchain-enabled decentralized approach.\footnote{Please refer to recent statistics of Storj, Sia and Filecoin from https://www.storj.io/, https://siastats.info/ and https://file.app/, respectively. All statistics in this paragraph were observed on August 12, 2021.} Also, at the same time, it raises a question to attract and secure a greater number of participants to transit to the next stage." (page 2 of the revised manuscript)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Senior Editor (Point A3): }  3. More importantly, the authors should provide more details regarding the pricing schemes used by these two platforms. Do they use this two-part tariff consisting of a unit storage fee and per-unite access fee? Are the two parts indeed in a unit-price format? Do the platforms take the commission as what has been model in the paper?}
+\end{quotation} \vspace{-4mm}
+
+We thank the senior editor for this helpful comment. In this revision, we have added descriptions regarding the P2P storage platform's pricing structure in the introductory section. Specifically, on page 3, we have begun with setting forth two important types of service availability on the storage and the bandwidth. Then, we explained how the P2P storage platforms use the two-part tariff as their pricing scheme to charge for these two service types. For example, Sia and Storj uses a base lump-sum storage fee for the storage capacity and a pay-per-use fee for each bandwidth service (requesting a download of stored files). Note that Storj sets the common service fees throughout the platform, while Sia allows each contract to set its own pricing plan, which may not result in a unit price fee across providers. However, it is worth noting that each renter contracts with 30 providers in the Sia network and the average prices are publicly disclosed on the website.\footnote{Sia's average storage pricing is available at https://siastats.info/storage\_pricing.} Therefore, it is still valid that the platform adopts the two-part tariff, and renters and providers should significantly be affected by the average storage and bandwidth fees.
+
+%We also introduce a new pricing structure that we define as the hybrid type of pricing scheme, which has a certain free bandwidth allowance above which the platform charges the bandwidth service fee just as the two-part tariff. In addition, we incorporate the pricing schemes that the conventional public cloud services have been using, which includes the pay-per-use, the subscription-based pricing, and the hybrid pricing, as reported by \citep{kansal2014pricing}. 
+
+Besides, we articulated the commission charge of the P2P storage platform. Specifically, P2P storage platforms are taking the same form of commission fees as reflected in our model. In the introduction and Model setup of the revision, we introduced the commission rate of the platform as follows. 
+
+\textit{"The platform makes a profit by charging commission rates on completed transactions. For instance, Sia operates $\theta=3$ and $t=0.98$, and it charges 3.9\% of commission rate on all successful storage contract payouts to P2P storage users." (page 12 of the revised manuscript)}
+
+%\textcolor{red}{(To be updated further)} Basic structure is similar, while pricing rules are slightly different. Recently, Storj updated its pricing policy---similar to hybrid pricing
+%\textcolor{red}{\textit{"In this regard, these platforms have mainly relied on economic incentives to attract and maintain providers to ensure sufficient storage availability \citep{babich2020distributed, beck2018governance}. Usually, they charge renters a fee for bandwidth service---i.e., access to the stored files---to compensate for operating costs. Sia, for example, has used a two-part tariff that imposes a storage fee for storage capacity and a bandwidth fee for download requests for stored data. Storj has also charged a fee for both services, and recently, it introduced a hybrid scheme providing free storage and download capacity and imposing a two-part tariff for excess capacity. In this way, P2P storage platforms have applied various pricing schemes to deal with independent providers who do not exist in the conventional centralized cloud services. (...)"}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Senior Editor (Point A4): }  4. Regarding the consumer-welfare maximization, the authors need to provide good motivation. Using Uber as a motivation is a stretch, because Uber is in very different business and its pricing scheme is different from what is studied in this paper. In addition, as R2 correctly points out, ``for a two-sided marketplace like this, it is equally important to consider the welfare of the providers.}
+\end{quotation} \vspace{-4mm}
+
+We thank you for this constructive comment. In adherence to the review team's suggestion, we attempted to better articulate the platform's objective and our main interests. Specifically, we have rebuilt our research question and aimed to compare the impacts of various pricing schemes on the platform's profit, the provider/renter surplus, and the system surplus in the P2P storage platform. In doing so, we narrowed down our focus to the size of potential providers, a unique aspect of the two-sided market, and examined how the impact of pricing schemes on the platform's profit and the surplus of providers and renters can differ. 
+In addition, by properly accounting for the size of the potential providers in the market, we demonstrated that it affects the platform's optimal pricing structure significantly via the service availability in this two-sided platform. % across the potential provider sizes. Under the given pricing scheme, we assumed that the platform aims to maximize its own profit.
+
+In keeping with the review team's comment, we derived several noticeable results. We found that when potential providers are sufficient, the two-part tariff---the most widely adopted policy among P2P storage platforms---leads to the highest profit among other pricing schemes, while the subscription-based pricing yields the highest total surplus. In contrast, we showed that when there are insufficient providers to meet the storage demand, either the two-part tariff or the hybrid pricing can dominate the subscription-based pricing regarding both the platform's profit and the total surplus.
+
+%We revise our manuscript as follows:
+%\textcolor{red}{(How we reflect these comments)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent\textbf{Main Concern: Contribution}\\[-11mm]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{quotation}
+{\em
+\noindent \textbf{Senior Editor: } Based on my own reading, the takeaways from the current analyses are limited. Echoing the reviewers' comments, I also think that the contribution is thin. The authors need to think through what are the main interesting results and articulate the contribution. In particular, what are the main insights and surprising findings? The current discussion on the contribution has been either on technical side or over claimed. To move forward, the authors have to think deeper about what insights they aim to deliver and make a case regarding the contribution.}
+\end{quotation} \vspace{-4mm}
+
+We agree with your assessment regarding contributions, and we have elaborated on improving the main contributions in this revision and avoiding overstating technical aspects. In accordance with the reviewer 2's suggestions, we decided to focus on investigating the effectiveness of various pricing schemes: 1) the two-part tariff, which has been widely adopted in P2P storage platforms, 2) the subscription-based pricing, and 3) the hybrid pricing---which have been widely used in conventional public cloud services \citep{kansal2014pricing} but not in P2P storage platforms. Our main findings suggest that when there are a sufficient number of potential providers, the currently adopted pricing (i.e., the two-part tariff) is most profitable but least beneficial to the total surplus of the system. Conversely, if potential providers are not sufficient to fulfill the entire storage demand, the relative impacts of the pricing schemes change significantly. Furthermore, we showed that these results remain consistent when we account for endogenous decisions of the platform on the redundancy algorithm and the commission rate. Please refer to our general response and our point-by-point responses to your comments below for more details. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Senior Editor (Point B1-a): } 1. The claimed contribution that ``we extend the existing studies in the literature by proposing optimal pricing schemes for multi-objective platforms" does not sound right to me.
+
+(a) First, I do not see multi objectives. The objective can be the weighted average of the consumer welfare and platform profit. But, that is still one objective. This claim on ``multi-objective" is confusing.
+}
+\end{quotation}\vspace{-4mm}
+
+Thank you for this insightful comment. In the earlier draft, we adopted the weighted sum method as a solution to the multi-objective problem with consumer welfare and platform profit, which is a commonly used approach to multi-objective optimization (See, for example, \cite{marler2010weighted}). However, we agree that the weighted sum of multiple objectives can be considered another single objective, and the most reasonable objective of the platform is maximization of its own profit. Accordingly, we have completely removed the multi-objective argument in the revised manuscript, and we only consider the objective function of the platform's profit, which makes our model and results more sense and complete.   %For example, suppose only the seller and buyers exist. Then, the equally weighted sum of the seller's profit and the buyer surplus is the social welfare, which is widely considered as the single objective. In this vein, we revised our objective function such our previous objective can be interpreted as the continuum of single objectives. 
+
+Also, please note that in this revision, we did examine the total surplus---i.e., the sum of the platform's profit, the renter surplus, and the provider surplus. However, in keeping with your comment, we did not argue implications for multi-objective problems, and instead, we analyzed them under the single objective function as the platform's profit maximization. We thank you again for clarifying our research objective in this regard.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Senior Editor (Point B1-b): }
+(b) Second, as explained, the consideration of consumer welfare needs some motivation. Why are we interested in the consumer welfare, not the social welfare of the system, or the welfare of both sides? The consideration on consumer welfare is not unusual. For example, in "Recommender Systems Rethink: Implications for an Electronic Marketplace with Competing Manufacturers," the authors also consider an objective with both consumer welfare and platform profit in mind, but it comes with a good motivation.
+}
+\end{quotation}\vspace{-4mm}
+
+This is a great point. As the review team suggested, we agree that the welfare of providers is also important, and thus, the social welfare of the system is worth investigating in our paper. In addition, we decided to examine the profit-seeking platform as the objective function of the problem (see our response to \textit{Point B1-a}) in order to focus on comparing the impact of three pricing schemes (i.e., the two-part tariff---what we examined in the previous version, the subscription-based pricing, and the hybrid pricing). This framework is also adopted in the literature on pricing of sharing platforms (e.g., \citet{cachon2017role}).
+
+In the revised manuscript, We articulate why we examine the total surplus of stakeholders affected by the profit-seeking platform as follows:
+
+\textit{"Since the P2P storage service uses a two-sided platform with renters and providers, it often matters whether this service improves each stakeholder's surplus. As such, two-sided platforms encounter public controversies regarding whether or not they fairly reward providers \citep{gartenberg2021google, scheiber2015growth}. Moreover, consumers and politicians are concerned about the possibility that customers are unfairly treated by large platforms \citep{kosoff2015newyorkcity}. Considering that such negative sentiments might incur substantive damages to the platform \citep{cachon2017role}, it is important to understand the potential tension between the platform's profit maximization and the other stakeholders' surplus. In this regard, we analyze the impact of pricing schemes on the overall system surplus as well as the platform's profit based on the results of Lemma 1." (Page 20 of the revised manuscript)}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Senior Editor (Point B1-c): }
+(c) The paper highlight that ``the optimal pricing scheme of a multi-objective platform systematically deviates from a simple linear mixture of the two single-objective pricing schemes." In other words, the paper implies that the conventional approach is to use ``the simple linear combination of the profit-maximizing pricing and the pricing that maximizes consumer welfare always" and concludes that the conventional approach yields suboptimal outcomes. Why/how do the authors think or assume this is the conventional approach? If anything, this is a naïve approach. Essentially, the authors say the optimal approach is better than the naïve approach.
+}
+\end{quotation}\vspace{-4mm}
+
+Thank you for this helpful comment. We admit that the simple linear combination of two functions needs to be considered as 'naïve' rather than 'conventional'. This also suggests that our previous benchmark does not necessarily represent current practices of P2P storage platforms.
+
+As noted above, we have addressed this comment by adopting a new approach that corresponds to the reviewer 2's recommendation. That is, our revised version has compared the current pricing scheme (i.e., the two-part tariff) with other pricing schemes (i.e., the subscription-based pricing and the hybrid pricing) for the profit-seeking P2P storage platform regarding the provider surplus, renter surplus, and total system surplus. We believe that this revision can deliver more relevant and practical implications for P2P storage services than the previous work. We hope our new model and findings in this regard satisfy your expectation. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Senior Editor (Point B2): } 2. I have to point out that this paper does not contribute anything to blockchain technologies. I am fine with the authors using blockchain as a motivation, story, or background. However, this paper bears no connection with blockchain in a sense that if we remove blockchain from the current paper it is still the same paper. We can argue that blockchain improves whatever business (e.g., online banking or rider-sharing), but blockchain does not play a central role in the current model or analyses. The authors may not want to over-claim the contribution along blockchain.}
+\end{quotation}\vspace{-4mm}
+
+We agree with you that our model and findings are not directly associated with the literature on blockchain technologies, %which mainly examines the optimal algorithms for decentralized systems,
+although blockchain technologies have enabled the operation of P2P storage platforms. In keeping with your suggestion, we mentioned blockchain technologies only to supplement our motivation at the beginning and removed the summary of the blockchain literature in the revised manuscript. Instead, we draw on the research streams on cloud platforms and the sharing economy to make a more tightened connection to the related prior studies in the operations management domain.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Senior Editor (Point B3): } 3. The explanation for the different practices of Sia and Storj needs to be cautious. Because these two platforms compete with each other, one more natural explanation is that competition leads to differentiation in their price schemes. This work cannot tease out this alternative explanation or conclude the explanation offered in this paper.}
+\end{quotation}\vspace{-4mm}
+
+We appreciate this valid comment. We firmly agree that it needs to be very cautious to compare the current practices of Sia and Storj for several reasons. First, as you mentioned, the competition between these platforms might have led to differentiation in their service fees. Second, the P2P storage market is in the emerging stage, so these platforms might still be undergoing trials and errors to optimize their pricing schemes. For instance, both Sia and Storj adopted the two-part tariff when we submitted the initial manuscript. But recently, Storj has modified its pricing scheme by adding limited free usage to the two-part tariff.
+
+In this regard, we turned our focus from comparing and evaluating the prices currently set by existing platforms to the potential effects of several pricing schemes that these markets can choose. Accordingly, we assessed three pricing schemes that are either widely adopted by P2P storage platforms (i.e., the two-part tariff) or commonly used only among centralized cloud services (i.e., the subscription-based pricing and the hybrid pricing). We intended to offer which pricing scheme will be more beneficial in terms of the platform's profit and the total surplus of the system in this revision.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Senior Editor (Point B4-a): } 4. Also, I do not see how this study sheds light on other types of platforms. The current discussion is loose and could be misleading. Instead, the authors should discuss in a more serious manner.
+
+(a) First, the authors should identify and clearly present the unique features with the practices of these P2P storage sharing platforms. For example, are the two-part tariff and unit price in each part unique here for two-sided platforms?
+}
+\end{quotation}\vspace{-4mm}
+
+In keeping with your suggestion, we have further clarified the unique aspects of P2P sharing platforms in the revised manuscript. In doing so, we focused on the differences from 1) conventional centralized cloud platforms and 2) other types of sharing platforms.
+
+First, we clarified the differences from centralized cloud platforms and why we need a new model for P2P storage platforms. Centralized platforms are directly in control of the supply level, so their pricing decisions affect consumers in a relatively straightforward way. In contrast, P2P platforms rely on independent providers to maintain the service level. Since service fees can also affect providers' decisions, the implications of pricing schemes may differ from the previous case. Our main findings demonstrated how the impacts of pricing schemes change after accounting for the scarcity of potential providers (Please refer to our general response and the revised manuscript for the detailed results).
+
+Throughout this revision, we have emphasized how the size of potential providers affect the impacts of pricing schemes on the platform's profit and the system surplus. Furthermore, we summarized the distinct aspect of our setting compared to the centralized cloud services and its importance as follows:
+
+\textit{"(...) Most of these studies have focused on centralized cloud platforms. However, P2P services hinge upon independent providers, and pricing plays a crucial role in maintaining the supply level of providers. Hence, it is difficult to predict how pricing schemes widely used in the existing cloud will affect P2P storage platforms. To the best of our knowledge, this paper is the first in the literature that studies the pricing strategies for P2P cloud platforms." (Page 6 of the revised manuscript)}
+
+Second, the redundancy algorithms clearly differentiate P2P storage platforms from other sharing platforms. They require the platforms to utilize the storage capacity more than the storage demand in order to improve the system reliability \citep{weatherspoon2002erasure}. The platform can increase the system reliability by raising the redundancy rate---which indicates the proportion of the size of the duplicated data compared to the size of the original data, but the higher redundancy rate incurs the higher service costs to renters. We considered the algorithms as parameters in our model and decision variables in the extended model. We describe how we modeled this aspect in our main and extended analyses in our response to \textit{Point B4-b}.
+
+Please note that pricing schemes in our study can also be applied to other platforms. For instance, the two-part tariff has been adopted in some sharing platforms. Ride-sharing platforms such as Uber and Lyft have adopted this pricing scheme comprising a base rate and rates for time and distance. However such a flexible pricing structure has been widely neglected by the prior studies on sharing platforms. We thus decided to emphasize how our results can provide unique insights for other types of platforms. We provided more details on how we delivered this contribution in our response to \textit{Point B4-b}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Senior Editor (Point B4-b): } 
+(b) Second, I would encourage the authors to think deeper about unique features of this specific setting and what new insights these unique features lead to. Further, as suggested by R2, the authors should ``highlight the distinct modeling features of the P2P storage services, as compared to the sharing economy models and the P2P files sharing services." Doing so might help authors to properly position the paper and bring out the contribution.
+}
+\end{quotation}\vspace{-4mm}
+
+We appreciate your insightful comment. Following your comment, in this revision, we have elaborated on highlighting the distinct features of our model as compared to the existing models. Considering that the differences from the centralized cloud model are straightforward (see our response to \textit{Point B4-a}), we only described the distinct modeling features compared to the other sharing economy and P2P file-sharing models here.
+
+Our model incorporates the effects of redundancy algorithms, which have been hardly considered in the previous sharing economy models. Specifically, we considered the redundancy algorithm ($\theta, t$), where $\theta$ refers to the proportion of the size of the duplicated data compared to the size of the original data, and the uptime $t$ that represents the proportion of provider's time being connected to the P2P network \citep{protocol2017filecoin, vorick2014sia, wilkinson2016storj}. We assumed that the platform allows providers to stay in the P2P network only if they meet the required uptime $t$, as described in our response to \textit{Point B5}. A higher $\theta$ decreases the failure probability, while it requires a larger storage capacity to meet given storage demand from renters. Similarly, a higher required uptime $t$ reduces the likelihood of the file-transfer failure, while it imposes a higher operating cost on providers.
+
+In our basic model, we assumed that the redundancy algorithm is given and considered ($\theta, t$) as given parameters. And we considered $\xi(t)$, which is the unit operating cost and increasing in $t$. Our analysis showed that $\xi \theta$ plays a central role in determining the effects of pricing schemes (Lemma 2). To be specific, we found that $\xi \theta$ increases the threshold of $n_p$ for the first-best prices; that is, it mandates the platform to set the market-clearing price. Note that $n_p$ may exceed the threshold of some pricing scheme, while not exceeding those of others. Given that the platform can extract a higher profit from renters with the first-best prices, $\xi \theta$ can alter the order of the total surplus of the system across the pricing schemes.
+
+In the extended model in Section 6.1, we relaxed this assumption and allowed the platform to choose the profit-maximizing redundancy algorithm endogenously. Incorporating the redundancy algorithm into the platform's decision, we can capture the following effects. First, a higher redundancy $\theta$ indicates that each renter contracts with a larger number of providers for the same volume of files. This incurs a higher storage cost to renters and a higher storage revenue to providers, which prohibits renters from adopting the platform. In contrast, an increase in the storage revenue encourages providers to join the platform. Second, the bandwidth volume transmitted through each provider decreases with $\theta$. Since more providers share the given bandwidth demand as $\theta$ increases, the bandwidth revenue and the operating cost for each provider decreases. Third, a higher $\theta$ leads to a lower uptime $t$ to meet the intended availability level, lowering each provider's operating cost.
+
+Our results in Theorem 3 showed that endogenously determined redundancy algorithm does not alter our main insights in Theorems 1 and 2 because it is optimal for the platform to always chooses the redundancy algorithm that minimizes $\xi \theta$ for all pricing schemes. The underlying intuition is that lowering operating costs always makes the P2P storage network more efficient and attractive to potential providers, leading to a larger number of providers or sometimes enables the first-best prices. Furthermore, $\xi \theta$ does not vary by pricing schemes we consider in this paper. Hence, the optimal ($\theta$, $t$) remains unchanged across the schemes. We summarized managerial insights for the P2P storage platforms drawn from these results:
+
+\textit{"(...) It is also possible that the platform cannot alter its pricing scheme and service fees. In that case, the platform may indirectly incentivize providers by requiring a lower uptime or a lower redundancy rate. For instance, a $k$-of-$m$ erasure coding scheme with the same redundancy rate (i.e., the same $\frac{m}{k}$) can achieve the same availability while reducing its required uptime by increasing $k$ and $m$ at the same time.\footnote{Table A.1 in Appendix A shows an example suggesting that the platform can exponentially reduce the failure probability while maintaining the redundancy rate.} (Page 29 of the revised manuscript)}
+
+Another small but meaningful difference is that we incorporated renters' usage intensity, which have been widely neglected in the extant literature, into the provider's cost term. Our new cost term $\rho_j \hat{\omega}_b \xi(t)$ consists of provider $j$'s sensitivity to the bandwidth provision ($\rho_j$), the volume of the bandwidth service requested to provider $j$ ($\hat{\omega}_b$), and the unit operating cost ($\xi(t)$). This accounts for the additional burden of providers such as increased Internet traffic, computing burden, and electricity consumption caused by offering a higher level of the bandwidth service. We described this difference in the revised manuscript as follows:
+
+\textit{"(...) Our study also compares the impacts of pricing schemes on a sharing platform's profit and system surplus. However, unlike \citet{cachon2017role}, we consider providers with heterogeneous operating costs. Moreover, our model incorporates providers' operating costs that may change according to renters' usage levels." (Page 6 of the revised manuscript)}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Senior Editor (Point B4-c): } (c) Third, if the authors want to discuss the implications of this study to other types of platforms, the authors need to ensure it is indeed applicable. The authors should avoid loose discussion.
+}
+\end{quotation}\vspace{-4mm}
+
+This is a valid point. In keeping with your suggestion, we revised our manuscript to provide concrete and actionable implications by newly offering related examples where our findings can be applicable appropriately.
+
+Our findings showed that there can be different optimal pricing strategies that would reward providers better and improve the system surplus, when the potential suppliers are very scarce, compared to the volume of demand-side. In this regard, our underlying intuition on the pricing scheme can be applied in the case that the numbers of providers and users are asymmetric. For instance, in order to improve the surplus of stakeholders, peer-to-peer delivery platforms that serve various regions in terms of the number of sellers, deliverers, and consumers might offer different regional pricing schemes, according to the relative scarcity of sellers or deliverers compared to consumers. In regions where relatively few deliverers are bearing the delivery costs, the platform may achieve not only a higher profit but also a higher surplus of all stakeholders by charging sellers/consumers more. In contrast, the total surplus can be increased by lowering service fees when there are sufficient deliverers in the regions.
+
+In the first and the last sections of the revised manuscript, we have provided related discussions as shown below:
+
+\textit{"This study also contributes to the literature on the pricing for resource sharing services. We show that pricing schemes that reward providers can improve the system surplus when the potential suppliers are too scarce compared to consumers. In this situation, the impact of pricing schemes varies according to the degree of scarcity of suppliers. For instance, peer-to-peer delivery platforms that serve various regions in terms of the number of sellers, deliverers, and consumers might offer different pricing schemes across regions according to the relative scarcity of sellers or deliverers compared to consumers to improve the surplus of overall stakeholders. The existing literature on the sharing economy such as \citet{cachon2017role} and \citet{benjaafar2019peer} did not consider the potential of the pricing schemes that we have examined in this paper. In fact, the two-part tariff that consists of lump-sum fees and pay-per-use can also be used in other sharing platforms (e.g., base rates and cost-per-user in ride-sharing platforms). Hence, our model can extend these studies by enhancing insights on sharing platforms' pricing strategies." (Page 8 of the revised manuscript)}
+
+\textit{"Our research also provides managerial insights that other sharing platforms can also consider. We found that pricing schemes that further compensate providers can improve the total surplus when the size of potential suppliers is relatively scarce than consumers. Although other platforms often employ different pricing schemes, the underlying intuition could be similarly applied to these platforms. We showed that a rise in service prices could mitigate the situation where only a few providers have to endure high operating costs. In this regard, sharing platforms may consider heterogeneous pricing strategies across regions. For example, peer-to-peer delivery platforms serve various regions with different sizes of sellers, deliverers, and consumers. In regions where relatively scarce deliverers are bearing the delivery costs, the platforms may achieve not only higher profits but also a higher surplus of all stakeholders by further charging sellers/consumers. In contrast, the system surplus will be increased by lowering service prices when there are sufficient deliverers in the regions." (Page 29 of the revised manuscript)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Senior Editor (Point B5): } 5. I agree with R2 that that paper focuses on two-part tariff and cannot claim optimal pricing schemes in general. To establish the relevance and importance, a strong motivation should be in place, as I explained in the comment on motivation.}
+\end{quotation}\vspace{-4mm}
+
+We admit that R2's suggestions on pricing schemes are very legitimate, and thus, substantially reflected these points in this revision. R2 suggested two main ideas in enhancing our contributions: First, the R2 recommended to consider an inclusion of the penalty-award scheme in our model. Second, the R2 provided an idea to take into account a subscription-based pricing and its variants that can include a limited free access to the stored files and an additional access fee beyond the limit. Our revamped model in this revision has incorporated all suggestions made by the R2 as follows.
+
+Regarding the penalty-award scheme, we surveyed the current practices at P2P storage platforms. According to our observations, P2P storage platforms strictly require the minimum level of uptime when providers join the platform, and the platforms stringently penalize providers when they do not meet the minimum level of uptime in several ways. For instance, Sia expects providers to maintain 95–98\% uptime to achieve 99.9999\% accessibility of stored files. If a particular provider in the Sia network does not maintain 95\% uptime (or 36 hours in a month), he will lose his collateral for active contracts. Storj requires a more demanding uptime requirement that requires providers to maintain 99.3\% uptime (or 5 hours of maximum downtime per month). Filecoin assesses miners in the cryptocurrency network and penalizes storage providers using the miners' collateral if they do not perform the proof of space-time.
+
+Based on this observation, we conclude that the uptime level of each provider mainly affects whether or not he can stay in the platform (i.e., the overall capacity of the platform) instead of the failure probability of file transfer (i.e., inconvenience of bandwidth service). Incorporating this practice, we assumed that the platform keeps providers only when they maintain the required uptime level.
+
+Regarding the suggested pricing schemes, we compared the impact of the two-part tariff on the platform's profit and the system surplus with the suggested pricing schemes: the subscription-based pricing and the hybrid pricing. It is worth noting that these schemes have been widely adopted by conventional public cloud services \citep{kansal2014pricing}, while they are rarely used in P2P storage platforms.
+
+In this regard, we investigated the potential of the pricing scheme that P2P storage platforms have not explicitly implemented yet---the subscription-based pricing and the hybrid pricing, which have been already widely adopted in centralized cloud platforms. In comparing their differential effects on the platform's profit and the total surplus, we developed a formal model that accounts for providers' entry decisions, renters' service adoption, and interactions between providers and renters as the two-sided platforms. Therefore, we believe that our analysis offers novel insights that can be used to develop better pricing policies and assess their potential impacts on the P2P networks.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent\textbf{Main Concern: Model and Analysis}\\[-11mm]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{quotation}
+{\em
+\noindent \textbf{Senior Editor (Point C1): } Both reviewers have questions and comments on the model assumptions and analyses, which I do not repeat her. In addition to the reviewers' comments, I have the following two specific suggestions:\\
+
+\noindent 1. All the model assumptions should be presented in the model section. Currently, some model assumptions are presented in the analysis part. These assumptions include that $V$ and $\lambda$ are independent and their distribution are publicly known, providers are homogeneous and independent, and $V$ and $\lambda$ are uniformly distributed.
+}
+\end{quotation}\vspace{-4mm}
+
+We appreciate your valuable point, and please allow us to express our regret over the ambiguity in the earlier manuscript. In keeping with your comment, we moved all assumptions, including the ones on $V$ and $\lambda$, into Section 3, "Model" in this revision. Also, we have explicitly showed all changes in the model setting and assumptions made in this revision in the part.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Senior Editor (Point C2): } 2. It will be helpful if the authors could clearly describe the timing of the game.
+}
+\end{quotation}\vspace{-4mm}
+
+Thank you for this suggestion. Following your comment, we further clarify the timing of the game and added an illustration of the sequence of the events in Figure 1 of the revised manuscript, and we presented the figure in this note.
+
+\textit{"Figure 1 illustrates the sequence of the events for the platform, providers, and renters in our model. Specifically, given the pricing scheme, redundancy algorithm ($\theta$, $t$), commission rate ($1 - \alpha$), and potential sizes of renters ($n_r$) and providers ($n_p$), the platform first determines a storage fee and a bandwidth fee. Second, potential providers for this P2P storage service decide whether or not to join the platform based on their expected profits. Once a provider joins the platform, he provides unused storage spaces to renters. Lastly, observing the service fees and the available storage capacity, potential renters of the P2P storage service evaluate the expected utility and decide whether to adopt the service. Once adopting the P2P storage service, a renter starts using the storage spaces from providers." (Page 10 of the revised manuscript)}
+%\begin{center}
+%\textbf{Figure SE1. Timeline of Events}
+%\end{center}
+\setcounter{figure}{0}
+\begin{figure}[ht!]
+\def\figurename{Figure SE}
+\centering
+\includegraphics[width=14cm]{fig1_timeline.pdf} 
+\caption{The Sequence of Events}
+\end{figure}
+
+In closing, we reiterate that the manuscript considerably benefited from the excellent guidance and constructive evaluations of the review team. We took all the comments and the spirit with which they were shared very seriously and regarded them as opportunities to improve the paper. %We are confident that you will find the revised version superior to the last and are eager to learn about your reception of it. 
+We hope that the reviewer find the revised version of the manuscript satisfactory.
+
+%Thank you.
+
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\large \bf Authors' Response to Reviewer 1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 1: }
+The paper studies the pricing scheme under an emerging context of sharing economy, i.e., the P2P storage platforms. The paper proposes models to describe the renters, providers, and the platform's decisions. Equilibrium is analyzed under profit- and consumer welfare- maximization schemes as well as their combinations. 
+
+The topic is very interesting and I read it with great interest. The paper indeed identifies an innovative problem under the sharing economy context. I list my major concerns (mainly on the modeling perspectives):
+}
+\end{quotation}\vspace{-4mm}
+We are happy to hear that you find our topic very interesting. Your comments helped us better approach our model for the sharing economy platform significantly. 
+
+In this revision, we devoted considerable efforts to address all concerns raised by the review team. In doing so, we introduced and modified numerous model features, leading to several new results. For your information, we briefly summarize the major changes in this revision. Also, we provide further details in the general response, which can help understand the revised manuscript.
+
+First, we extended our scope from the two-part tariff only to multiple pricing schemes, including the subscription-based pricing and the hybrid pricing---which are widely adopted in centralized cloud services. Second, we took account of providers' in-out decisions and heterogeneous operating costs, enabling us to consider the scarcity of the storage capacity. Third, we provided an extended model that incorporates endogenous redundancy algorithms and commission rates. Fourth, we modified the uptime decision of providers and the platform's objective function to focus on comparing the impacts of pricing schemes.
+
+By comparing the platform's profit and the total surplus across these pricing schemes, we showed that the two-part tariff always yields the highest profit, while the findings on the total surplus are mixed. When the size of potential providers is large, the subscription-based pricing leads to the highest surplus. However, when the size of potential providers is moderate or small, the platform is better off by adopting the hybrid pricing or the two-part tariff. Remarkably, the main insights remain unchanged when we endogenize the redundancy algorithm and commission rate.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 1 (Point 1): } 1. Penalty and compensation when the renters cannot access to the file are missing. For the renters, if, by some chance, they cannot access the file due to fewer numbers of online providers than required, it leads disastrous user experience. So, the model should consider penalty and compensation in such a case. Namely, a penalty on the platform, and a generalized downside cost of the renters to capture the negative impact of access deny when they need the file.
+}
+\end{quotation}\vspace{-4mm}
+
+We thank you for raising this insightful point that we missed in the earlier version. As you mentioned, the file-transfer failure can severely harm user experiences, which should be addressed appropriately in our context. To address this concern, we surveyed the current practices of P2P storage platforms. Notably, we found that P2P storage platforms typically suggest the minimum requirements for joining the platform and strictly penalize providers not meeting the minimum uptime. Sia, for example, expects providers to maintain 95–98\% uptime to achieve 99.9999\% accessibility of stored files. If a provider in the Sia network does not maintain 95\% uptime (or 36 hours off in a month), he will lose his collateral for active contracts. Storj requires a more demanding uptime requirement that requires providers to maintain 99.3\% uptime (or 5 hours of maximum downtime per month). Filecoin assesses miners in the cryptocurrency network and penalizes storage providers using the miners' collateral if they do not perform the proof of space-time. In this way, P2P storage platforms penalize and exclude providers who cannot meet the uptime requirement from the P2P storage networks. In addition, those platforms set appropriate redundancy levels to take an advantage of the high required uptime further; Sia and Storj set their redundancy rates by approximately 3.0 and 2.8, respectively. Consequently, it is extremely rare for well-performing P2P networks to fail to retrieve stored files; for example, Storj reported that its platform, Tardigrade, achieved 99.96\% file availability in 2019.\footnote{Please see the following link for details: https://www.storj.io/blog/announcing-pioneer-2-and-tardigrade-io-pricing.}
+
+Since the P2P storage platforms mandate providers to maintain a high uptime level, it is almost impossible that providers with uptime levels below the requirement can participate in the platform and serve renters in the P2P networks. In this vein, it is important to examine whether providers can endure the operating costs to meet the required level. Incorporating such practices, we assumed that the platform allows providers to stay in the P2P network only if they can maintain the required uptime. As a result, P2P storage platforms achieve a sufficiently high  availability level that is close to one such that the file-transfer failure rate is negligible. Thus, our revised model does not take account for the failure probability of the file transfer. We also assume that the uptime requirements that are already set sufficiently high do not differ across platforms.   
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 1 (Point 2): } 2. If I read the paper correctly, the parameter $k$ is assumed to be exogenous in the model, which I do not agree with. For example, on page 14, when the paper models the provider utility, $k$ should depend on the equilibrium that how many providers participate and how are their active levels ($t^*$), and hence depend on the number of providers to store the data as a decision by the platform. Intuitively, fewer providers participation means a smaller $k$, and less active (smaller $t^*$) of providers induces a larger $k$ (to increase the robustness and access).
+}
+\end{quotation}\vspace{-4mm}
+
+We appreciate your constructive comment on the redundancy parameter $k$ in our initial submission. As you noted, our previous model assumed that the platform makes decisions based on the given redundancy algorithm. However, the platform may consider providers' behaviors in determining its algorithm. This point is still valid in our revised model wherein the platform kicks out providers that do not meet the required uptime $t$.\footnote{To reflect the penalty-award scheme suggested by the review team, we surveyed the current practices of P2P storage platforms. We observed that P2P storage platforms currently suggest the minimum requirements for joining the platform and strictly penalize providers who do not meet the minimum uptime in various ways. For instance, Sia expects providers to maintain 95–98\% uptime to achieve 99.9999\% accessibility of stored files. If a provider in the Sia network does not maintain 95\% uptime (or 36 hours in a month), he will lose his collateral for active contracts. Therefore, we assumed that the platform does not allow providers whose uptime is below the required level to stay in the P2P network, and thus, did not take the failure probability of the file transfer into account. We provided the relevant details in Section 3 and Appendix A of the revised manuscript.}
+
+In our revision, we consider the platform's redundancy algorithm ($\theta$, $t$). Here, the redundancy $\theta \equiv m/k$ indicates the stored volume divided by the original file volume under a $k$-of-$m$ erasure coding scheme. The uptime $t$ represents the proportion of provider's time being connected to the P2P network required by the platform. Each provider can keep participating in the platform only if he satisfies the required $t$. 
+Depending on the redundancy algorithm, renters and providers might behave differently for the following reasons. 
+First, a higher redundancy $\theta$ indicates that each renter contracts with a larger number of providers for the same volume of files. This incurs a higher storage cost to renters and higher storage revenues to providers, making renters less willing to adopt the platform while encouraging providers to join the platform. Second, the bandwidth volume transmitted through each provider decreases with $\theta$. Since many providers share the given bandwidth demand, the bandwidth revenue and the operating cost for each provider decrease. Third, the higher $\theta$ leads to a lower uptime $t$ to meet the intended availability level, lowering each provider's operating cost.
+
+To assess the possibility that these effects might alter our findings, we extended our main model to allow the platform to decide the redundancy algorithm endogenously in Section 6.1. We showed that endogenous algorithms do not alter our results of Theorems 1 and 2. Specifically, the platform's algorithm decision affects providers' total operating costs, which is proportional to $\xi \theta$, where $\xi$ is an increasing function of uptime $t$. The lower operating costs imply that the P2P storage network is more efficient and attractive to potential providers, leading to a larger number of providers or sometimes enabling the first-best prices. Hence, the platform is always better off reducing operating costs. Since $\xi \theta$ is independent of pricing schemes, the optimal ($\theta$, $t$) remains unchanged across the schemes, suggesting that endogenous algorithm choices make no difference in our main findings. Moreover, these results suggest that the P2P storage platform's two-sided aspect---relying on shared resources of independent providers---needs to be carefully reflected in its algorithm design.
+
+In adherence to your suggestion, we have substantially updated such backgrounds and results in Section 6.1 of the revised manuscript. Again, we deeply appreciate this constructive comment that helped us improve the rigor of our main results and the understanding of how the redundancy algorithm interplays with the effectiveness of pricing schemes.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 1 (Point 3): } 3. In the provider's decision model, the heterogeneity on the provider participation decision is ignored, which gives some results that are not convincing. For example, on page 21, "an increase in storage prices doe not provide any indirect benefit, it only damages renters". However, we may expect more providers will decide to participate if the storage price is higher, which also affects the robustness/chance of file access.
+}
+\end{quotation}\vspace{-4mm}
+
+We appreciate this insightful comment, and we agree with you that potential providers are indeed heterogeneous in many aspects such as computing powers and bandwidth speed. This may be the reasons that P2P storage platforms currently require minimum requirements to potential providers.\footnote{Both Sia and Storj require reliable computers, internet connection, and power/utility services to providers. Storj documented minimum requirements as: 1) a minimum of one (1) processor core dedicated to each storage node service, 2) a minimum of 500 GB with no maximum of available space per node, 3) 2 TB of bandwidth available per month; unlimited preferred, 4) 5 Mbps bandwidth upstream, 5) 25 Mbps bandwidth downstream, and 6) online and operational 99.3\% of the time per month (max total downtime of 5 hours monthly). Details are available at https://siasetup.info/learn/hosting for Sia and https://support.storj.io/hc/en-us/articles/360026612272-What-are-the-requirements-for-a-Storage-Node-on-V3- for Storj.} 
+In this regard, it is natural to assume that potential providers have heterogeneous operating costs and consequently make participation decisions differently. In the revised manuscript, we described this heterogeneity as follows:
+
+\textit{"We incorporate heterogeneous operating costs of providers for sharing each provider's unit volume of unused space. The operating cost may comprise multiple sources, including the opportunity cost of using computing resources, obsolescence of the computing device, and Internet and electricity costs. This suggests that the operating costs increase with the received download requests as well as the providers' own uptime. We thus express the operating costs of providers as $\rho_j \hat{\omega}_b \xi(t)$, where $\rho_j$ represents provider $j$'s sensitivity to the bandwidth provision which follows a uniform distribution, $\rho_j \sim U[0, 1]$, and $\hat{\omega}_b$ refers to the expected bandwidth volume for each provider.\footnote{We denote the total bandwidth volume of all participating providers by $\omega_b$.} Also, $\xi(t)$ is the unit operating cost for a provider and increasing in uptime $t$. Hereafter, for notational convenience, we omit $t$ in $\xi(t)$ denote this simply by $\xi$." (Page 12 of the revised manuscript)}
+
+Then, we addressed this heterogeneity to a provider's profit function in the following way:
+\begin{equation*}
+	\begin{aligned}
+	    &\pi_j =\alpha (\hat{\omega}_s p_s + \hat{\omega}_{bp} p_b) - \rho_j \hat{\omega}_b \xi
+    \end{aligned}
+\end{equation*}
+where $\pi_j$ indicates provider $j$'s profit, $\hat{\omega}_s$ is the expected storage volume for each provider, $\hat{\omega}_{bp}$ is the expected amount of paid download for the bandwidth service, $\hat{\omega}_b$ is the expected bandwidth volume for each provider, $\xi$ denotes the unit operating cost for a provider with $\rho_j = 1$ and is increasing in uptime $t$.
+
+Due to the heterogeneous sensitivity to the bandwidth provision $\rho_j$, not all providers join the P2P storage service. We define the threshold of the sensitivity to the bandwidth provision as $\rho_m$, where only the providers with their sensitivities higher than the threshold would participate in the P2P storage platform (i.e., provider $j$ joins the platform if and only if $\rho_j \le \rho_m$).
+
+In this way, we were able to reveal the central role of the size of potential providers in determining the effectiveness of pricing schemes in the P2P storage platform. We found that our findings substantially change by the providers' participation decisions. Specifically, when the number of potential providers is sufficient, the two-part tariff outperforms the other pricing schemes in terms of profit maximization, whereas the subscription-based pricing surpasses the others regarding the total surplus. In contrast, when potential providers are not sufficient to meet the storage demand, the two-part tariff and the hybrid pricing may dominate the subscription-based pricing regarding both the profit and the total surplus. It is also worth noting that these findings remain consistent even when we take account of endogenously determined redundancy algorithms and commission rates in keeping with your suggestions.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 1 (Point 4): } 4. If the commission ration alpha is an endogenous decision by the platform, what's the difference comparing to an exogenous commission rate. 
+}
+\end{quotation}\vspace{-4mm}
+
+This is a valid point. In keeping with your suggestion, we also extended our model to incorporate the platform's selection of commission rates to maximize its profit. If the platform is free to adjust its commission rate, it can better optimize the service fees and enhance its profit. Also, it is possible that such a benefit may be amplified under a non-flexible pricing scheme (e.g., the subscription-based pricing). To assess the possibility that the endogenous selection of commission rates affects our findings, we re-analyze our model by considering $\alpha$ as a decision variable as well as $p_s$ and $p_b$.
+
+In Section 6.2, we presented the results. We showed that our main results of Theorem 1 and Theorem 2 continue to hold. That is, although the exact level of thresholds for the first-best prices may change, we observed that the relative orders of the platform's profit and the total surplus do not change by the platform's endogenous decision on commission rates. This result suggests that pricing schemes still have substantial influences on the platform's profit and the total surplus even when the platform can set its commission rate.
+
+In sum, we showed that the main insights from an endogenously determined commission rate are consistent with our main findings with an exogenously given commission rate. However, we mention that these results need to be interpreted with caution for the following reasons. First, two-sided platforms need to consider public sentiment as well as their profits carefully because they often encounter public controversies regarding whether or not they fairly reward providers \citep{gartenberg2021google, scheiber2015growth}. Second, potential competition and regulations might inhibit platforms from charging high commission rates to providers. Even when competitors are not strong or even absent, unsatisfactory rewards for supply might encourage new entrants to grow their market shares. Lastly, the suggested commission rates might be unrealistic. Sia's commission rate is about 3.9\%, and mobile app stores---i.e., Google Play and Apple's App Store---charge 30\% to app providers. Considering the fierce resistance to 30\% commission rates in app markets \citep{gartenberg2021google}, 67\% or higher commission rates might not be a viable option.\footnote{Please refer to the proof in the Appendix B of the revised manuscript for the magnitudes of the commission rates.}
+
+We thank you again for your careful reading and constructive suggestions. We have truly benefited from your excellent input and addressed all your comments and suggestions to the best of our ability. We believe this version of the paper is a vast improvement over the last and hope that you concur.
+
+\newpage
+\setcounter{table}{0}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \underline{\large \bf Authors' Response to Reviewer 2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2: }
+The study examines pricing schemes of a peer-to-peer (P2P) storage sharing platform, which is a two-sided marketplace of renters with various storage and bandwidth needs and providers with available storage capacity. The pricing scheme considered is a two-part tariff: a storage fee that is dependent of the volume of the files and a bandwidth fee that is dependent of the access rate.
+Renters decide whether to adopt the P2P platform, while providers determine the uptime that influences the service level. Based on a model that captures the renters' and providers' utilities, the optimal pricing parameters are derived under different objectives of the platform: profit-seeking, consumer-welfare maximizing, and a mixed objective that combines both.
+
+I read this paper with lots of interests. The authors find an interesting topic that has not been fully investigated in the existing literature, which is about the pricing schemes of the P2P storage platforms in the cloud. This topic is new and relevant, so I think it fits the theme of the special issue well. Having said that, I feel that there is significant room for improvement in the rigor of the model including the objective of the platform's optimization problem, formulation of the renters' utility function, and certain model assumptions. In addition, the writing of this paper should be improved to better explain and justify the formulations and model assumptions. Last but not the least, I also have some high-level concerns on the positioning of this paper regarding its theoretical novelty and contribution.
+}
+\end{quotation}\vspace{-4mm}
+
+We are happy to hear that you find our topic interesting and new and worthwhile investigation. We thank the reviewer for providing a detailed review of our work and for appreciating our effort. Indeed, supportive directions help us craft a better manuscript. The advice that you offered aided us in identifying points that were unclear in our earlier manuscript, particularly for the section of Model, Analysis, and Results. Again, the attentive and detailed evaluation from you is much appreciated. We have thoroughly rewritten the paper to address all concerns raised by the review team and endeavored to accurately respond to the comments.
+
+We are also grateful that you appreciate the topic and relevant to the special issue. We prepared the point-by-point response to each of your comments below. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent\textbf{1. Contribution of this paper}\\[-11mm]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2 (Point 1a): }
+Although the paper claims that the ``optimal pricing schemes" are developed for the platform, this statement is not precise. Indeed, this paper focuses on only the specific form of pricing schemes (i.e., a two-part tariff) as described in its introduction, and then the optimal parameters of the given form of pricing schemes are derived.
+
+a) At least the authors should emphasize that their focus is on a specific form of pricing schemes, instead of developing the optimal pricing scheme among all possible forms. Note that the two-part-tariff has been well studied in the economics and management science literature, but I can understand that the authors can justify that its application to the P2P storage businesses has practical values due to the novel trade-offs.}
+\end{quotation}\vspace{-4mm}
+
+We appreciate this insightful and constructive comment. We admit that our initial submission focused on the two-part tariff only, and therefore, its contributions were very limited. Incorporating your comments on contributions, the major change we made in this revision is that we investigated multiple pricing schemes that P2P storage platforms may consider, which may result in offering broader implications. Specifically, we examined two more pricing schemes that you suggested: subscription-based pricing and the hybrid pricing, which have been widely used by centralized public cloud services \citep{kansal2014pricing}. 
+
+As you commented above, our analysis of the well-known two-part tariff contributes to the literature because of the specific features in the P2P storage services. Specifically, in this revision, we analyzed the two-part tariff from the perspective of two-sided platforms where the storage providers' participation is critical. We observed that few studies have examined the two-part tariff in the context of sharing platforms. Furthermore, we compared the effectiveness of this pricing scheme with others that can be adopted by P2P storage platforms. In this regard, we found that the impacts of pricing schemes on the total surplus significantly interplay with the scarcity of potential providers. This implies that two-sided platforms may need to adequately compensate providers for their participation. We believe that these findings can constitute unique contributions to the literature. Please refer to our general response and the revised manuscript for the detailed results
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2 (Point 1b): }b) Although I am fine if the authors want to mainly focus on the specific form of pricing schemes (as it is popular among P2P storage platforms nowadays), it is a pity that this study is completely silent on other possible forms of pricing schemes. Note that the P2P storage business is new and evolving rapidly, some other pricing schemes may rise to prominence as they become more suitable and effective for this marketplace. 
+}
+\end{quotation}\vspace{-4mm}
+
+Thank you for this valuable comment. As we responded above, we considered multiple pricing schemes in this revised manuscript. Note that the two-part tariff is widely adopted by P2P storage platforms. Also, the subscription-based pricing and the hybrid pricing are widely used by centralized public cloud platforms \citep{kansal2014pricing}. Since P2P storage platforms offer similar services as public cloud platforms, we conjectured that the implications of pricing schemes in public cloud platforms might be applied to the P2P storage context.
+
+However, it is still valid that we did not examine all possible forms of pricing schemes, and a further investigation of the possibilities will significantly benefit P2P storage platforms. We keep in mind these limitations and opportunities for future research and stated them in the new manuscript as follows:
+
+\textit{"(...) Lastly, our results are restricted to three pricing schemes, although many other pricing schemes can be considered. For instance, some public cloud services lower the unit price as the usage level increases. It can provide valuable insights to analyze how unexplored pricing schemes affect the platform's profit and the system surplus." (Page 30 of the revised manuscript)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2 (Point 1b-i): } To provide a few ideas: (i) Since service level plays a key role in this marketplace, it is natural to develop pricing schemes based on service levels. Specifically, between the platform and the providers, the platform may include a penalty-award term to motivate the providers to maintain a reasonable service level. In the same spirit, between the platform and the renters, the platform may make the bandwidth fee dependent on a commitment of service level. Also, it is worth noting that the service-level based, penalty-award scheme has attracted attentions from studies of the centralized public cloud (Yuan et al. 2018).
+}
+\end{quotation}\vspace{-4mm}
+
+Thank you for this insightful and valid comment. To incorporate your suggestion reasonably, we first surveyed whether and how P2P storage platforms are employing a penalty-award scheme in practice. We found that P2P storage platforms currently suggest the minimum requirements for joining the platform and strictly penalize providers who do not meet the minimum uptime in various ways. For instance, Sia expects providers to maintain 95–98\% uptime to achieve 99.9999\% accessibility of stored files. If a provider in the Sia network does not maintain 95\% uptime (or 36 hours off in a month), he will lose his collateral for active contracts. Storj requires a more demanding uptime requirement that requires providers to maintain 99.3\% uptime (or 5 hours of maximum downtime per month). Filecoin assesses miners in the cryptocurrency network and penalizes storage providers using the miners' collateral if they do not perform the proof-of-spacetime.
+
+Our observations suggest that the uptime level of each provider mainly affects whether or not he can stay in the platform (i.e., the overall capacity of the platform) instead of the failure probability of file transfer (i.e., inconvenience of bandwidth service). Incorporating this practice, we assumed that the platform keeps providers only when they maintain the required uptime level in the new model.
+
+Notwithstanding our efforts, we acknowledge that our model partially reflects the suggestions; that is, the provider's reward does not change continuously according to the uptime level. However, the uptime level is strikingly high in practice, resulting in the significantly high accessibility of stored files. Furthermore, our model includes heterogeneous operating costs of providers in the two-sided platform, which enable us to account for different burdens among individuals to meet the high uptime requirement. By doing so, our revised model effectively accounts for the interactions between the platform's service fees and the storage/bandwidth service levels by incorporating providers' in-out decisions in keeping with your suggestion. In addition, the parsimonious form of our new model's penalty scheme allows us to compare the subscription-based pricing and its variant with the two-part tariff using the closed-form solutions as described in our response to \textit{Point 1b-ii}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2 (Point 1b-ii): }
+(ii) Another possibility is to refine the access fee for the bandwidth service. For example, a subscription-based pricing scheme (as in the cell phone data plans) is relevant. The storage fee in this paper essentially plays the role of the subscription fee. Once the storage fee is paid (i.e., once subscribed), the renter is granted a limit of free access to the stored files, and any access beyond the limit will be charged an additional access fee. Also, it is worth noting that variants of the subscription-based pricing schemes have been studied (Lambrecht et al. 2007, Li and Kumar 2018) and implemented in similar business environments (mobile communication, centralized public cloud, etc.)}
+\end{quotation}\vspace{-4mm}
+
+We deeply appreciate this valuable comment. In keeping with your suggestion, we analyzed the subscription-based pricing and its variant that offers a limited amount of free access to the stored files. Reviewing the extant literature, we found that the latter is called \textit{the hybrid pricing} and also widely used in centralized public cloud services \citep{kansal2014pricing}. In this regard, we believe that comparing these pricing schemes with the two-part tariff, the most commonly adopted scheme among P2P storage platforms, makes relevant implications for the literature on cloud platforms as well.
+
+We now briefly summarized what each pricing scheme indicates. Please refer to Section 4.1 for technical details of these schemes. We first considered the two-part tariff in which the platform charges renters the lump-sum storage fee for using the storage space and the pay-per-use bandwidth fee for each download request to the stored files. Second, we examined the subscription-based pricing. When the platform adopts this pricing scheme, it charges only a lump-sum fee for the storage service and offers the bandwidth service at free. Lastly, we examined the hybrid pricing in which the platform charges the storage fee and offers a limited free bandwidth allowance. For the bandwidth usage exceeding this allowance, the platform charges the bandwidth fee. The main difference across the pricing schemes is the amount of free bandwidth allowance. We assumed that the platform maximizes its profit under a given pricing scheme and compared the outcomes across the pricing schemes in terms of the platform's profit and the total surplus of the system. We described more details in our response to \textit{Point 2}.
+
+By investigating the contingent effects of the pricing schemes, this research contributes to our understanding of pricing schemes in P2P storage platforms as follows. We investigated the potential of the pricing scheme that P2P storage platforms have not explicitly implemented---subscription-based pricing, which has been widely adopted in centralized cloud platforms. In comparing their different effects on the platform's profit and the total surplus, we developed a formal model that incorporates providers' entry decisions, renters' service adoption, and interactions between providers and renters. Therefore, we believe that our analysis offers novel insights that can be used to develop new pricing policies and assess their potential impacts on the performances of the P2P networks.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2 (Point 1c):  }I was not suggesting that the authors have to consider all possibilities. However, I am hoping that the authors would acknowledge the limitations of their focus on the specific form of pricing schemes in this paper. Moreover, it would be much better if they can demonstrate the flexibility of their model framework by showing some extensions to other pricing schemes (e.g., service-level based or subscription-based).}
+\end{quotation}\vspace{-4mm}
+
+We thank you again for your valuable comments on pricing schemes. In keeping with your suggestions, we explored three pricing schemes, one of which is currently adopted by P2P storage platforms and the others are widely adopted by centralized public cloud platforms \citep{kansal2014pricing}, and compared their impacts on the platform's profit and the total surplus of the system. But still our analysis is limited to only a few of all possible forms of pricing schemes. Therefore, we acknowledged the remaining limitations and opportunities for future research in the revised version:
+
+\textit{"(...) Lastly, our results are restricted to three pricing schemes, although many other pricing schemes can be considered. For instance, some public cloud services lower the unit price as the usage level increases. It can provide valuable insights to analyze how unexplored pricing schemes affect the platform's profit and the system surplus." (Page 30 of the revised manuscript)}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent\textbf{2. Objective of the platform}\\[-11mm]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2 (Point 2):  }One of the main highlights of this study is to consider the platform's different objectives (profit vs consumer-welfare). With that said, for a two-sided marketplace like this, it is equally important to consider the welfare of the providers. Maximization of only the renters' welfare may lead to an imbalanced marketplace where demand largely exceeds supply. For example, Uber in the ride-sharing industry must consider welfare of not only the passengers but also the drivers. In the same vein, I suggest considering an alternative objective of the platform that is to maximize the welfare of the entire marketplace (providers and renters).}
+\end{quotation}\vspace{-4mm}
+
+Thank you for this insightful comment. It is a valid point that the welfare of the providers also matters in the marketplace, especially for two-sided platforms in the P2P storage services. %As we mentioned in our response to your earlier comment, we set the platform's objective as the maximization of its individual profit since this fits our survey of the practice. However, 
+In this revision, we have addressed your suggestion by considering the total welfare of the entire marketplace including renters and providers as the system surplus. We compared this system surplus for each pricing scheme and derived relevant implication.
+
+In comparing the total welfare of the system across different pricing schemes, we referred to \citet{cachon2017role} who examined pricing schemes of a sharing platform and compared the profit and the system surplus of a surge pricing with those of other pricing schemes. They assumed that the platform maximizes its profit under a given pricing scheme and then compared the outcomes across these pricing policies. In line with this paper, we also assumed that the platform is profit-seeking while it concerns the total surplus indirectly through comparing the outcomes of pricing schemes. This assumption can be more plausible than our  assumption in the original submission---the platform explicitly includes the consumer welfare in its objective function---unless we investigate a not-for-profit platform \citep{benjaafar2019peer}. 
+
+Based on the new objective of the platform, we have introduced new relevant questions that account for the impacts of various pricing schemes on the platform's profit, the provider/renter surplus, and the system surplus in the P2P storage platform. In doing so, we focused on the size of potential providers, a unique aspect of the two-sided market, and examined how the influences of pricing schemes differ across the potential provider sizes. Under the given pricing scheme, we assumed that the platform aims to maximize its own profit. We believe that our revision significantly enhances the contributions in line with your suggestions.
+
+We found that when there are a sufficiently large number of potential providers, the subscription-based pricing is most effective regarding the total surplus. However, we find that the impacts of pricing schemes significantly differ when potential providers are relatively scarce if the size of potential providers is insufficient to fulfill the storage demand. In this case, the two-part tariff and the hybrid pricing may dominate the subscription-based pricing regarding the platform's profit and the total surplus.\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent\textbf{3. Formulation of the renters' utility function}\\[-11mm]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2 (Point 3): } Formulation of the renters' utility function. In the current model, the renters' utility function is formulated in a way that implies the following assumption holds: if the renter attempts to access to the file stored but the access fails, then the renter would give up. This can be seen from the formulation in the paper, 
+\begin{equation*}
+U_i^{rt}(x; \mathbf{t}, p_S, p_B) = (u_S - p_S) V_i + (u_B - p_B)(1-g(\mathbf{t}))V_i \lambda_i
+\end{equation*}
+However, one may argue that in reality, the renter may attempt to access the file again until the access is granted. As a result, the renter will need to pay the access fee anyway, while the renter incurs an extra inconvenience cost that can be viewed as a loss of utility due to the delay, which depends on the failure probability. In this spirit, the renter's utility function should be as follows:
+\begin{equation*}
+U_i^{rt}(x; \mathbf{t}, p_S, p_B) = (u_S- p_S) V_i + [u_B(1-g(\mathbf{t}))-p_B] V_i \lambda_i
+\end{equation*}
+
+In my opinion, the latter (as proposed) is more reasonable than the former (as in the paper). Indeed, the result of Lemma 6 sounds the alarm. This is because when the prices are set to extract the maximum surplus utility from the renters (i.e., $p_S = u_S$ and $p_B = u_B$), one may argue that, intuitively, no renter will find it attractive to use the P2P storage services, as their utilities will be negative due to the inconvenience cost. As can be seen, when $p_S = u_S$ and $p_B = u_B$, the utility function in this paper is equal to zero and fails to capture the additional inconvenience cost due to the failure of access}
+\end{quotation}\vspace{-4mm}
+
+Thank you for this detailed comment. It is a great point that the file access should be completed eventually from a renter's view, thus, she will try the access again until it succeeds. We agree that a renter can lose her utility from an extra inconvenience cost in this way, even when the platform does not charge a renter for a file-transfer failure. Then, we consider two possible forms as:
+\begin{equation*}
+    \begin{aligned}
+        &U_i^{rt}(x; \mathbf{t}, p_S, p_B) = (u_S - p_S) V_i + [u_B(1- g(\mathbf{t})) - p_B] V_i \lambda_i,\\
+        &U_i^{rt}(x; \mathbf{t}, p_S, p_B) = (u_S - p_S) V_i + [u_B(1-g(\mathbf{t})) - p_B(1-g(\mathbf{t})) - c_f g(\mathbf{t})] V_i \lambda_i,
+    \end{aligned}
+\end{equation*}
+where $c_f$ indicates the inconvenience cost of the file-transfer failure. The former postulates that a renter retries the file download until it succeeds and experiences a disutility equal to $u_B$. The latter supposes a renter who gives up the access and experiences an inconvenience cost $c_f$. In anyways, we believe that it will be more insightful to account for this cost in our model.
+
+However, we acknowledge that after considering the trade-offs between multiple directions you suggested, we concluded that it can be more appropriate to focus on comparing the performances of various pricing schemes by deriving closed-form solutions than other aspects. Also, according to the recent updates of P2P storage platforms, these platforms exert significant preemptive efforts to prevent the file-transfer failure and kick out providers who do not meet the required uptime level. This is because the failure severely damages renters' utility, that is, $c_f>>u_B$.
+
+As a result of such efforts, it is extremely rare for well-performing P2P networks to fail to retrieve stored files; for example, Storj reported that its platform, Tardigrade, achieved 99.96\% file availability in 2019.\footnote{Please see the following link for details: https://www.storj.io/blog/announcing-pioneer-2-and-tardigrade-io-pricing.} In this regard, we assumed that the platform allows providers to stay the P2P network only if they maintain the required uptime, and as a result, the P2P storage platform achieves an availability level sufficiently large and close to one (i.e., $g(\mathbf{t}) \approx 0$) in the revised version.
+
+%In the revised version, we assume that the failure probability is low enough to converge to almost 0. However, if we consider the non-negligible failure probability, the renter utility in the main model can be expressed as follows:
+%\begin{equation*}
+%    U_i = \lambda_i (u_i - p_b)(1-g(\mathbf{t})) - \theta p_s - c_f g(\mathbf{t})
+%\end{equation*}
+%From this point of view, we can say that the inconvenience cost(i.e., $c_f$) is too large when an actual failure occurs. Thus, the platform sets up the redundancy algorithm to make $g(\mathbf{t})$ be 0.
+
+We admit that future research may make additional contributions to the literature by incorporating the failure probability of file transfer more explicitly. Although the file availability is very close to 100\% and providers who do not meet the required uptime are excluded from the P2P storage networks in practice, such an attempt will provide a valuable framework for various contexts where the system failure severely incurs users' disutility.\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent\textbf{4. Model assumptions}\\[-11mm]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2:  }I can understand that the current model is complicated due to the interplays among the renters' utilities, the providers' utilities, and the platform's pricing decisions. Thus, I am fine with most of the model assumptions. However, I would like to point out two main concerns:}
+\end{quotation}\vspace{-4mm}
+
+Thank you for your generous understanding on our model assumption. In this revision, we have carefully revisited our assumptions and attempted to articulate them more clearly. We hope you see they are revised reasonably.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2 (Point 4a):  }a) To be honest, I feel the description of the redundancy algorithm (page 9) is somewhat vague. Specifically, how are the $m$ shards distributed across selected providers in the network, how are the providers selected, and how does the distribution of the shards affect the probability of failure to reconstruct the original file? Perhaps, the authors can kindly provide in the appendix a more detailed explanation of the underlying algorithm, with a focus on the impact on the failure probability. For example, suppose that there are $m$ = 2 shards to be distributed to a network with 10 providers with redundancy k = 4, then how to distribute the shards, and what is the resulting probability? The vague description of the redundancy algorithm hinders the reader's ability to appreciate the simplified assumption $m$ = 1. That is, without a clear understanding of how the redundancy algorithm affects the failure probability, it is still hard to convince the reader that the simplification will not cause any loss of main insights into the problem. Moreover, according to the introduction, in reality no single provider has enough fragmented pieces to reconstruct the original file; thus, assuming m = 1 actually contradicts the introduction.}
+\end{quotation}\vspace{-4mm}
+
+We apologize that we did not provide a concrete explanation of the underlying algorithm. In keeping with your suggestion, we enriched our description of the redundancy algorithm, a $k$-of-$m$ erasure coding scheme, and provided it in Appendix A of the revised manuscript. The main additions are as follows.
+
+Under a $k$-of-$m$ erasure coding scheme, the P2P storage platform divides a renter's original file into $k$ shards and re-codes them into $m$ encrypted fragments ($m > k$) \citep{weatherspoon2002erasure, wilkinson2016storj}. Then, the platform assigns each of $m$ fragments to $m$ independent providers who have made a contract with the focal renter. Notably, any $k$ of $m$ fragments can reconstruct the file under this redundancy algorithm. Therefore, the platform can retrieve the file when any $k$ providers are connected to the network at the same time.
+
+Here, we define the redundancy $\theta \equiv \frac{m}{k}$, which refers to the proportion of the size of the duplicated data compared to the size of the original data. The main advantage of erasure coding is that it can achieve high reliability with low redundancy $\theta$ \citep{weatherspoon2002erasure}. We can easily estimate the reliability of the P2P storage network as follows. The failure probability of file transfer for given uptime $t$ and parameters $k$ and $m$ is calculated by the following formula:
+\begin{equation*}
+\begin{aligned}
+F(t; m, k) = \sum_{j=0}^{k-1} {m \choose j}t^j (1-t)^{m-j} = \bar{p} \approx 0.
+\end{aligned}
+\end{equation*}
+Table R2-1 presents the calculated failure probability under the given redundancy. We observe that the platform can improve its system reliability even when it maintains the same redundancy $\theta$ and the same required uptime $t$. For instance, for $\theta=3$ and $t=0.75$, the failure probability is 1.15e-04 when the platform sets $k=5$ and $n=15$. Notably, the platform can reduce the failure probability by about 400 times (from 1.15e-04 to 2.82e-07) by dividing the files into twice more fragments ($k=10$ and $n=30$) without altering $\theta$ and $t$. Moreover, we see that a slight increase in the required uptime can dramatically reduce the failure probability. For example, when all other things are same, raising the required $t$ by 20\% (from 0.75 to 0.90) under $k=10$ and $n=30$ decreases the failure by 48.6 million times (from 2.82e-07 to 5.80e-15). See Table R2-1 below for more examples.\\
+
+%\begin{tightcenter}
+%\textbf{Table R2-1. Examples of the Failure Probability of File Transfer ($\theta=3$)}
+%\end{tightcenter}
+\begin{table}[h] \centering
+\def\tablename{Table R2 -}
+\caption{Examples of the Failure Probability of File Transfer ($\theta=3$)}
+\begin{tabular}{cccc}
+ $m$ & $k$ & $t$ & $F(t; m, k)$\\\hline
+15 & 5 & 0.5 & 5.92e-02\\
+15 & 5 & 0.75 & 1.15e-04\\
+15 & 5 & 0.9 & 9.30e-09\\
+15 & 5 & 0.99 & 1.32e-19\\
+30 & 10 & 0.5 & 2.14e-02\\
+30 & 10 & 0.75 & 2.82e-07\\
+30 & 10 & 0.9 & 5.80e-15\\
+30 & 10 & 0.99 & 1.31e-35\\
+\end{tabular}
+\end{table}
+
+In practice, Sia and Storj set their algorithm parameters ($k, m, t$) as $(10, 30, 0.98)$ and $(29, 80, 0.993)$, respectively. These parameters hypothetically achieve the very low failure probability: 2.52e-29 and 2.11e-91. It is also a valid concern that the failure probability can be affected by many other factors such as accidents in communication infrastructures. Even after accounting for these variables, Storj showed 0.04\% of failure probability (or 99.96\% of availability) in 2019.\footnote{Retrieved from https://www.storj.io/blog/announcing-pioneer-2-and-tardigrade-io-pricing.}
+
+Interestingly, the likelihood of provider assignment is closely associated with the penalty-award scheme in P2P storage platforms. Currently, these platforms operate reputation metrics to prioritize providers and achieve higher security, reliability, and durability of the P2P networks. They distribute the pieces of each stored file according to the providers' reputation metrics. In this process, the platforms severely undermine providers who did not meet the required uptime, so it is very unlikely that some lazy providers can dramatically raise the renters' inconvenience costs. We partially incorporated this practice in our model by assuming that the platform does not allow providers to stay in the network if they cannot meet the required uptime due to their operating costs.
+
+Regarding our over-simplified assumption that the stored file is divided into only one copy, we admit that this may reduce the external validity of our findings. Based on the substantial investigation of the P2P storage platforms' practices, our new model assumed that renters' utility is not affected by the failure probability due to the resilient redundancy algorithm as explained above. Moreover, this can be achieved by the penalty scheme that does not allow providers to participate in the P2P network if they do not meet the required uptime. Although such assumptions take away the novel theoretical aspect from our model, we believe that they significantly improve the external validity of our findings and enable us to compare the effectiveness of different pricing schemes by deriving the closed-form solutions.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2 (Point 4b):  }b) The assumption that all renters have the same willingness-to-pay for the storage and bandwidth service (i.e., $u_S$ and $u_B$ are homogeneous) is restrictive. Intuitively, some customers may have relatively high willingness-to-pay for the storage service and relatively low willingness-to-pay for the bandwidth service, while some other customers may have the opposite valuations of the storage and bandwidth services. I wonder whether the current model can be easily extended to incorporate the heterogeneity of the willingness-to-pay?}
+\end{quotation}\vspace{-4mm}
+
+Thank you for this constructive comment. It is a valid point that renters may have different willingness-to-pay for the storage and bandwidth services. Thanks to the simplified utility form in our new model in this revision, we can partially reflect this desirable aspect. Specifically, we assumed that renters value each access to stored files differently such that each renter $i$'s utility from the bandwidth service varies, and it follows a uniform distribution, $u_i \sim U[0, 1]$. Assuming that the storage volume of each renter is $1$ and the usage intensity $\lambda_i$ is independent of $u_i$, renter $i$'s utility under the two-part tariff can be expressed as follows:
+\begin{equation*}
+\begin{aligned}
+U_i = \lambda_i u_i - \theta p_s - \lambda_i p_b.
+\end{aligned}
+\end{equation*}
+
+Note that, in this model, the cost term differs across pricing schemes. As we simplify the utility function by omitting both the failure-probability and the constant storage utility, we are able to consider the heterogeneous utility of the bandwidth service and obtain the closed-form solutions for all pricing schemes (i.e., the two-part tariff, the subscription-based pricing, and the hybrid pricing). If we kept these omitted terms, it would become overwhelmingly complex, and consequently, we would not obtain the closed-form solutions.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent\textbf{5. Other issues}\\[-11mm]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2 (Point 5a):  } a) The literature review on the sharing economy can be expanded further. Also, there are quite a few studies in this area which examined the pricing strategies of the platform (on the contrary to ``scant attention"). See Hu (2019) as an excellent source.}
+\end{quotation}\vspace{-4mm}
+
+Thank you for this helpful comment and detailed guidance. Indeed, \citet{hu2019sharing} gave us numerous valuable works on pricing strategies of sharing platforms. Following your suggestion, we have updated our literature review by adding related studies shown in \citet{hu2019sharing} and some other works in the revised manuscript as follows:
+
+\textit{"(...) While numerous studies echoed that emerging sharing platforms are good for consumers \citep{einav2016peer, greenwood2017show}, some analytic studies indicated that those platforms are not necessarily beneficial to consumers in the long term as they might increase product prices \citep{jiang2018collaborative, weber2016product}. \citet{tian2018effects} showed that a sharing platform tends to increase the retailer's share of the gross profit margin in the distribution channel." (Page 6 of the revised manuscript)}
+
+\textit{"Recent studies have suggested theoretical frameworks for pricing strategies in sharing platforms \citep{bai2019coordinating, benjaafar2019peer, cachon2017role, bimpikis2019spatial, taylor2018demand}. \citet{benjaafar2019peer} considered both profit-maximizing and social-welfare-maximizing platforms and compared their equilibrium outcomes. They found that the differences in the social welfare between these platforms are relatively modest. \citet{cachon2017role} examined several pricing schemes, including the surge pricing, for sharing platforms with self-scheduling providers. They found that the surge pricing generally achieves nearly the optimal profit and improves the surplus of providers and consumers as labor becomes expensive. Our study also compares the impacts of pricing schemes on a sharing platform's profit and system surplus. However, unlike \citet{cachon2017role}, we consider providers with heterogeneous operating costs. Moreover, our model incorporates providers' operating costs that may change according to renters' usage levels." (Page 6 of the revised manuscript)}
+
+In addition to the revamped literature review, we believe that the newly cited studies directly helped us revise our paper in a more appropriate direction. For example, \citet{cachon2017role} offered insights on our analytic framewor. Following their approach, we compared the impacts of pricing schemes on the platform's profit and the system surplus. A notable difference is that we were able to build theorems that directly compare the results across pricing schemes, while \citet{cachon2017role} relied on a numerical analysis to compare their results across the schemes. \citet{li2018should} also enhanced our understanding of cloud service users. Notably, we reflected one of their modeling components: the distribution of cloud resource usage. Specifically, we considered renters with a continuum of bandwidth usage level (or frequency of download requests) of stored files and assumed that the usage level follows the Pareto distribution that includes a relatively heavy-tail structure compared with with exponential, log-normal, and normal distributions.
+
+%Among the things in \citet{hu2019sharing} that you recommended, \citet{cachon2017role} was very helpful in setting the direction of our thesis. Furthermore, \citet{benjaafar2019peer} and \citet{jiang2018collaborative} and related \citet{tian2018effects} and .... were of great help in improving our understanding of the sharing economy and setting the direction of this paper. Moreover, \citet{li2018should} mentioned in the reference had a great influence on building our model setting, and \citet{yuan2018service} gave us a great insight in terms of comparing and analyzing various pricing systems.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2 (Point 5b):  } b) Also, in the literature review, please highlight the distinct modeling features of the P2P storage services, as compared to the sharing economy models and the P2P files sharing services.}
+\end{quotation}\vspace{-4mm}
+
+In keeping with your suggestion, our revised manuscript highlighted the distinct features of our model, as compared to the existing models. Considering that the differences from the centralized cloud model are straightforward, we focused on the distinct modeling features compared to the other sharing economy and P2P file-sharing models in this response.
+
+We incorporated the effects of redundancy algorithms, which have been rarely considered in the previous sharing economy models. To be specific, we considered the redundancy algorithm ($\theta, t$), where $\theta$ refers to the proportion of the size of the duplicated data compared to the size of the original data, and the uptime $t$, which represents the proportion of provider's time being connected to the P2P network \citep{protocol2017filecoin, vorick2014sia, wilkinson2016storj}. Here, we assumed that the platform allows providers to stay in the P2P network only if they meet the required uptime $t$, as described in our response to \textit{Point B5}. A higher $\theta$ decreases the failure probability, while it requires a larger storage capacity to meet given storage demand from renters. Similarly, a higher required uptime $t$ reduces the likelihood of the file-transfer failure, while it imposes a higher operating cost on providers.
+
+In our basic model, we assumed that the redundancy algorithm is considered ($\theta, t$) as given parameters. And we considered $\xi(t)$, which is the unit operating cost and increasing in $t$. We showed that $\xi \theta$ plays a central role in determining the effects of pricing schemes (Lemma 2). Specifically, we found that $\xi \theta$ increases the threshold of $n_p$ for the first-best prices; that is, it mandates the platform to set the market-clearing price. Note that $n_p$ may exceed the threshold of some pricing scheme, while not exceeding those of others. Given that the platform can extract higher profits from renters with the first-best prices, $\xi \theta$ can alter the order of the total surplus of the system across pricing schemes.
+
+We extended our basic model by relaxing the assumption and allowing the platform to choose the profit-maximizing redundancy algorithm, as shown in Section 6.1. Incorporating the redundancy algorithm into the platform's decision, we can capture the following effects. First, a higher redundancy $\theta$ indicates that each renter contracts with a larger number of providers for the same volume of files. This incurs a higher storage cost to renters and a higher storage revenue to providers, which prohibits renters from adopting the platform. In contrast, an increase in the storage revenue encourages providers to join the platform. Second, the bandwidth volume transmitted through each provider decreases with $\theta$. Since more providers share the given bandwidth demand as $\theta$ increases, the bandwidth revenue and the operating cost for each provider decreases. Third, a higher $\theta$ leads to a lower uptime $t$ to meet the intended availability level, lowering each provider's operating cost.
+
+In Theorem 3, we showed that endogenously determined redundancy algorithm does not alter our main insights in Theorem 1 and Theorem 2 because the platform always chooses the redundancy algorithm that minimizes $\xi \theta$ is optimal for all pricing schemes. The underlying intuition is that lowering operating costs always make the P2P storage network more efficient and attractive to potential providers, leading to a larger number of providers or sometimes enables the first-best prices. Further, $\xi \theta$ does not vary by pricing schemes we consider in this paper. Thus, the optimal ($\theta$, $t$) remains unchanged across the schemes. We summarized managerial insights for the P2P storage platforms drawn from these results:
+
+\textit{"(...) It is also possible that the platform cannot alter its pricing scheme and service fees. In that case, the platform may indirectly incentivize providers by requiring a lower uptime or a lower redundancy rate. For instance, a $k$-of-$m$ erasure coding scheme with the same redundancy rate (i.e., the same $\frac{m}{k}$) can achieve the same availability while reducing its required uptime by increasing $k$ and $m$ at the same time.\footnote{Table A.1 in Appendix A shows an example suggesting that the platform can exponentially reduce the failure probability while maintaining the redundancy rate.}" (Page 29 of the revised manuscript)}
+
+Another small but meaningful difference is that we incorporated renters' usage intensity, which were widely neglected by the extant literature, into the provider's cost term. Our new cost term $\rho_j \hat{\omega}_b \xi(t)$ consists of provider $j$'s sensitivity to the bandwidth provision ($\rho_j$), the volume of the bandwidth service requested to provider $j$ ($\hat{\omega}_b$), and the unit operating cost ($\xi(t)$). This accounts for the additional burden of providers such as increased Internet traffic, computing burden, and electricity consumption caused by offering more bandwidth service. We described this difference in the manuscript as follows:
+
+\textit{"(...) Our study also compares the impacts of pricing schemes on a sharing platform's profit and system surplus. However, unlike \citet{cachon2017role}, we consider providers with heterogeneous operating costs. Moreover, our model incorporates providers' operating costs that may change according to renters' usage levels." (Page 6 of the revised manuscript)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2 (Point 5c):  } c) In the second paragraph of Section 3: ``As long as a provider has redundant storage space, sharing the storage always benefits him due to the initial storage fee $p_S$ even when he does not contribute bandwidth to the network at all." I am wondering in reality, whether the provider will receive any form of penalty if his contribution to the network is maintained at a very low level; the penalty can be explicit as written in a contract with the platform or implicit as the threat of losing future business from the platform in the future. Note that this question is also related to my previous point 1-b-(i).}
+\end{quotation}\vspace{-4mm}
+
+That is a valid point. As you mentioned, we observed that P2P platforms often penalize providers with little contribution to the networks based on a contract between them. Sia, for example, expects providers to maintain 95–98\% uptime to achieve 99.9999\% accessibility of stored files. If a provider in the Sia network does not meet the 95\% uptime requirement (or 36 hours off in a month), he will lose his collateral for active contracts.\footnote{See the following link for more information on Sia's provider policies: https://support.sia.tech/hosting/about-hosting-on-sia.} For that reason, we admit that our previous assumption that all providers join the platform without costs is unrealistic.
+
+As we responded to \textit{Point 1b-i}, we assumed that the platform keeps providers only if they satisfy the required uptime level in the new model. This provides us an opportunity to account for different burdens among individuals to meet the high uptime requirement. By doing so, our revised model effectively accounts for the interactions between the platform's service fees and the storage/bandwidth service levels by incorporating providers' in-out decisions following your suggestion.
+
+%The two main platforms storj and sia adopt a scoring system for providers for verification of providers. The platform uses a scoring system to eliminate bad actors in the network, thereby improving security, stability, and durability. This score will decrease for various reasons, including if the provider goes offline for too long or lose renters' data for any reason.
+
+%The platform uses various methods to impose penalties on various unfaithful providers, including providers who maintain their network very low. For example, in the case of sia, a provider receives a collateral fee when signing up, and a certain amount is deducted from the collateral fee if the provider keeps offline for too long or if the renter's data is lost. On the other hand, in the case of storj, if some provider's score decreases below a certain boundary, then he becomes an inappropriate provider. Then, he will no longer be selected for future data storage, and the data that he stores will be moved to other providers.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2 (Point 5d):  } d) For Lemma 1, it would be better to define the notations and the meaning of the cases before the statement of Lemma 1.
+}
+\end{quotation}\vspace{-4mm}
+
+We earnestly apologize for the notations lacking clear descriptions. In this revision, we tried our best to avoid confusing readers by presenting unexplained notations. The vast majority of key notations are introduced in Table 1 and Table 2 with clearly stated definitions. Also, we specifically described the meaning of the notations each time they are used in equations/inequalities. We hope our additional efforts can mitigate the concerns about the clarity of the notations.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2 (Point 5e):  } e) For the provider's problem (on top of page 14), please explain why the operating cost is $c \tilde{\lambda} t_j^2$ instead of $ct_j^2$? I am confused as I thought the operating cost is dependent on the uptime only; in other words, the operating cost would be the same given the same uptime, no matter how many accesses to the files are granted during the uptime.
+}
+\end{quotation}\vspace{-4mm}
+
+Thank you for your valuable comment, and allow us to express our regret over the incomplete explanation in the earlier manuscript. In the P2P storage context, the operating costs are closely associated with the data transmission between renters and providers. Specifically, many providers consider the following as the main cost factors: Internet usage, electric bills, and hardware usage.
+\footnote{P2P storage providers often share their experience and profitability on various online forums; for instance, we observed the following opinion: \textit{"Storj does not recommend running a node on dedicated hardware, but use a machine that is already online and running anyway, so this means you should NOT expect that income from the node would cover your electric bill or internet used to run the node. With existing hardware you are already using for some other purpose any income from Storj would be profit"} (https://1stminingrig.com/how-to-host-a-storj-node-setup-earnings-reports/). We also saw several user discussions on the operating costs and related factors---such as Internet usage, GPU durability, and electricity bills (e.g., https://forum.storj.io/t/cost-vs-profit/1099).
+}
+Note that all these factors increase with the computational burden incurred by the transmission of the stored files and the GPU calculation for the blockchain-based system. It is also likely that keeping a personal computer turning on and connecting to the P2P network might cause an operating cost to some extent. However, it will be strikingly amplified when the computer needs to deal with a large amount of data transmission and calculations. For these reasons, we kept the operating costs associated with both the renters' usage amount and uptime in this revision.
+
+Importantly, we additionally considered the heterogeneity of operating costs across providers in the revised model. Since the computing resources such as Internet connection and GPU performances are highly contingent across individuals, it is plausible to assume that providers experience different burdens for the same usage and uptime. We accounted for this contingency by including a sensitivity term $\rho_j$, which follows a uniform distribution (i.e., $\rho_j \sim U[0, 1]$). As a result, we could examine the providers' participation decisions, which were not considered in the previous version.
+
+%Our operating cost may comprise of multiple sources including the opportunity cost of using computing resources, obsolescence of the computing device, and Internet and electricity costs. We defined the following two factors as the most important factors that make up such operating costs.
+
+%First, providers use a lot of computing power, which contains CPU and RAM usage, when renters access and download it. (reference) This computing power will be consumed when the renters connect to the provider's computer and download the stored file.\\
+
+%Second, the high minimum required uptime directly affects the providers' operating costs. It contains not only the Internet and electricity costs but also the effort cost to maintain the minimum required uptime. Obviously, the higher uptime requires, the higher operating cost occurs. We defined the costs from uptime as a quadratic term in the previous version to reflect this relationship. But in this revised version, we define the cost function from the minimum required uptime as as a general cost function $\xi(t)$ that increases with respect to uptime $t$. \\
+
+%However, the provider with a small amount of computer usage and a perfect Internet environment, such a factor will not feel much cost. On the other hand, providers with a lot of computer usage can get a lot of cost from the computing power used by this platform. And the providers with poor internet environment or electrical facilities can get a lot of cost from to keep their personal computer on. Reflecting such individual characteristics, we also considered sensitivity $\rho_j$ as a heterogeneity term. Combining these factors that can influence the providers' operating cost, we define the operating cost as $\rho \xi(t) \hat{\omega}_b$.\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2 (Point 5f):  }f) For Lemma 6, in addition to my concern on the homogeneous willingness-to-pay, I also wonder how the platform can accurately measure the renters' willingness-to-pay in reality in order to implement the proposed pricing scheme.}
+\end{quotation}\vspace{-4mm}
+
+This is a valid point. It could be strikingly difficult to measure the accurate willingness-to-pay regarding this emerging service. Potential users may not be aware of P2P storage platforms, and as a result, it can be very costly and inaccurate to explain this service and ask their attitudes toward and willingness-to-pay for it. Interestingly, P2P storage platforms also seem to be still exploring their optimal pricing; for example, Storj has recently adjusted its pricing scheme by adding a limited free usage to the previous two-part tariff.
+
+For that reason, we expected that we could provide more insights by comparing potential pricing schemes that can be considered in the future than analyzing price adjustments within the current given pricing scheme (i.e., the two-part tariff). We summarized the actionable implications for P2P storage platforms in the revised manuscript as follows:
+
+\textit{"In this vein, our findings provide actionable insights that these platforms can directly apply. Given the immature stage of the P2P storage market, the platforms might want to expand the user base by increasing the total system surplus rather than seeking its short-term profit only. In doing so, they may consider adopting alternative pricing schemes that can yield a higher surplus than the two-part tariff. However, it could be demanding to attract potential providers to the platform, perhaps due to technical difficulties of sharing computing resources. If so, the P2P storage platform needs to further compensate providers' bandwidth provision rather than their storage capacity by lowering the free bandwidth allowance. It is also possible that the platform cannot alter its pricing scheme and service fees. In that case, the platform may indirectly incentivize providers by requiring a lower uptime or a lower redundancy rate. For instance, a $k$-of-$m$ erasure coding scheme with the same redundancy rate (i.e., the same $\frac{m}{k}$) can achieve the same availability while reducing its required uptime by increasing $k$ and $m$ at the same time.\footnote{Table A.1 in Appendix A shows an example suggesting that the platform can exponentially reduce the failure probability while maintaining the redundancy rate.}" (Page 29 of the revised manuscript)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2 (Point 5g):  }g) Perhaps it is just my personal taste, but there are too many lemmas in this paper. Please consider consolidating some of the lemmas to highlight the most important results.}
+\end{quotation}\vspace{-4mm}
+
+We agree that readers will find our paper more informative if we help them focus on more important results. In compliance with your agreeable suggestion, we substantially reduced the number of lemmas and emphasized the main theorems more in the new manuscript. Technically, the previous manuscript had 8 lemmas and 2 theorems; conversely, the revised version has only 2 lemmas and 4 theorems. We also note that each lemma/theorem now has a clear contribution to answering our research questions in the revised manuscript.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quotation}
+{\em
+\noindent \textbf{Reviewer 2:  }In summary, my view on this paper is mixed. As noted in the beginning, I like the topic of this study and appreciate that the authors have identified an interesting, novel, and relevant problem. But on the other hand, there are main concerns on the rigor of the model (formulation of objective and utility functions, model assumptions, etc.) and the novelty of the pricing schemes considered in this paper.
+
+Having realized that this paper tackles a new research topic and the current model is complicated, I would like to encourage the authors to improve their paper, and thus I recommend a major revision of this paper to the editors, although it may be a risky one in my opinion. I am hoping that the authors could enhance the rigor of their core model based on the current pricing scheme and also extend the scope to explore (discuss) other forms of pricing schemes. I also hope that the authors would find my feedback helpful and wish them good luck in revising the paper.}
+\end{quotation}\vspace{-4mm}
+
+In closing, we would like to restate our gratitude for the exhaustive assessment of our manuscript, as well as your encouragement and support. Indeed, they have helped us significantly fine-tune the paper. We have truly benefited from your excellent inputs and addressed all your concerns and suggestions to the best of our ability. We are hopeful that this revision satisfies the standards that you expect from submissions.
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\bibliographystyle{ormsv080}
+%\bibliography{_ref_SMSA}
+\bibliographystyle{informs2014}
+\bibliography{bib}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document} 
